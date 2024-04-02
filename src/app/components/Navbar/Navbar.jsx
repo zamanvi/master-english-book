@@ -82,6 +82,7 @@ export default  function Navbar() {
         } lg:hidden min-w-32 min-h-40 bg-[#075f8fde] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
       >
         <ul className=" text-white p-4">
+          <li><Link href={'/'}> Home</Link></li>
         {
               allChapters?.map( chapter => <li key={chapter?.id}><Link  href={pathname.includes('/book') ? `./${chapter?.id}` : `book/${chapter?.id}`}>{chapter?.title}</Link></li>)
             }
