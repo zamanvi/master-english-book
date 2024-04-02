@@ -23,7 +23,7 @@ export default async function singleBook({params}) {
 
   return (
     <main className="">
-      <Navbar />
+      <Navbar  />
 
       {/* ------------ ------------ Main Content ------------------------*/}
       <div className="flex flex-col lg:flex-row w-12/12 justify-between gap-4 mt-3">

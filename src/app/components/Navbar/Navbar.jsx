@@ -1,10 +1,37 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { FaShare, FaFacebookSquare, FaInstagramSquare, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
-export default function Navbar() {
+import Link from "next/link";
+export default  function Navbar() {
   const [menuClicked, setMenuClicked] = useState(false);
+  const [pathname, setPathname] = useState('');
+  const [allChapters, setAllChapters] = useState(null);
+
+ const key = process.env.NEXT_PUBLIC_API_Public_Key;
+
+
+
+  useEffect(() => {
+    // Check if running on the client side
+    if (typeof window !== "undefined") {
+      setPathname(window.location.pathname);
+      
+    }
+  }, []);
+
+  useEffect( () => {
+    
+    fetch(`https://redrosebd.tech/api/v2/app/book/chapter/index?book_id=1&public_key=${key}`)
+    .then( res => res.json())
+    .then( data => {
+      const bookData = data ;
+      setAllChapters(bookData?.success?.data?.chapters?.data)
+    })
+
+  } , []);
+
 
   return (
     <div className="bg-[#075F8F] p-2  z-10 lg:my-1 lg:rounded">
@@ -55,15 +82,13 @@ export default function Navbar() {
         } lg:hidden min-w-32 min-h-40 bg-[#075f8fde] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
       >
         <ul className=" text-white p-4">
-          <li>Book One</li>
-          <li>Book Two</li>
-          <li>Book Three</li>
-          <li>Book Four</li>
-          <li>Book Five</li>
-          <li>Book Six</li>
-          <li>Book Seven</li>
+        {
+              allChapters?.map( chapter => <li key={chapter?.id}><Link  href={pathname.includes('/book') ? `./${chapter?.id}` : `book/${chapter?.id}`}>{chapter?.title}</Link></li>)
+            }
         </ul>
       </div>
     </div>
   );
 }
+
+
