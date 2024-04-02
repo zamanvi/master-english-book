@@ -83,18 +83,11 @@ const Book = ({ chapterIntro, chapterContent }) => {
             <div key={index} className="page p-4">
               <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
                 <h2 className="text-center font-bold text-xl my-2">
-                  How to success in student life
+                  {item?.sub_title}
                 </h2>
 
                 <div className="z-[2] text-[15px] text-gray-700">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Excepturi provident odit nihil non assumenda! Ea quos ducimus
-                  aspernatur numquam cumque magnam harum, sed asperiores eaque
-                  optio expedita similique inventore error praesentium,
-                  repellendus distinctio explicabo perspiciatis maxime
-                  temporibus delectus hic voluptatum illum. Sed nostrum vero
-                  odit quam quod animi iure rerum consequuntur voluptate eum
-                  doloremque ipsum dolore quos impedit modi alias a earum
+                  {item?.details}
                 </div>
 
                 <span className="page-counter">{index + 1}</span>
