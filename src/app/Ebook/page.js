@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import Image from "next/image";
 import imageSuccess from "../../../public/image/success.png";
-import bookFrontPage from '../../../public/image/bookCoverFs.jpg';
-import bookBackPage from '../../../public/image/bookCoverBs.jpg';
-const Book = () => {
+import bookFrontPage from "../../../public/image/bookCoverFs.jpg";
+import bookBackPage from "../../../public/image/bookCoverBs.jpg";
+const Book = ({ chapterIntro, chapterContent }) => {
+  const evenPages = chapterContent.length % 2 == 0;
 
   useEffect(() => {
     const pages = document.getElementsByClassName("page");
@@ -44,40 +45,87 @@ const Book = () => {
           <div className="page ">
             <div className="h-full  rounded-md">
               <div className="w-full  rounded-md">
-                <Image src={bookFrontPage} className="w-full mx-auto  rounded-md"></Image>
+                <Image
+                  src={bookFrontPage}
+                  className="w-full mx-auto  rounded-md"
+                ></Image>
               </div>
-             
             </div>
           </div>
 
-          {/* -----------------Publisher and Author Details------------- */}
+          {/* -----------------Publisher and Author Details Page------------- */}
           <div className="page p-4 ">
             <div className="page-border h-full  rounded-md  px-3 py-2  text-justify flex justify-center items-center">
-              
               {/* ---------Main Text content--------- */}
               <div className="z-[2] text-[15px] text-gray-700 flex justify-center items-center">
                 <div>
-                <h2 className="text-lg font-bold text-[#075F8F]">Published By: <a className="text-xl text-black" href="https://www.redrosebd.com/" target="_blank">RedRose Academy</a></h2>
-                <h2 className="text-[#287099] font-bold">Author: <span className="text-black">MD. Norozzaman</span></h2>
+                  <h2 className="text-lg font-bold text-[#075F8F]">
+                    Published By:{" "}
+                    <a
+                      className="text-xl text-black"
+                      href="https://www.redrosebd.com/"
+                      target="_blank"
+                    >
+                      RedRose Academy
+                    </a>
+                  </h2>
+                  <h2 className="text-[#287099] font-bold">
+                    Writer: <span className="text-black">MD. Norozzaman</span>
+                  </h2>
                 </div>
               </div>
-      
             </div>
           </div>
+
+          {/* ----------------Dynamic Single Pages -------------- */}
+
+          {chapterContent.map((item, index) => (
+            <div key={index} className="page p-4">
+              <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
+                <h2 className="text-center font-bold text-xl my-2">
+                  How to success in student life
+                </h2>
+
+                <div className="z-[2] text-[15px] text-gray-700">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Excepturi provident odit nihil non assumenda! Ea quos ducimus
+                  aspernatur numquam cumque magnam harum, sed asperiores eaque
+                  optio expedita similique inventore error praesentium,
+                  repellendus distinctio explicabo perspiciatis maxime
+                  temporibus delectus hic voluptatum illum. Sed nostrum vero
+                  odit quam quod animi iure rerum consequuntur voluptate eum
+                  doloremque ipsum dolore quos impedit modi alias a earum
+                </div>
+
+                <span className="page-counter">{index + 1}</span>
+              </div>
+            </div>
+          ))}
+
+          {/* -------------Extra page for maintain Design Layout (If data is even number)----------- */}
+
+          {evenPages && (
+            <div className="page p-4">
+              <div className="page-border h-full  rounded-md  px-3 py-2 text-justify ">
+                
+              </div>
+            </div>
+          )}
+
           {/* -----------------First Single Page------------- */}
-          <div className="page p-4 ">
+          {/* <div className="page p-4 ">
             <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
-              {/* --------Topic Image-------- */}
+             
               <div className="w-full">
                 <Image src={imageSuccess} className="w-7/12 mx-auto"></Image>
               </div>
 
-              {/* --------Topic heading-------- */}
+              
               <h2 className="text-center font-bold text-xl my-2">
                 How to success in student life
               </h2>
 
-              {/* ---------Main Text content--------- */}
+              
               <div className="z-[2] text-[15px] text-gray-700">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Excepturi provident odit nihil non assumenda! Ea quos ducimus
@@ -88,43 +136,49 @@ const Book = () => {
                 animi iure rerum consequuntur voluptate eum doloremque ipsum
                 dolore quos impedit modi alias a earum
               </div>
-              {/* ---------- Ideal Text Limit 1024 Characters and Maximum Text Limit 1090 Characters------  */}
+              
               <span className="page-counter">1</span>
             </div>
-          </div>
+          </div> */}
           {/* -----------------------First Single Page End ------------------ */}
 
           {/* -----------------Second Single Page------------- */}
-          <div className="page p-4 ">
+          {/*   <div className="page p-4 ">
             <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
               <h2 className="text-center pt-3 pb-2 font-bold text-2xl custom-font">
                 Learn English Speaking in 30 Days.
               </h2>
               <div className="z-[2] text-[15px] text-gray-700">
-               <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Excepturi provident odit nihil non assumenda! Ea quos ducimus
-                aspernatur numquam cumque magnam harum, sed asperiores eaque
-                optio expedita similique inventore error praesentium,</p> <br />
-
-                <p>repellendus distinctio explicabo perspiciatis maxime temporibus
-                delectus hic voluptatum illum. Sed nostrum vero odit quam quod
-                animi iure rerum consequuntur voluptate eum doloremque ipsum
-                dolore quos impedit modi alias a earum, cupiditate ullam non
-                veritatis! Ullam eum dolorem ex ipsam, minima harum sunt, Nahid
-                quisquam voluptatibus beatae culpa velit unde.Iste, voluptas tempore! Quia, itaque? Dolorum
-                perspiciatis quaerat iure reprehenderit corporis ipsa debitis dipto
-                magnam in culpa necessitatibus obcaecati quos quam aut, ipsum Shourav
-                ullam ratione dolores adipisci.</p>
+                <p>
+                  {" "}
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Excepturi provident odit nihil non assumenda! Ea quos ducimus
+                  aspernatur numquam cumque magnam harum, sed asperiores eaque
+                  optio expedita similique inventore error praesentium,
+                </p>{" "}
+                <br />
+                <p>
+                  repellendus distinctio explicabo perspiciatis maxime
+                  temporibus delectus hic voluptatum illum. Sed nostrum vero
+                  odit quam quod animi iure rerum consequuntur voluptate eum
+                  doloremque ipsum dolore quos impedit modi alias a earum,
+                  cupiditate ullam non veritatis! Ullam eum dolorem ex ipsam,
+                  minima harum sunt, Nahid quisquam voluptatibus beatae culpa
+                  velit unde.Iste, voluptas tempore! Quia, itaque? Dolorum
+                  perspiciatis quaerat iure reprehenderit corporis ipsa debitis
+                  dipto magnam in culpa necessitatibus obcaecati quos quam aut,
+                  ipsum Shourav ullam ratione dolores adipisci.
+                </p>
               </div>
-              {/* ---------- Ideal Text Limit 1024 Characters and Maximum Text Limit 1090 Characters------  */}
+              
               <span className="page-counter">2</span>
             </div>
-          </div>
+          </div> */}
           {/* -----------------------Second Single Page End ------------------ */}
 
           {/* -----------------Third Single Page------------- */}
 
-          <div className="page p-4 ">
+          {/*   <div className="page p-4 ">
             <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
               <div className="z-[2] text-[15px] text-gray-700">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -147,16 +201,16 @@ const Book = () => {
                 dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor
                 sit amet.
               </div>
-              {/* ---------- Ideal Text Limit 1024 Characters and Maximum Text Limit 1090 Characters------  */}
+
               <span className="page-counter">3</span>
             </div>
-          </div>
-          {/* -----------------Third Single Page End------------- */}
+          </div> */}
 
+          {/* -----------------Third Single Page End------------- */}
 
           {/* -----------------Fourth Single Page------------- */}
 
-          <div className="page p-4 ">
+          {/*   <div className="page p-4 ">
             <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
               <div className="z-[2] text-[15px] text-gray-700">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
@@ -179,16 +233,15 @@ const Book = () => {
                 dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor
                 sit amet.
               </div>
-              {/* ---------- Ideal Text Limit 1024 Characters and Maximum Text Limit 1090 Characters------  */}
+              
               <span className="page-counter">4</span>
             </div>
-          </div>
+          </div> */}
           {/* -----------------Fourth Single Page End------------- */}
-
 
           {/* -----------------Fifth Single Page------------- */}
 
-          <div className="page p-4 ">
+          {/* <div className="page p-4 ">
             <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
               <h2 className="text-center pt-3 pb-4 font-thin text-3xl text-gray-600  heading-AsharAlo">
                 সফল মানুষ হওয়ার থেকে ভালো মানুষ হওয়া জরুরি ,,
@@ -215,32 +268,22 @@ const Book = () => {
                   নেই তাহলে আপনি ভূল চিন্তা করেছেন।{" "}
                 </p>
               </div>
-              {/* ---------- Ideal Text Limit 1024 Characters and Maximum Text Limit 1090 Characters------  */}
+              
               <span className="page-counter">5</span>
             </div>
-          </div>
+          </div> */}
           {/* -----------------Fifth Single Page End------------- */}
-
-          {/* <div className="page"><p>Third Page</p></div>
-          <div className="page"><p>Fourth Page</p></div>
-          <div className="page"><p>Fifth Page</p></div>
-          <div className="page"><p>Sixth Page</p></div>
-          <div className="page"><p>Seventh Page</p></div>
-          <div className="page"><p>Eighth Page</p></div>
-          <div className="page"><p>Ninth Page</p></div>
-          <div className="page"><p>Tenth Page</p></div>
-          <div className="page"><p>Eleven Page</p></div>
-          <div className="page"><p>Twelve Page</p></div>
-          <div className="page"><p>Thirteenth Page</p></div>
-          <div className="page"><p>Fourteenth Page</p></div> */}
 
           {/* -------------------End Page --------------- */}
           <div className="page ">
             <div className="h-full  rounded-md">
               <div className="w-full  rounded-md">
-                <Image src={bookBackPage} className="w-full mx-auto  rounded-md"></Image>
+                <Image
+                  src={bookBackPage}
+                  className="w-full mx-auto  rounded-md"
+                  alt="Book Cover"
+                ></Image>
               </div>
-             
             </div>
           </div>
         </div>
