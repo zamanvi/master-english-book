@@ -3,6 +3,7 @@ import getBook from "../../../../lib/getBook";
 import Link from "next/link";
 import EBook from "../../components/EBook/EBook";
 import getChapterData from "../../../../lib/getChapterData";
+import EBookSm from "@/app/components/EBookSm/EBookSm";
 
 
 
@@ -39,9 +40,13 @@ export default async function singleBook({params}) {
             
           </ul>
         </div>
-        {/* -----------Content ---------------- */}
-        <div className="w-12/12 lg:w-9/12">
+        {/* -----------Content For Large and Medium Devices ---------------- */}
+        <div className="hidden md:block  w-12/12 lg:w-9/12">
          <EBook chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBook>
+        </div>
+        {/* -----------Content Small / Mobile Devices ---------------- */}
+        <div className="md:hidden w-11/12 mx-auto">
+         <EBookSm chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBookSm>
         </div>
       </div>
     </main>
