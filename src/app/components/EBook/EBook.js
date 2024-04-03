@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
 import Image from "next/image";
-import imageSuccess from "../../../public/image/success.png";
-import bookFrontPage from "../../../public/image/bookCoverFs.jpg";
-import bookBackPage from "../../../public/image/bookCoverBs.jpg";
-const Book = ({ chapterIntro, chapterContent }) => {
+import imageSuccess from "../../../../public/image/success.png";
+import bookFrontPage from "../../../../public/image/bookCoverFs.jpg";
+import bookBackPage from "../../../../public/image/bookCoverBs.jpg";
+const EBook = ({ chapterIntro, chapterContent }) => {
 
   const isEvenPages = chapterContent?.length % 2 == 0;
 
@@ -286,4 +286,4 @@ const Book = ({ chapterIntro, chapterContent }) => {
   );
 };
 
-export default Book;
+export default EBook;

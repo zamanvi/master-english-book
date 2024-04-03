@@ -1,7 +1,7 @@
 import Navbar from "@/app/components/Navbar/Navbar";
 import getBook from "../../../../lib/getBook";
 import Link from "next/link";
-import Ebook from "./../../Ebook/page";
+import EBook from "../../components/EBook/EBook";
 import getChapterData from "../../../../lib/getChapterData";
 
 
@@ -41,7 +41,7 @@ export default async function singleBook({params}) {
         </div>
         {/* -----------Content ---------------- */}
         <div className="w-12/12 lg:w-9/12">
-         <Ebook chapterIntro={chapterIntro} chapterContent={chapterContent} > </Ebook>
+         <EBook chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBook>
         </div>
       </div>
     </main>
