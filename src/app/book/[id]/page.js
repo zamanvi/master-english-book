@@ -45,7 +45,7 @@ export default async function singleBook({params}) {
          <EBook chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBook>
         </div>
         {/* -----------Content Small / Mobile Devices ---------------- */}
-        <div className="md:hidden w-11/12 mx-auto">
+        <div className="md:hidden w-11/12 mx-auto mb-5">
          <EBookSm chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBookSm>
         </div>
       </div>
