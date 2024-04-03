@@ -16,7 +16,7 @@ import bookBackPage from "../../../../public/image/bookCoverBs.jpg";
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
-export default function EBookSm() {
+export default function EBookSm({ chapterIntro, chapterContent }) {
   return (
     <div className="">
       <Swiper
@@ -40,12 +40,12 @@ export default function EBookSm() {
           </div>
         </SwiperSlide>
 
-       {/* ---------- Publisher and Author Page ---------------- */}
+        {/* ---------- Publisher and Author Page ---------------- */}
         <SwiperSlide>
           <div className="w-full  h-[72vh] rounded-md mx-1 shadow-md shadow-[#00000054] mb-2 hover:shadow-[#00000071] p-2">
             <div className="page-border h-full  rounded-md  px-3 py-2  text-justify flex justify-center items-center">
-               {/* ---------Main Text content--------- */}
-               <div className="z-[2] text-[15px] text-gray-700 flex justify-center items-center">
+              {/* ---------Main Text content--------- */}
+              <div className="z-[2] text-[15px] text-gray-700 flex justify-center items-center">
                 <div>
                   <h2 className=" font-bold text-[#075F8F]">
                     Published By:{" "}
@@ -66,18 +66,28 @@ export default function EBookSm() {
           </div>
         </SwiperSlide>
 
+        {/* -------------- Dynamic Page --------------------  */}
 
-       {/* -------------- Dynamic Page --------------------  */}
+        {chapterContent?.map((item, index) => (
+          <SwiperSlide key={index}>
+            <div className="w-full  h-[72vh] rounded-md mx-1 shadow-md shadow-[#00000054] mb-2 hover:shadow-[#00000071] p-2">
+              <div className="page-border h-full  rounded-md  px-3 py-2  text-justify ">
 
-        <SwiperSlide>
-          <div className="w-full  h-[72vh] rounded-md mx-1 shadow-md shadow-[#00000054] mb-2 hover:shadow-[#00000071] p-2">
-            <div className="page-border h-full  rounded-md  px-3 py-2  text-justify flex justify-center items-center">
-              <p className="">Slide 1</p>
+                <div>
+                <h3 className="text-center font-bold  my-2">
+                  {item?.sub_title}
+                </h3>
 
-              <span className="page-counter">1</span>
+                <div className="z-[2] text-[13px] text-gray-700">
+                  {item?.details}
+                </div>
+                </div>
+
+                <span className="page-counter">{index + 1}</span>
+              </div>
             </div>
-          </div>
-        </SwiperSlide>
+          </SwiperSlide>
+        ))}
 
         {/* ---------------Book End Cover page --------------- */}
         <SwiperSlide>
