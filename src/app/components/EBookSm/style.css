@@ -1,0 +1,31 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .page-border{
+    border: 4px double burlywood;
+  }
+
+  
+  .page-counter {
+    @apply px-[9px] py-1 rounded-full text-[11px] bg-gray-300 text-[#312f2fc0] font-bold absolute bottom-6 left-2/4 z-[20]
+  }
