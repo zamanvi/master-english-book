@@ -1,6 +1,6 @@
 import Link from "next/link";
 import getBook from "../../lib/getBook";
-import Ebook from "../app/Ebook/page";
+import Ebook from "./components/EBook/EBook";
 import Navbar from "./components/Navbar/Navbar";
 import BookCover from "./components/BookCover/BookCover";
 
