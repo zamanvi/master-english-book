@@ -6,7 +6,8 @@ import imageSuccess from "../../../public/image/success.png";
 import bookFrontPage from "../../../public/image/bookCoverFs.jpg";
 import bookBackPage from "../../../public/image/bookCoverBs.jpg";
 const Book = ({ chapterIntro, chapterContent }) => {
-  const isEvenPages = chapterContent && chapterContent?.length % 2 == 0;
+
+  const isEvenPages = chapterContent?.length % 2 == 0;
 
   useEffect(() => {
     const pages = document.getElementsByClassName("page");
@@ -79,7 +80,7 @@ const Book = ({ chapterIntro, chapterContent }) => {
 
           {/* ----------------Dynamic Single Pages -------------- */}
 
-          {chapterContent.map((item, index) => (
+          {chapterContent?.map((item, index) => (
             <div key={index} className="page p-4">
               <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
                 <h2 className="text-center font-bold text-xl my-2">
