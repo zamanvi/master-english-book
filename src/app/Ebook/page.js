@@ -6,7 +6,7 @@ import imageSuccess from "../../../public/image/success.png";
 import bookFrontPage from "../../../public/image/bookCoverFs.jpg";
 import bookBackPage from "../../../public/image/bookCoverBs.jpg";
 const Book = ({ chapterIntro, chapterContent }) => {
-  const evenPages = chapterContent.length % 2 == 0;
+  const isEvenPages = chapterContent && chapterContent?.length % 2 == 0;
 
   useEffect(() => {
     const pages = document.getElementsByClassName("page");
@@ -97,7 +97,7 @@ const Book = ({ chapterIntro, chapterContent }) => {
 
           {/* -------------Extra page for maintain Design Layout (If data is even number)----------- */}
 
-          {evenPages && (
+          {isEvenPages && (
             <div className="page p-4">
               <div className="page-border h-full  rounded-md  px-3 py-2 text-justify ">
                 
