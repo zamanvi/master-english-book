@@ -75,7 +75,7 @@ export default function EBookSm({ chapterIntro, chapterContent }) {
 
                 <div>
                 <h3 className="text-center font-bold  my-2">
-                  {item?.sub_title}
+                  {item?.title}
                 </h3>
 
                 <div className="z-[2] text-[13px] text-gray-700">

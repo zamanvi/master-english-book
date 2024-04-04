@@ -84,7 +84,7 @@ const EBook = ({ chapterIntro, chapterContent }) => {
             <div key={index} className="page p-4">
               <div className="page-border h-full  rounded-md  px-3 py-2 text-justify">
                 <h2 className="text-center font-bold text-xl my-2">
-                  {item?.sub_title}
+                  {item?.title}
                 </h2>
 
                 <div className="z-[2] text-[15px] text-gray-700">
