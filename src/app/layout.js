@@ -1,7 +1,8 @@
 import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer/Footer";
-import bookImag from '../../public/image/bookCoverFs.jpg';
+
+const cardImage = `https://i.ibb.co/kSf0GvB/book-Cover-Fs.jpg`;
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -12,7 +13,7 @@ export const metadata = {
   title: "দূর্বলদের Fast Learning English Part - I",
   description: "Easy English learning master book for all of us. Effective and Very attractive.",
   openGraph: {
-    images: [`${bookImag.src}`],
+    images: [cardImage,],
   },
 };
 
