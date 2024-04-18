@@ -10,7 +10,7 @@ const ubuntu = Ubuntu({
 });
 
 export const metadata = {
-  title: "দূর্বলদের Fast Learning English Part - I",
+  title: "দূর্বলদের Master English Book Part - I",
   description: "Easy English learning master book for all of us. Effective and Very attractive.",
   openGraph: {
     images: [cardImage,],

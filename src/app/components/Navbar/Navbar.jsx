@@ -40,7 +40,7 @@ export default  function Navbar() {
         <div>
           <ul className="flex items-end gap-2   text-white ">
             <li>Book Name: </li>
-            <li className="text-xl font-bold"> <span className="text-[#FBE050]">দূর্বলদের</span> Fast Learning English <span className="text-[#FBE050]">Part - I</span></li>
+            <li className="text-xl font-bold"> <span className="text-[#FBE050]">দূর্বলদের</span> Master English Book <span className="text-[#FBE050]">Part - I</span></li>
             
           </ul>
         </div>
@@ -56,7 +56,7 @@ export default  function Navbar() {
            </div>
 
            <div>
-             <h2 className="font-bold text-white text-xl">RedRose Ebook</h2>
+             <h2 className="font-bold text-white text-xl"></h2>
            </div>
         </div>
       </div>
@@ -64,7 +64,7 @@ export default  function Navbar() {
       {/* -----------------Nav Items for small Screen--------------- */}
       <div className="flex lg:hidden justify-between items-center relative">
         <div>
-          <h2 className="font-bold text-white text-lg">RedRose Ebook</h2>
+          <h2 className="font-bold text-white text-lg">Master English Book Part - I</h2>
         </div>
 
         <div onClick={() => setMenuClicked(!menuClicked)}>
