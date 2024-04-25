@@ -51,3 +51,25 @@ export default async function singleBook({params}) {
     </main>
   );
 }
+
+
+export async function generateMetadata({ params }) {
+  const chapterID = params?.id;
+  const chapterInfo = await getChapterData(chapterID);
+  const chapterContent = chapterInfo?.success?.data?.item;
+  const chapterTitle = chapterContent?.title;
+  const chapterDescription = chapterContent?.short_details;
+  const pageKeyword = chapterContent?.keyword.split(', ') ;
+  const pageFocusKeyword = chapterContent?.focus_keyword;
+
+  return {
+    title: `${chapterTitle}`,
+    description: `${chapterDescription}`,
+    keywords: [pageFocusKeyword, ...pageKeyword],
+    robots: "ALL",
+    robots: "index, follow",
+    googleBot: "index, follow",
+    googleBotNews: "index, follow",
+    distribution: "Global",
+  };
+}
