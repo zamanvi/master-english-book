@@ -12,7 +12,7 @@ import EBookSm from "@/app/components/EBookSm/EBookSm";
 export default async function singleBook({params}) {
 
   const bookData = await getBook() ;
-  const allChapters = bookData?.success?.data?.chapters?.data;
+  const allChapters = bookData?.success?.data?.items?.data;
 
   const chapterID = params?.id;
   const chapterInfo = await getChapterData(chapterID);
