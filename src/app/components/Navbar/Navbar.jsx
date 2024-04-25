@@ -23,11 +23,11 @@ export default  function Navbar() {
 
   useEffect( () => {
     
-    fetch(`https://redrosebd.tech/api/v2/app/book/chapter/index?book_id=1&public_key=${key}`)
+    fetch(`https://redrosebd.tech/api/v2/app/book/item/index?&public_key=${key}`)
     .then( res => res.json())
     .then( data => {
       const bookData = data ;
-      setAllChapters(bookData?.success?.data?.chapters?.data)
+      setAllChapters(bookData?.success?.data?.items?.data)
     })
 
   } , []);

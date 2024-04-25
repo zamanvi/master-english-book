@@ -12,12 +12,11 @@ import EBookSm from "@/app/components/EBookSm/EBookSm";
 export default async function singleBook({params}) {
 
   const bookData = await getBook() ;
-  const allChapters = bookData?.success?.data?.chapters?.data;
+  const allChapters = bookData?.success?.data?.items?.data;
 
   const chapterID = params?.id;
   const chapterInfo = await getChapterData(chapterID);
-  const chapterIntro = chapterInfo?.success?.data?.chapter;
-  const chapterContent = chapterInfo?.success?.data?.bookItems;
+  const chapterContent = chapterInfo?.success?.data?.item;
  
   
 
@@ -42,13 +41,35 @@ export default async function singleBook({params}) {
         </div>
         {/* -----------Content For Large and Medium Devices ---------------- */}
         <div className="hidden md:block  w-12/12 lg:w-9/12">
-         <EBook chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBook>
+         <EBook  chapterContent={chapterContent} > </EBook>
         </div>
         {/* -----------Content Small / Mobile Devices ---------------- */}
         <div className="md:hidden w-11/12 mx-auto mb-5">
-         <EBookSm chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBookSm>
+         <EBookSm chapterContent={chapterContent} > </EBookSm>
         </div>
       </div>
     </main>
   );
+}
+
+
+export async function generateMetadata({ params }) {
+  const chapterID = params?.id;
+  const chapterInfo = await getChapterData(chapterID);
+  const chapterContent = chapterInfo?.success?.data?.item;
+  const chapterTitle = chapterContent?.title;
+  const chapterDescription = chapterContent?.short_details;
+  const pageKeyword = chapterContent?.keyword.split(', ') ;
+  const pageFocusKeyword = chapterContent?.focus_keyword;
+
+  return {
+    title: `${chapterTitle}`,
+    description: `${chapterDescription}`,
+    keywords: [pageFocusKeyword, ...pageKeyword],
+    robots: "ALL",
+    robots: "index, follow",
+    googleBot: "index, follow",
+    googleBotNews: "index, follow",
+    distribution: "Global",
+  };
 }

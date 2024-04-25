@@ -8,7 +8,7 @@ import BookCover from "./components/BookCover/BookCover";
 export default async function Home() {
 
   const bookData = await getBook() ;
-  const allChapters = bookData?.success?.data?.chapters?.data;
+  const allChapters = bookData?.success?.data?.items?.data;
  
   
 
