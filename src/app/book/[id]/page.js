@@ -16,8 +16,7 @@ export default async function singleBook({params}) {
 
   const chapterID = params?.id;
   const chapterInfo = await getChapterData(chapterID);
-  const chapterIntro = chapterInfo?.success?.data?.chapter;
-  const chapterContent = chapterInfo?.success?.data?.bookItems;
+  const chapterContent = chapterInfo?.success?.data?.item;
  
   
 
@@ -42,11 +41,11 @@ export default async function singleBook({params}) {
         </div>
         {/* -----------Content For Large and Medium Devices ---------------- */}
         <div className="hidden md:block  w-12/12 lg:w-9/12">
-         <EBook chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBook>
+         <EBook  chapterContent={chapterContent} > </EBook>
         </div>
         {/* -----------Content Small / Mobile Devices ---------------- */}
         <div className="md:hidden w-11/12 mx-auto mb-5">
-         <EBookSm chapterIntro={chapterIntro} chapterContent={chapterContent} > </EBookSm>
+         <EBookSm chapterContent={chapterContent} > </EBookSm>
         </div>
       </div>
     </main>

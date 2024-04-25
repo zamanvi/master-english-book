@@ -16,7 +16,7 @@ import bookBackPage from "../../../../public/image/bookCoverBs.jpg";
 import { Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
 
-export default function EBookSm({ chapterIntro, chapterContent }) {
+export default function EBookSm({ chapterContent }) {
   return (
     <div className="">
       <Swiper
@@ -68,26 +68,24 @@ export default function EBookSm({ chapterIntro, chapterContent }) {
 
         {/* -------------- Dynamic Page --------------------  */}
 
-        {chapterContent?.map((item, index) => (
-          <SwiperSlide key={index}>
+        <SwiperSlide >
             <div className="w-full  h-[72vh] rounded-md mx-1 shadow-md shadow-[#00000054] mb-2 hover:shadow-[#00000071] p-2">
               <div className="page-border h-full  rounded-md  px-3 py-2  text-justify ">
 
                 <div>
                 <h3 className="text-center font-bold  my-2">
-                  {item?.title}
+                  {chapterContent?.title}
                 </h3>
 
-                <div className="z-[2] text-[13px] text-gray-700">
-                  {item?.details}
+                <div dangerouslySetInnerHTML={{__html: chapterContent?.details}} className="z-[2] text-[13px] text-gray-700">
+                  
                 </div>
                 </div>
 
-                <span className="page-counter">{index + 1}</span>
+                <span className="page-counter">1</span>
               </div>
             </div>
           </SwiperSlide>
-        ))}
 
         {/* ---------------Book End Cover page --------------- */}
         <SwiperSlide>
