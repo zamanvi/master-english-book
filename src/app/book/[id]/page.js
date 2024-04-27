@@ -1,10 +1,8 @@
 import Navbar from "@/app/components/Navbar/Navbar";
 import getBook from "../../../../lib/getBook";
 import Link from "next/link";
-import EBook from "../../components/EBook/EBook";
-import getChapterData from "../../../../lib/getChapterData";
-import EBookSm from "@/app/components/EBookSm/EBookSm";
 
+import getChapterData from "../../../../lib/getChapterData";
 
 
 
@@ -39,14 +37,8 @@ export default async function singleBook({params}) {
             
           </ul>
         </div>
-        {/* -----------Content For Large and Medium Devices ---------------- */}
-        <div className="hidden md:block  w-12/12 lg:w-9/12">
-         <EBook  chapterContent={chapterContent} > </EBook>
-        </div>
-        {/* -----------Content Small / Mobile Devices ---------------- */}
-        <div className="md:hidden w-11/12 mx-auto mb-5">
-         <EBookSm chapterContent={chapterContent} > </EBookSm>
-        </div>
+        {/* ----------- Main Content Here---------------- */}
+        
       </div>
     </main>
   );
