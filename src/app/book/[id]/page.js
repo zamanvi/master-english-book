@@ -10,7 +10,7 @@ import getChapterData from "../../../../lib/getChapterData";
 export default async function singleBook({params}) {
 
   const bookData = await getBook() ;
-  const allChapters = bookData?.success?.data?.items?.data;
+  const allChapters = bookData?.success?.data?.chapters?.data;
 
   const chapterID = params?.id;
   const chapterInfo = await getChapterData(chapterID);
@@ -32,7 +32,7 @@ export default async function singleBook({params}) {
           </h2>
           <ul className=" bg-[#dbeafeb0]  pb-10 chapters ">
           {
-              allChapters?.map( chapter => <li key={chapter?.id}><Link  href={`./${chapter?.id}`}>{chapter?.title}</Link></li>)
+              allChapters?.map( chapter => <li key={chapter?.id} className="text-lg">{chapter?.title}</li>)
             }
             
           </ul>

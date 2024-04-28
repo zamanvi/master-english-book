@@ -8,7 +8,7 @@ import BookCover from "./components/BookCover/BookCover";
 export default async function Home() {
 
   const bookData = await getBook() ;
-  const allChapters = bookData?.success?.data?.items?.data;
+  const allChapters = bookData?.success?.data?.chapters?.data;
  
   
 
@@ -26,7 +26,7 @@ export default async function Home() {
           </h2>
           <ul className=" bg-[#dbeafeb0]  pb-10 chapters ">
             {
-              allChapters?.map( chapter => <li key={chapter?.id}><Link  href={`book/${chapter?.id}`}>{chapter?.title}</Link></li>)
+              allChapters?.map( chapter => <li key={chapter?.id} className="font-semibold">{chapter?.title}</li>)
             }
             
           </ul>
