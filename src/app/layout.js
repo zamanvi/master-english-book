@@ -13,7 +13,7 @@ export const metadata = {
   title: "দূর্বলদের Master English Book Part - I",
   description: "Easy English learning master book for all of us. Effective and Very attractive.",
   verification: {
-    google: 'vTgT1liMKh_QCYmEoTzMr3xHXLRDoMk8LgXjVL9U9zk',
+    google: 'M0MK3nrHsamo73lbLU8-lwBKzCFfoSBfyLi-kL0z160',
   },
   openGraph: {
     images: [cardImage,],
