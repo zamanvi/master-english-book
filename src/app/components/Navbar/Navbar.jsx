@@ -36,7 +36,7 @@ export default  function Navbar() {
   return (
     <div className="bg-[#075F8F] p-2  z-10 lg:my-1 lg:rounded">
       {/* ----------------Nav Items For Big Screen ---------- */}
-      <div className="hidden lg:flex justify-between items-center">
+      <div className="hidden md:flex justify-between items-center">
         <div>
           <ul className="flex items-end gap-2   text-white ">
             <li>Book Name: </li>
@@ -62,7 +62,7 @@ export default  function Navbar() {
       </div>
 
       {/* -----------------Nav Items for small Screen--------------- */}
-      <div className="flex lg:hidden justify-between items-center relative">
+      <div className="flex md:hidden justify-between items-center relative">
         <div>
           <h2 className="font-bold text-white text-lg">Master English Book Part - I</h2>
         </div>

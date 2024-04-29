@@ -23,10 +23,10 @@ export default async function singleBook({params}) {
       <Navbar  />
 
       {/* ------------ ------------ Main Content ------------------------*/}
-      <div className="flex flex-col lg:flex-row w-12/12 justify-between gap-4 mt-3">
+      <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 mt-3">
         {/* -------------Content Menu------------- */}
-        <div className="w-12/12 lg:w-3/12 hidden lg:block">
-          <h2 className="bg-[#075F8F] font-bold text-[22px] text-white px-2 py-1">
+        <div className="w-12/12 md:w-3/12 hidden md:block">
+          <h2 className="bg-[#075F8F] font-bold md:text-lg lg:text-xl xl:text-[22px] text-white px-2 py-1">
             Chapters
           </h2>
           <ul className="bg-[#dbeafeb0] pb-10 chapters">
@@ -37,16 +37,26 @@ export default async function singleBook({params}) {
 
               return (
                 <li key={chapter?.id}>
-                  <h3 className="font-semibold">{chapter?.title}</h3>
+                  <h3 className="text-[15px] lg:text-[16px] font-semibold mb-2">{chapter?.title}</h3>
                   {/* Display chapter content */}
                   {chapterContent?.map((content) => (
                     <Link
                       key={content?.id}
-                      className="cursor-pointer inline-block hover:text-blue-400"
+                      className="cursor-pointer block hover:text-blue-400"
                       href={`./${content?.id}`}
+                      title={content?.title}
+                      
                     >
-                      <span>
-                       {content?.title.slice(0, 38) + "..."}
+                    <span className="hidden md:inline-block lg:hidden text-[14px]">
+                        {content?.title.slice(0, 25) + "..."}
+                      </span>
+
+                      <span className="hidden lg:inline-block xl:hidden text-[14px]">
+                        {content?.title.slice(0, 31) + "..."}
+                      </span>
+                      
+                      <span className="hidden xl:inline-block">
+                        {content?.title.slice(0, 38) + "..."}
                       </span>
                     </Link>
                   ))}
@@ -56,10 +66,10 @@ export default async function singleBook({params}) {
           </ul>
         </div>
         {/* ----------- Main Content Here---------------- */}
-        <div className="w-12/12 lg:w-9/12 bg-[#dbeafe8c] p-5">
-          <h1 className="font-bold text-2xl">{postContent?.title}</h1>
+        <div className="w-12/12 md:w-9/12 bg-[#dbeafe8c] p-5">
+          <h1 className="font-bold  md:text-lg lg:text-xl xl:text-2xl">{postContent?.title}</h1>
 
-          <div  dangerouslySetInnerHTML={{__html: postContent?.details}} className="mt-8">
+          <div  dangerouslySetInnerHTML={{__html: postContent?.details}} className="mt-5 xl:mt-8">
             
           </div>
         </div>
