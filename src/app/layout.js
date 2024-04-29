@@ -1,7 +1,7 @@
 import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer/Footer";
-
+import { GoogleAnalytics } from '@next/third-parties/google'
 const cardImage = `https://i.ibb.co/kSf0GvB/book-Cover-Fs.jpg`;
 
 const ubuntu = Ubuntu({
@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
 
          
          <Footer/>
+         <GoogleAnalytics gaId="G-YM9TZWWD6D" />
         </body>
  
     </html>
