@@ -11,10 +11,10 @@ export default async function Home() {
   return (
     <main className="">
       <Navbar />
-      <div className="flex flex-col lg:flex-row w-12/12 justify-between gap-4 mt-3">
+      <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 mt-3">
         {/* Content Menu */}
-        <div className="w-12/12 lg:w-3/12 hidden lg:block">
-          <h2 className="bg-[#075F8F] font-bold text-[22px] text-white px-2 py-1">
+        <div className="w-12/12 md:w-3/12 hidden md:block">
+          <h2 className="bg-[#075F8F] font-bold md:text-lg lg:text-xl xl:text-[22px] text-white px-2 py-1">
             Chapters
           </h2>
 
@@ -26,17 +26,27 @@ export default async function Home() {
 
               return (
                 <li key={chapter?.id}>
-                  <h3 className="font-semibold">{chapter?.title}</h3>
+                  <h3 className="text-[15px] lg:text-[16px] font-semibold mb-1 lg:mb-2">
+                    {chapter?.title}
+                  </h3>
                   {/* Display chapter content */}
                   {chapterContent?.map((content) => (
                     <Link
                       key={content?.id}
-                      className="cursor-pointer inline-block hover:text-blue-400"
+                      className="cursor-pointer block hover:text-blue-400"
                       href={`book/${content?.id}`}
-                      
+                      title={content?.title}
                     >
-                      <span>
-                       {content?.title.slice(0, 38) + "..."}
+                      <span className="hidden md:inline-block lg:hidden text-[14px]">
+                        {content?.title.slice(0, 25) + "..."}
+                      </span>
+
+                      <span className="hidden lg:inline-block xl:hidden text-[14px]">
+                        {content?.title.slice(0, 31) + "..."}
+                      </span>
+                      
+                      <span className="hidden xl:inline-block">
+                        {content?.title.slice(0, 38) + "..."}
                       </span>
                     </Link>
                   ))}
@@ -46,7 +56,7 @@ export default async function Home() {
           </ul>
         </div>
         {/* Content */}
-        <div className="w-12/12 lg:w-9/12 bg-[#dbeafeb0] ">
+        <div className="w-12/12 md:w-9/12 bg-[#dbeafeb0] ">
           <Link href={`book/54`}>
             <BookCover></BookCover>
           </Link>
