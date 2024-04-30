@@ -39,25 +39,14 @@ export default async function singleBook({params}) {
                 <li key={chapter?.id}>
                   <h3 className="text-[15px] lg:text-[16px] font-semibold mb-2">{chapter?.title}</h3>
                   {/* Display chapter content */}
-                  {chapterContent?.map((content) => (
+                  {chapterContent?.map((content, index) => (
                     <Link
                       key={content?.id}
-                      className="cursor-pointer block hover:text-blue-400"
-                      href={`./${content?.id}`}
+                      className="cursor-pointer block mb-1 hover:text-blue-400 text-[14px] xl:text-[16px]"
+                      href={`book/${content?.id}`}
                       title={content?.title}
-                      
                     >
-                    <span className="hidden md:inline-block lg:hidden text-[14px]">
-                        {content?.title.slice(0, 25) + "..."}
-                      </span>
-
-                      <span className="hidden lg:inline-block xl:hidden text-[14px]">
-                        {content?.title.slice(0, 31) + "..."}
-                      </span>
-                      
-                      <span className="hidden xl:inline-block">
-                        {content?.title.slice(0, 38) + "..."}
-                      </span>
+                       <span className="font-bold">{ index + 1 }. </span>  { content?.title}
                     </Link>
                   ))}
                 </li>

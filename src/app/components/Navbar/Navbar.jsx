@@ -120,7 +120,7 @@ export default function Navbar() {
       <div
         className={`${
           menuClicked ? "block" : "hidden"
-        } lg:hidden min-w-32 min-h-40 bg-[#075f8fde] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
+        } lg:hidden min-w-32 max-w-[90%] mx-auto min-h-40 bg-[#075f8f] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
       >
         <ul className="text-white p-4">
           <li className="font-bold">
@@ -132,10 +132,10 @@ export default function Navbar() {
                 {chapter?.title}
               </h3>
               {/* Display chapter content */}
-              {chapterContent[chapter.id]?.map((content) => (
+              {chapterContent[chapter.id]?.map((content, index) => (
                 <Link
                   key={content?.id}
-                  className="cursor-pointer block hover:text-blue-400 text-[14px]"
+                  className="cursor-pointer block hover:text-blue-400 text-[14px] mb-1"
                   href={
                     pathname.includes("/book")
                       ? `./${content?.id}`
@@ -143,7 +143,7 @@ export default function Navbar() {
                   }
                   title={content?.title}
                 >
-                  {content?.title.slice(0, 40) + "..."}
+                 <span className="font-bold"> {index + 1 } .</span> {content?.title}
                 </Link>
               ))}
             </li>
