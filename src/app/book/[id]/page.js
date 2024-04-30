@@ -43,7 +43,7 @@ export default async function singleBook({params}) {
                     <Link
                       key={content?.id}
                       className="cursor-pointer block mb-1 hover:text-blue-400 text-[14px] xl:text-[16px]"
-                      href={`book/${content?.id}`}
+                      href={`./${content?.id}`}
                       title={content?.title}
                     >
                        <span className="font-bold">{ index + 1 }. </span>  { content?.title}
