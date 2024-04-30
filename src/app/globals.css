@@ -8,6 +8,15 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+.revert-tailwind {
+  all: initial;
+}
+
+.revert-tailwind > * {
+  all: revert;
+}
+
+
 *{
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */

@@ -56,9 +56,9 @@ export default async function singleBook({params}) {
         </div>
         {/* ----------- Main Content Here---------------- */}
         <div className="w-12/12 md:w-9/12 bg-[#dbeafe8c] p-5">
-          <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl">{postContent?.title}</h1>
+          <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">{postContent?.title}</h1>
 
-          <div  dangerouslySetInnerHTML={{__html: postContent?.details}} className="mt-5 xl:mt-8">
+          <div  dangerouslySetInnerHTML={{__html: postContent?.details}} className="revert-tailwind">
             
           </div>
         </div>
@@ -74,12 +74,12 @@ export async function generateMetadata({ params }) {
   const postContent = postInfo?.success?.data?.item;
   const postTitle = postContent?.title;
   const postDescription = postContent?.short_details;
-  const pageKeyword = postContent?.keyword.split(', ') ;
-  const pageFocusKeyword = postContent?.focus_keyword;
+  const pageKeyword = postContent?.keyword;
 
   return {
     title: `${postTitle}`,
     description: `${postDescription}`,
+    keywords: pageKeyword,
     robots: "ALL",
     robots: "index, follow",
     googleBot: "index, follow",
