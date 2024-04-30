@@ -67,7 +67,7 @@ export default async function singleBook({params}) {
         </div>
         {/* ----------- Main Content Here---------------- */}
         <div className="w-12/12 md:w-9/12 bg-[#dbeafe8c] p-5">
-          <h1 className="font-bold  md:text-lg lg:text-xl xl:text-2xl">{postContent?.title}</h1>
+          <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl">{postContent?.title}</h1>
 
           <div  dangerouslySetInnerHTML={{__html: postContent?.details}} className="mt-5 xl:mt-8">
             
