@@ -58,7 +58,7 @@ export default async function singleBook({params}) {
         <div className="w-12/12 md:w-9/12 bg-[#dbeafe8c] p-5">
           <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">{postContent?.title}</h1>
 
-          <div  dangerouslySetInnerHTML={{__html: postContent?.details}} className="revert-tailwind">
+          <div style={{lineHeight:"28.8px"}} dangerouslySetInnerHTML={{__html: postContent?.details}} className="revert-tailwind">
             
           </div>
         </div>
