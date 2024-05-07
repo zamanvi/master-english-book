@@ -5,22 +5,17 @@ import Link from "next/link";
 import getChapterData from "../../../../lib/getChapterData";
 import getPostData from "../../../../lib/getPostData";
 
-
-
-
-export default async function singleBook({params}) {
-
+export default async function singleBook({ params }) {
   const bookData = await getBook();
   const allChapters = bookData?.success?.data?.chapters?.data;
 
   const postID = params?.id;
   const postInfo = await getPostData(postID);
   const postContent = postInfo?.success?.data?.item;
- 
-  
+
   return (
     <main className="">
-      <Navbar  />
+      <Navbar />
 
       {/* ------------ ------------ Main Content ------------------------*/}
       <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 mt-3">
@@ -37,7 +32,9 @@ export default async function singleBook({params}) {
 
               return (
                 <li key={chapter?.id}>
-                  <h3 className="text-[15px] lg:text-[16px] font-semibold mb-2">{chapter?.title}</h3>
+                  <h3 className="text-[15px] lg:text-[16px] font-semibold mb-2">
+                    {chapter?.title}
+                  </h3>
                   {/* Display chapter content */}
                   {chapterContent?.map((content, index) => (
                     <Link
@@ -46,7 +43,8 @@ export default async function singleBook({params}) {
                       href={`./${content?.id}`}
                       title={content?.title}
                     >
-                       <span className="font-bold">{ index + 1 }. </span>  { content?.title}
+                      <span className="font-bold">{index + 1}. </span>{" "}
+                      {content?.title}
                     </Link>
                   ))}
                 </li>
@@ -56,17 +54,21 @@ export default async function singleBook({params}) {
         </div>
         {/* ----------- Main Content Here---------------- */}
         <div className="w-12/12 md:w-9/12 bg-[#dbeafe8c] p-5">
-          <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">{postContent?.title}</h1>
+          <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">
+            {postContent?.title}
+          </h1>
 
-          <div dangerouslySetInnerHTML={{__html: postContent?.details}} className="revert-tailwind">
-            
+          <div className="revert-tailwind">
+            <div
+               className="revert-tailwind"
+              dangerouslySetInnerHTML={{ __html: postContent?.details }}
+            ></div>
           </div>
         </div>
       </div>
     </main>
   );
 }
-
 
 export async function generateMetadata({ params }) {
   const postID = params?.id;
