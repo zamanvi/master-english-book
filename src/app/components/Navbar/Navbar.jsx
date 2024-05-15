@@ -120,7 +120,7 @@ export default function Navbar() {
       <div
         className={`${
           menuClicked ? "block" : "hidden"
-        } lg:hidden min-w-32 max-w-[90%] mx-auto min-h-40 bg-[#075f8f] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
+        } lg:hidden min-w-32 max-w-[90%] mx-auto min-h-40 max-h-[75vh] overflow-auto bg-[#2a7daa] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
       >
         <ul className="text-white p-4">
           <li className="font-bold">
