@@ -2,7 +2,7 @@ import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer/Footer";
 import { GoogleAnalytics } from '@next/third-parties/google'
-const cardImage = `https://i.ibb.co/kSf0GvB/book-Cover-Fs.jpg`;
+const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
