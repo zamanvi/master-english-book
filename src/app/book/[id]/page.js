@@ -20,7 +20,7 @@ export default async function singleBook({ params }) {
       {/* ------------ ------------ Main Content ------------------------*/}
       <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 mt-3">
         {/* -------------Content Menu------------- */}
-        <div className="w-12/12 md:w-3/12 hidden md:block">
+        <div className="w-12/12 md:w-3/12 hidden md:block md:max-h-[85vh] overflow-y-auto">
           <h2 className="bg-[#075F8F] font-bold md:text-lg lg:text-xl xl:text-[22px] text-white px-2 py-1">
             Chapters
           </h2>
@@ -53,7 +53,7 @@ export default async function singleBook({ params }) {
           </ul>
         </div>
         {/* ----------- Main Content Here---------------- */}
-        <div className="w-12/12 md:w-9/12 bg-[#dbeafe8c] p-5">
+        <div className="w-12/12 md:w-9/12 bg-[#dbeafe8c] p-5 md:max-h-[85vh] overflow-y-auto">
           <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">
             {postContent?.title}
           </h1>
