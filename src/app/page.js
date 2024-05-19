@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <main className="">
       <Navbar />
-      <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 mt-3">
+      <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 md:mt-3">
         {/* Content Menu */}
         <div className="w-12/12 md:w-3/12 hidden md:block md:max-h-[88vh] overflow-y-auto ">
           <h2 className="bg-[#075F8F] font-bold md:text-lg lg:text-xl xl:text-[22px] text-white px-2 py-1">
@@ -46,7 +46,7 @@ export default async function Home() {
           </ul>
         </div>
         {/* Content */}
-        <div className="w-12/12 md:w-9/12 md:max-h-[88vh] bg-[#dbeafeb0] overflow-y-auto">
+        <div className="w-12/12 md:w-9/12 md:max-h-[88vh] bg-[#dbeafe7e] overflow-y-auto">
           <Link href={`book/54`}>
             <BookCover></BookCover>
           </Link>
