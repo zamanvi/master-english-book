@@ -16,7 +16,7 @@ import "./style.css";
 
 const Footer = () => {
   return (
-    <div className="bg-[#16103F] w-full mx-auto py-5 mt-10">
+    <div className="bg-[#16103F] w-full mx-auto py-5">
       <div className="max-w-[1366px] mx-auto">
         <div className="w-full px-5 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6 lg:gap-8 ">
           {/* ----------First Column ------------*/}
