@@ -54,7 +54,7 @@ const Footer = () => {
               <a href="https://www.facebook.com/redroseacademyofficial" target="_blank" className="icon-style">
                 <FaFacebookF />
               </a>
-              <a href="#" className="icon-style">
+              <a href="https://www.linkedin.com/company/red-rose-academy" target="_blank" className="icon-style">
                 <FaLinkedinIn />
               </a>
               <a href="#"  className="icon-style">
