@@ -123,19 +123,19 @@ export default function Navbar() {
         } lg:hidden min-w-32 max-w-[90%] mx-auto min-h-40 max-h-[75vh] overflow-auto bg-[#2a7daa] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
       >
         <ul className="text-white p-4">
-          <li className="font-bold">
+          <li className="font-bold text-lg mb-2 hover:text-blue-400 cursor-pointer">
             <Link href={"/"}> Home</Link>
           </li>
           {allChapters?.map((chapter) => (
             <li key={chapter?.id}>
-              <h3 className="font-semibold mb-1 ">
+              <h3 className="font-semibold text-lg mb-1 ">
                 {chapter?.title}
               </h3>
               {/* Display chapter content */}
               {chapterContent[chapter.id]?.map((content, index) => (
                 <Link
                   key={content?.id}
-                  className="cursor-pointer block hover:text-blue-400 text-[14px] mb-1"
+                  className="cursor-pointer block hover:text-blue-400 text-[15px] mb-3 w-full"
                   href={
                     pathname.includes("/book")
                       ? `./${content?.id}`
