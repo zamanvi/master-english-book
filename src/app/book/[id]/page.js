@@ -39,7 +39,7 @@ export default async function singleBook({ params }) {
                   {chapterContent?.map((content, index) => (
                     <Link
                       key={content?.id}
-                      className="cursor-pointer block mb-1 hover:text-blue-400 text-[14px] xl:text-[16px]"
+                      className="cursor-pointer block mb-3 xl:mb-4 hover:text-blue-400 text-[15px] xl:text-[16px]"
                       href={`./${content?.id}`}
                       title={content?.title}
                     >
