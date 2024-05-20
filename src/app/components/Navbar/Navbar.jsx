@@ -27,7 +27,11 @@ export default function Navbar() {
 
     // Fetch all chapters
     fetch(
-      `https://redrosebd.tech/api/v2/app/book/chapter/index?book_id=1&public_key=${key}`
+      `https://redrosebd.tech/api/v2/app/book/chapter/index?book_id=1&public_key=${key}`, {
+        next: {
+          revalidate: 15,
+        }
+      }
     )
       .then((res) => res.json())
       .then((data) => {
@@ -40,21 +44,21 @@ export default function Navbar() {
     // Load chapter data whenever allChapters changes
     if (allChapters) {
       allChapters.forEach((chapter) => {
-        loadChapterData(chapter.id);
+        loadChapterData(chapter.slug);
       });
     }
   }, [allChapters]);
 
-  const loadChapterData = (id) => {
+  const loadChapterData = (slug) => {
     fetch(
-      `https://redrosebd.tech/api/v2/app/book/item/index?chapter_id=${id}&public_key=${key}`
+      `https://redrosebd.tech/api/v2/app/book/item/index?chapter_id=${slug}&public_key=${key}`
     )
       .then((res) => res.json())
       .then((data) => {
         const chapterData = data;
         setChapterContent((prevContent) => ({
           ...prevContent,
-          [id]: chapterData?.success?.data?.items?.data,
+          [slug]: chapterData?.success?.data?.items?.data,
         }));
       });
   };
@@ -127,19 +131,19 @@ export default function Navbar() {
             <Link href={"/"}> Home</Link>
           </li>
           {allChapters?.map((chapter) => (
-            <li key={chapter?.id}>
+            <li key={chapter?.slug}>
               <h3 className="font-semibold text-lg mb-1 ">
                 {chapter?.title}
               </h3>
               {/* Display chapter content */}
-              {chapterContent[chapter.id]?.map((content, index) => (
+              {chapterContent[chapter.slug]?.map((content, index) => (
                 <Link
-                  key={content?.id}
+                  key={content?.slug}
                   className="cursor-pointer block hover:text-blue-400 text-[15px] mb-3 w-full"
                   href={
                     pathname.includes("/book")
-                      ? `./${content?.id}`
-                      : `book/${content?.id}`
+                      ? `./${content?.slug}`
+                      : `book/${content?.slug}`
                   }
                   title={content?.title}
                 >
