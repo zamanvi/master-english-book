@@ -9,8 +9,8 @@ export default async function singleBook({ params }) {
   const bookData = await getBook();
   const allChapters = bookData?.success?.data?.chapters?.data;
 
-  const postID = params?.id;
-  const postInfo = await getPostData(postID);
+  const postSlug = params?.slug;
+  const postInfo = await getPostData(postSlug);
   const postContent = postInfo?.success?.data?.item;
 
   return (
@@ -27,20 +27,20 @@ export default async function singleBook({ params }) {
           <ul className="bg-[#dbeafeb0] pb-10 chapters">
             {allChapters?.map(async (chapter) => {
               // Fetch chapter content for each chapter
-              const chapterData = await getChapterData(chapter.id);
+              const chapterData = await getChapterData(chapter.slug);
               const chapterContent = chapterData?.success?.data?.items?.data;
 
               return (
-                <li key={chapter?.id}>
+                <li key={chapter?.slug}>
                   <h3 className="text-[15px] lg:text-[16px] font-semibold mb-2">
                     {chapter?.title}
                   </h3>
                   {/* Display chapter content */}
                   {chapterContent?.map((content, index) => (
                     <Link
-                      key={content?.id}
+                      key={content?.slug}
                       className="cursor-pointer block mb-3 xl:mb-4 hover:text-blue-400 text-[15px] xl:text-[16px]"
-                      href={`./${content?.id}`}
+                      href={`./${content?.slug}`}
                       title={content?.title}
                     >
                       <span className="font-bold">{index + 1}. </span>{" "}
@@ -71,8 +71,8 @@ export default async function singleBook({ params }) {
 }
 
 export async function generateMetadata({ params }) {
-  const postID = params?.id;
-  const postInfo = await getPostData(postID);
+  const postSlug = params?.slug;
+  const postInfo = await getPostData(postSlug);
   const postContent = postInfo?.success?.data?.item;
   const postTitle = postContent?.title;
   const postDescription = postContent?.short_details;

@@ -13,13 +13,13 @@ export default async function sitemap() {
     await Promise.all(
       allChapters?.map(async (chapter) => {
 
-        const chapterData = await getChapterData(chapter.id);
+        const chapterData = await getChapterData(chapter.slug);
         const chapterContent = chapterData?.success?.data?.items?.data;
 
         chapterContent?.map((content) => {
 
           const postPage = {
-            url: `${siteURL}/book/${content?.id}`,
+            url: `${siteURL}/book/${content?.slug}`,
             lastModified: new Date(),
             changeFrequency: "weekly",
             priority: 0.8,

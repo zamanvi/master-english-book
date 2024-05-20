@@ -21,20 +21,20 @@ export default async function Home() {
           <ul className="bg-[#dbeafeb0] pb-10 chapters">
             {allChapters?.map(async (chapter) => {
               // Fetch chapter content for each chapter
-              const chapterData = await getChapterData(chapter.id);
+              const chapterData = await getChapterData(chapter.slug);
               const chapterContent = chapterData?.success?.data?.items?.data;
 
               return (
-                <li key={chapter?.id}>
+                <li key={chapter?.slug}>
                   <h3 className="text-[15px] lg:text-[16px] font-semibold mb-1 lg:mb-2">
                     {chapter?.title}
                   </h3>
                   {/* Display chapter content */}
                   {chapterContent?.map((content, index) => (
                     <Link
-                      key={content?.id}
+                      key={content?.slug}
                       className="cursor-pointer block mb-3 xl:mb-4 hover:text-blue-400 text-[15px] xl:text-[16px]"
-                      href={`book/${content?.id}`}
+                      href={`book/${content?.slug}`}
                       title={content?.title}
                     >
                        <span className="font-bold">{ index + 1 }. </span>  { content?.title}
@@ -47,7 +47,7 @@ export default async function Home() {
         </div>
         {/* Content */}
         <div className="w-12/12 md:w-9/12 md:max-h-[88vh] bg-[#dbeafe7e] overflow-y-auto">
-          <Link href={`book/54`}>
+          <Link href={`book/master-english-book-pda-armv-krar-puurwe-prthm-kaj-hcche`}>
             <BookCover></BookCover>
           </Link>
         </div>
