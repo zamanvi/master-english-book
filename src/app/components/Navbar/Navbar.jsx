@@ -27,7 +27,7 @@ export default function Navbar() {
 
     // Fetch all chapters
     fetch(
-      `https://redrosebd.tech/api/v2/app/book/chapter/index?book_id=1&public_key=${key}`, {
+      `https://redrosebd.tech/api/v2/app/book/chapter/index?book_slug=master-english-book-part-i&public_key=${key}`, {
         next: {
           revalidate: 15,
         }
@@ -51,7 +51,7 @@ export default function Navbar() {
 
   const loadChapterData = (slug) => {
     fetch(
-      `https://redrosebd.tech/api/v2/app/book/item/index?chapter_id=${slug}&public_key=${key}`
+      `https://redrosebd.tech/api/v2/app/book/item/index?chapter_slug=${slug}&public_key=${key}`
     )
       .then((res) => res.json())
       .then((data) => {
