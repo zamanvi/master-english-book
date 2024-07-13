@@ -32,7 +32,7 @@ export default async function singleBook({ params }) {
 
               return (
                 <li key={chapter?.slug}>
-                  <h3 className="text-[15px] lg:text-[16px] font-semibold mb-2">
+                  <h3 className="text-[16px] font-semibold mb-2">
                     {chapter?.title}
                   </h3>
                   {/* Display chapter content */}

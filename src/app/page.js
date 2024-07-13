@@ -33,7 +33,7 @@ export default async function Home() {
                   {chapterContent?.map((content, index) => (
                     <Link
                       key={content?.slug}
-                      className="cursor-pointer block mb-3 xl:mb-4 hover:text-blue-400 text-[15px] xl:text-[16px]"
+                      className="cursor-pointer block mb-3 xl:mb-4 hover:text-blue-400 text-[16px]"
                       href={`book/${content?.slug}`}
                       title={content?.title}
                     >
