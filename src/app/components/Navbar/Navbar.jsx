@@ -139,7 +139,7 @@ export default function Navbar() {
               {chapterContent[chapter.slug]?.map((content, index) => (
                 <Link
                   key={content?.slug}
-                  className="cursor-pointer block hover:text-blue-400 text-[15px] mb-3 w-full"
+                  className="cursor-pointer block hover:text-blue-400  mb-3 w-full"
                   href={
                     pathname.includes("/book")
                       ? `./${content?.slug}`
