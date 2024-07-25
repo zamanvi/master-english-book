@@ -1,72 +1,23 @@
-import Navbar from "@/app/components/Navbar/Navbar";
-import getBook from "../../../../lib/getBook";
-import Link from "next/link";
-
-import getChapterData from "../../../../lib/getChapterData";
 import getPostData from "../../../../lib/getPostData";
 
-export default async function singleBook({ params }) {
-  const bookData = await getBook();
-  const allChapters = bookData?.success?.data?.chapters?.data;
-
+export default async function page({ params }) {
   const postSlug = params?.slug;
   const postInfo = await getPostData(postSlug);
   const postContent = postInfo?.success?.data?.item;
 
   return (
-    <main className="">
-      <Navbar />
+    <>
+      <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">
+        {postContent?.title}
+      </h1>
 
-      {/* ------------ ------------ Main Content ------------------------*/}
-      <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 md:mt-3">
-        {/* -------------Content Menu------------- */}
-        <div className="w-12/12 md:w-3/12 hidden md:block md:max-h-[88vh] overflow-y-auto">
-          <h2 className="bg-[#075F8F] font-bold md:text-lg lg:text-xl xl:text-[22px] text-white px-2 py-1">
-            Chapters
-          </h2>
-          <ul className="bg-[#dbeafeb0] pb-10 chapters">
-            {allChapters?.map(async (chapter) => {
-              // Fetch chapter content for each chapter
-              const chapterData = await getChapterData(chapter.slug);
-              const chapterContent = chapterData?.success?.data?.items?.data;
-
-              return (
-                <li key={chapter?.slug}>
-                  <h3 className="text-[16px] font-semibold mb-2">
-                    {chapter?.title}
-                  </h3>
-                  {/* Display chapter content */}
-                  {chapterContent?.map((content, index) => (
-                    <Link
-                      key={content?.slug}
-                      className="cursor-pointer block mb-3 xl:mb-4 hover:text-blue-400 text-[15px] xl:text-[16px]"
-                      href={`./${content?.slug}`}
-                      title={content?.title}
-                    >
-                      <span className="font-bold">{index + 1}. </span>{" "}
-                      {content?.title}
-                    </Link>
-                  ))}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-        {/* ----------- Main Content Here---------------- */}
-        <div className="w-12/12 md:w-9/12 bg-[#dbeafe7e] p-5 md:max-h-[88vh] overflow-y-auto">
-          <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">
-            {postContent?.title}
-          </h1>
-
-          <div className="revert-tailwind">
-            <div
-               className="revert-tailwind"
-              dangerouslySetInnerHTML={{ __html: postContent?.details }}
-            ></div>
-          </div>
-        </div>
+      <div className="revert-tailwind">
+        <div
+          className="revert-tailwind"
+          dangerouslySetInnerHTML={{ __html: postContent?.details }}
+        ></div>
       </div>
-    </main>
+    </>
   );
 }
 
