@@ -120,6 +120,7 @@ export default function Navbar() {
                   className="cursor-pointer block hover:text-blue-400  mb-3 w-full"
                   href={`../book/${content?.slug}`}
                   title={content?.title}
+                  onClick={() => setMenuClicked(false)}
                 >
                   <span className="font-bold"> {index + 1} .</span>{" "}
                   {content?.title}
