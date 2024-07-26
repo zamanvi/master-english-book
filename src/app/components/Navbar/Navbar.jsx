@@ -10,58 +10,34 @@ import {
   FaTwitterSquare,
 } from "react-icons/fa";
 import Link from "next/link";
+import getBook from "../../../../lib/getBook";
+import getChapterData from "../../../../lib/getChapterData";
 
 export default function Navbar() {
   const [menuClicked, setMenuClicked] = useState(false);
-  const [pathname, setPathname] = useState("");
   const [allChapters, setAllChapters] = useState(null);
-  const [chapterContent, setChapterContent] = useState({});
-
-  const key = process.env.NEXT_PUBLIC_API_Public_Key;
+  const [chapterContents, setChapterContents] = useState({});
 
   useEffect(() => {
-    // Check if running on the client side
-    if (typeof window !== "undefined") {
-      setPathname(window.location.pathname);
-    }
+    async function fetchData() {
+      const bookData = await getBook();
+      const chapters = bookData?.success?.data?.chapters?.data;
+      setAllChapters(chapters);
 
-    // Fetch all chapters
-    fetch(
-      `https://redrosebd.tech/api/v2/app/book/chapter/index?book_slug=master-english-book-part-i&public_key=${key}`, {
-        next: {
-          revalidate: 15,
-        }
+      if (chapters) {
+        const chapterDataPromises = chapters.map((chapter) => getChapterData(chapter.slug));
+        const chapterDataArray = await Promise.all(chapterDataPromises);
+
+        const contents = chapterDataArray.reduce((acc, data, index) => {
+          acc[chapters[index].slug] = data?.success?.data?.items?.data || [];
+          return acc;
+        }, {});
+
+        setChapterContents(contents);
       }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const bookData = data;
-        setAllChapters(bookData?.success?.data?.chapters?.data);
-      });
-  }, []);
-
-  useEffect(() => {
-    // Load chapter data whenever allChapters changes
-    if (allChapters) {
-      allChapters.forEach((chapter) => {
-        loadChapterData(chapter.slug);
-      });
     }
-  }, [allChapters]);
-
-  const loadChapterData = (slug) => {
-    fetch(
-      `https://redrosebd.tech/api/v2/app/book/item/index?chapter_slug=${slug}&public_key=${key}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const chapterData = data;
-        setChapterContent((prevContent) => ({
-          ...prevContent,
-          [slug]: chapterData?.success?.data?.items?.data,
-        }));
-      });
-  };
+    fetchData();
+  }, []);
 
   return (
     <div className="bg-[#075F8F] p-2  z-10 lg:my-1 lg:rounded">
@@ -71,7 +47,6 @@ export default function Navbar() {
           <ul className="flex items-end gap-2   text-white ">
             <li>Book Name: </li>
             <li className="text-xl font-bold">
-              {" "}
               <span className="text-[#FBE050]">দূর্বলদের</span> Master English
               Book <span className="text-[#FBE050]">Part - I</span>
             </li>
@@ -84,16 +59,16 @@ export default function Navbar() {
               <FaShare />
             </span>
             <a href="#">
-              <FaFacebookSquare />{" "}
+              <FaFacebookSquare />
             </a>
             <a href="#">
-              <FaInstagramSquare />{" "}
+              <FaInstagramSquare />
             </a>
             <a href="#">
-              <FaLinkedin />{" "}
+              <FaLinkedin />
             </a>
             <a href="#">
-              <FaTwitterSquare />{" "}
+              <FaTwitterSquare />
             </a>
           </div>
 
@@ -130,24 +105,24 @@ export default function Navbar() {
           <li className="font-bold text-lg mb-2 hover:text-blue-400 cursor-pointer">
             <Link href={"/"}> Home</Link>
           </li>
+
           {allChapters?.map((chapter) => (
             <li key={chapter?.slug}>
               <h3 className="font-semibold text-lg mb-1 ">
                 {chapter?.title}
               </h3>
-              {/* Display chapter content */}
-              {chapterContent[chapter.slug]?.map((content, index) => (
+
+              {/*------ Display chapter content ----------- */}
+
+              {chapterContents[chapter.slug]?.map((content, index) => (
                 <Link
                   key={content?.slug}
                   className="cursor-pointer block hover:text-blue-400  mb-3 w-full"
-                  href={
-                    pathname.includes("/book")
-                      ? `./${content?.slug}`
-                      : `book/${content?.slug}`
-                  }
+                  href={`../book/${content?.slug}`}
                   title={content?.title}
                 >
-                 <span className="font-bold"> {index + 1 } .</span> {content?.title}
+                  <span className="font-bold"> {index + 1} .</span>{" "}
+                  {content?.title}
                 </Link>
               ))}
             </li>
