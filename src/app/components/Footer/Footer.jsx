@@ -13,6 +13,8 @@ import {
 } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import "./style.css";
+import appLogo from "../../../../public/image/appLogo.webp";
+
 
 const Footer = () => {
   return (
@@ -22,7 +24,6 @@ const Footer = () => {
           {/* ----------First Column ------------*/}
           <div>
             <div>
-
               <div>
                 <Image
                   src={logo}
@@ -46,41 +47,52 @@ const Footer = () => {
 
           {/* ----------Middle Column ------------*/}
           <div className="">
-          <h2 className="font-bold text-white text-[16px]  md:text-lg lg:text-xl  mb-4">
+            <h2 className="font-bold text-white text-[16px]  md:text-lg lg:text-xl  mb-4">
               Get in Touch
             </h2>
 
             <div className="text-2xl font-bold text-white flex items-center gap-4 ">
-              <a href="https://www.facebook.com/redroseacademyofficial" target="_blank" className="icon-style">
+              <a
+                href="https://www.facebook.com/redroseacademyofficial"
+                target="_blank"
+                className="icon-style"
+              >
                 <FaFacebookF />
               </a>
-              <a href="https://www.linkedin.com/company/red-rose-academy" target="_blank" className="icon-style">
+              <a
+                href="https://www.linkedin.com/company/red-rose-academy"
+                target="_blank"
+                className="icon-style"
+              >
                 <FaLinkedinIn />
               </a>
-              <a href="#"  className="icon-style">
+              <a href="#" className="icon-style">
                 <FaTwitter />
               </a>
-              <a href="https://www.youtube.com/@redroseacademy5364" className="icon-style" target="_blank">
-                  <FaYoutube />
+              <a
+                href="https://www.youtube.com/@redroseacademy5364"
+                className="icon-style"
+                target="_blank"
+              >
+                <FaYoutube />
               </a>
             </div>
           </div>
 
           {/* ----------Last Column ------------*/}
           <div>
+            <h2 className="font-bold text-white text-[16px]  md:text-lg lg:text-xl  mb-4">
+              Download Our App
+            </h2>
 
-            <div className="flex items-end justify-between w-full mt-12 gap-1 md:gap-3">
-              <input
-                className="w-8/12 p-2  md:px-3  rounded-full border border-[#f54b95] "
-                placeholder="Enter email address"
-                type="email"
-                name=""
-                id=""
-              />
-              <button className="w-4/12 py-2   px-3 rounded-full bg-[#FF016E]  font-bold text-white">
-                {" "}
-                Subscribe
-              </button>
+            <div className="text-2xl font-bold text-white flex items-center gap-4 ">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
+                target="_blank"
+                className="bg-white rounded-lg"
+              >
+                <Image className="p-2 rounded-xl" width={55} src={appLogo} alt="App Logo" />
+              </a>
             </div>
           </div>
         </div>
