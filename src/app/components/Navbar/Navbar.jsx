@@ -25,7 +25,9 @@ export default function Navbar() {
       setAllChapters(chapters);
 
       if (chapters) {
-        const chapterDataPromises = chapters.map((chapter) => getChapterData(chapter.slug));
+        const chapterDataPromises = chapters.map((chapter) =>
+          getChapterData(chapter.slug)
+        );
         const chapterDataArray = await Promise.all(chapterDataPromises);
 
         const contents = chapterDataArray.reduce((acc, data, index) => {
@@ -44,13 +46,27 @@ export default function Navbar() {
       {/* ----------------Nav Items For Big Screen ---------- */}
       <div className="hidden md:flex justify-between items-center">
         <div>
-          <ul className="flex items-end gap-2   text-white ">
-            <li>Book Name: </li>
-            <li className="text-xl font-bold">
-              <span className="text-[#FBE050]">দূর্বলদের</span> Master English
-              Book <span className="text-[#FBE050]">Part - I</span>
-            </li>
-          </ul>
+          <div className="flex items-end gap-2 text-white">
+            <p>Book Name:</p>
+            <div className="">
+              <select
+                className="text-xl font-bold bg-[#075F8F] text-white border-0 focus:outline-none"
+                onChange={(e) => {
+                  const selectedValue = e.target.value;
+                  if (selectedValue) {
+                    window.location.href = selectedValue;
+                  }
+                }}
+              >
+                <option value="#" selected>
+                  দূর্বলদের Master English Book Part - I
+                </option>
+                <option value="https://essential-english-words.vercel.app">
+                  দূর্বলদের Master English Book Part - II
+                </option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className="flex items-center gap-10">
@@ -81,10 +97,24 @@ export default function Navbar() {
       {/* -----------------Nav Items for small Screen--------------- */}
       <div className="flex md:hidden justify-between items-center relative">
         <div>
-          <h2 className="font-bold text-white text-lg ">
-            <span className="text-[#FBE050]">দূর্বলদের</span> Master English
-            Book <span className="text-[#FBE050]">Part - I</span>
-          </h2>
+          <div className="font-bold text-white text-lg ">
+            <select
+              className="font-bold bg-[#075F8F] text-white border-0 focus:outline-none"
+              onChange={(e) => {
+                const selectedValue = e.target.value;
+                if (selectedValue) {
+                  window.location.href = selectedValue;
+                }
+              }}
+            >
+              <option value="#" selected>
+                দূর্বলদের Master English Book Part - I
+              </option>
+              <option value="https://essential-english-words.vercel.app">
+                দূর্বলদের Master English Book Part - II
+              </option>
+            </select>
+          </div>
         </div>
 
         <div onClick={() => setMenuClicked(!menuClicked)}>
@@ -108,9 +138,7 @@ export default function Navbar() {
 
           {allChapters?.map((chapter) => (
             <li key={chapter?.slug}>
-              <h3 className="font-semibold text-lg mb-1 ">
-                {chapter?.title}
-              </h3>
+              <h3 className="font-semibold text-lg mb-1 ">{chapter?.title}</h3>
 
               {/*------ Display chapter content ----------- */}
 
