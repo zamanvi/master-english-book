@@ -62,7 +62,7 @@ export default function Navbar() {
                   দূর্বলদের Master English Book Part - I
                 </option>
                 <option value="https://essential-english-words.vercel.app">
-                  দূর্বলদের Master English Book Part - II
+                  500 Essential English Words
                 </option>
               </select>
             </div>
@@ -111,7 +111,7 @@ export default function Navbar() {
                 দূর্বলদের Master English Book Part - I
               </option>
               <option value="https://essential-english-words.vercel.app">
-                দূর্বলদের Master English Book Part - II
+                500 Essential English Words
               </option>
             </select>
           </div>
