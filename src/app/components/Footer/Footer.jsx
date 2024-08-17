@@ -47,7 +47,7 @@ const Footer = () => {
 
           {/* ----------Middle Column ------------*/}
           <div className="">
-            <h2 className="font-bold text-white text-[16px]  md:text-lg lg:text-xl  mb-4">
+            <h2 className="font-bold text-white text-lg lg:text-xl  mb-4">
               Get in Touch
             </h2>
 
@@ -81,17 +81,17 @@ const Footer = () => {
 
           {/* ----------Last Column ------------*/}
           <div>
-            <h2 className="font-bold text-white text-[16px]  md:text-lg lg:text-xl  mb-4">
+            <h2 className="font-bold text-white text-lg lg:text-xl  mb-4">
               Download Our App
             </h2>
 
-            <div className="text-2xl font-bold text-white flex items-center gap-4 ">
+            <div className="text-3xl font-bold text-white flex items-center gap-4 ">
               <a
                 href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
                 target="_blank"
                 className="bg-white rounded-lg"
               >
-                <Image className="p-2 rounded-xl" width={55} src={appLogo} alt="App Logo" />
+                <Image className="p-2 rounded-xl" width={70} src={appLogo} alt="App Logo" />
               </a>
             </div>
           </div>

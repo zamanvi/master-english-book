@@ -37,7 +37,7 @@ export default async function RootLayout({ children }) {
         {/* ------------Navbar End---------- */}
         <div className="flex flex-col md:flex-row w-12/12 justify-between gap-3 md:mt-3">
           {/*-------------- Content Menu for large Device only-------------------- */}
-          <div className="w-12/12 md:w-3/12 hidden md:block md:max-h-[88vh] overflow-y-auto ">
+          <div className="w-12/12 md:w-3/12 hidden md:block md:max-h-[95vh] overflow-y-auto ">
             <h2 className="bg-[#075F8F] font-bold md:text-lg lg:text-xl xl:text-[22px] text-white px-2 py-1">
               Chapters
             </h2>
@@ -72,7 +72,7 @@ export default async function RootLayout({ children }) {
           </div>
 
           {/*------------Main Content content -----------------*/}
-          <div className="w-12/12 md:w-9/12 md:max-h-[88vh] bg-[#dbeafe7e] overflow-y-auto p-3 md:p-4 ">
+          <div className="w-12/12 md:w-9/12 md:max-h-[95vh] bg-[#dbeafe7e] overflow-y-auto p-3 md:p-4 ">
             {children}
           </div>
         </div>
