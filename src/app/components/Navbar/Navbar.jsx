@@ -61,7 +61,7 @@ export default function Navbar() {
                 <option value="#" selected>
                   দূর্বলদের Master English Book Part - I
                 </option>
-                <option value="https://essential-english-words.vercel.app">
+                <option value="https://audio-vocabulary.vercel.app">
                   Audio vocabulary
                 </option>
               </select>
@@ -110,7 +110,7 @@ export default function Navbar() {
               <option value="#" selected>
                 দূর্বলদের Master English Book Part - I
               </option>
-              <option value="https://essential-english-words.vercel.app">
+              <option value="https://audio-vocabulary.vercel.app">
                 Audio vocabulary
               </option>
             </select>
