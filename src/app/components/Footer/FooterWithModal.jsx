@@ -44,7 +44,7 @@ const FooterWithModal = () => {
         className="font-bold text-white text-lg lg:text-xl my-4 cursor-pointer"
         onClick={() => setIsModalOpen(true)}
       >
-        Contact Us
+        Get Contact Info
       </h2>
       <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </>
