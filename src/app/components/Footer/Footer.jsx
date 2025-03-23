@@ -14,6 +14,7 @@ import {
 import { IoIosMail } from "react-icons/io";
 import "./style.css";
 import appLogo from "../../../../public/image/appLogo.webp";
+import FooterWithModal from "./FooterWithModal";
 
 const Footer = () => {
   return (
@@ -40,6 +41,25 @@ const Footer = () => {
               </a>
               <p className="text-sm text-slate-300 font-bold">
                 Providing reliable since 2023
+              </p>
+            </div>
+            <div className="text-white mt-4 text-[15px]">
+              <p>
+                <Link
+                  href={"/TermsAndConditions"}
+                  className="link link-hover font-bold"
+                >
+                  Terms of use
+                </Link>
+              </p>
+
+              <p>
+                <Link
+                  href={"/PrivacyPolicy"}
+                  className="link link-hover font-bold"
+                >
+                  Privacy policy
+                </Link>
               </p>
             </div>
           </div>
@@ -76,25 +96,8 @@ const Footer = () => {
                 <FaYoutube />
               </a>
             </div>
-            <div className="text-white mt-4">
-              <p>
-                <Link
-                  href={"/TermsAndConditions"}
-                  className="link link-hover font-bold"
-                >
-                  Terms of use
-                </Link>
-              </p>
-
-              <p>
-                <Link
-                  href={"/PrivacyPolicy"}
-                  className="link link-hover font-bold"
-                >
-                  Privacy policy
-                </Link>
-              </p>
-            </div>
+            {/* -------------Footer Contact Modal ----------------- */}
+            <FooterWithModal/>
           </div>
 
           {/* ----------Last Column ------------*/}
