@@ -20,8 +20,8 @@ const ChapterList = ({ chapter, chapterContent }) => {
         return (
           <Link
             key={content?.slug}
-            className={`cursor-pointer block mb-3 xl:mb-4 text-[16px] hover:text-blue-500 
-              ${isActive ? "text-blue-500 font-semibold" : ""}`}
+            className={`cursor-pointer block mb-3 xl:mb-4 text-[16px] py-[2px] hover:text-blue-500 
+              ${isActive ? "bg-blue-100 text-blue-500 font-semibold rounded" : ""}`}
             href={`../book/${content?.slug}`}
             title={content?.title}
           >
