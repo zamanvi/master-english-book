@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from "react";
-import { FaPhone, FaLocationDot } from "react-icons/fa6";
+import { FaPhone, FaLocationDot, FaWhatsapp } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 
 const ContactModal = ({ isOpen, onClose }) => {
@@ -8,20 +8,27 @@ const ContactModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-65">
-      <div className="bg-white p-6 rounded-lg w-[90%] max-w-md shadow-lg">
+      <div className="bg-white p-6 rounded-lg w-[92%] max-w-[520px] shadow-lg">
         <h2 className="text-xl font-bold mb-4 text-center">Contact Information</h2>
         <div className="space-y-3">
           <p className="flex items-center gap-2">
+            Author. H MD NOROZZAMAN 
+          </p>
+          <p className="flex items-center gap-2">
+            <FaWhatsapp className="text-lg" />
+            <a href="https://wa.me/+8801826192179" target="_blank" className="text-blue-600 hover:underline">+880 1826192179</a>
+          </p>
+          <p className="flex items-center gap-2">
             <FaPhone />
-            <a href="tel:+8801234567890" className="text-blue-600 hover:underline">+880 1234 567 890</a>
+            <a href="tel:+8801826192179" target="_blank" className="text-blue-600 hover:underline">+880 1826192179</a>
           </p>
           <p className="flex items-center gap-2">
             <IoIosMail />
-            <a href="mailto:info@redrosebd.com" className="text-blue-600 hover:underline">info@redrosebd.com</a>
+            <a href="mailto:norozzaman996@gmail.com" target="_blank" className="text-blue-600 hover:underline">norozzaman996@gmail.com</a>
           </p>
           <p className="flex items-center gap-2">
             <FaLocationDot />
-            <span>123 Business Street, Dhaka, Bangladesh</span>
+            <span>2 floor, Nobaron school, Shonir-Akhra, Jatrabari, Dhaka</span>
           </p>
         </div>
         <button 
