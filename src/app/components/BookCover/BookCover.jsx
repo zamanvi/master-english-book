@@ -1,5 +1,6 @@
 import React from "react";
 import coverPhoto from "../../../../public/image/bookCoverFs.jpg";
+import appLogo from "../../../../public/image/appLogo.jpg"
 import newApp1 from "../../../../public/image/NewApp1.jpg";
 import newApp2 from "../../../../public/image/NewApp2.jpg";
 import Image from "next/image";
@@ -18,6 +19,14 @@ const BookCover = () => {
           আমাদের App সমূহ play store থেকে ডাউনলোড করতে লিংকে ক্লিক করুন
         </span>
         <div className="flex gap-x-5">
+          <Link href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share">
+            <Image
+              className="rounded-md shadow-lg"
+              width={55}
+              src={appLogo}
+              alt="Master English Book"
+            />
+          </Link>
           <Link href="https://play.google.com/store/apps/details?id=com.abmn.learnify&pcampaignid=web_share">
             <Image
               className="rounded-md shadow-lg"
