@@ -15,7 +15,6 @@ import { IoIosMail } from "react-icons/io";
 import "./style.css";
 import appLogo from "../../../../public/image/appLogo.webp";
 
-
 const Footer = () => {
   return (
     <div className="bg-[#16103F] w-full mx-auto py-5">
@@ -77,6 +76,25 @@ const Footer = () => {
                 <FaYoutube />
               </a>
             </div>
+            <div className="text-white mt-4">
+              <p>
+                <Link
+                  href={"/TermsAndConditions"}
+                  className="link link-hover font-bold"
+                >
+                  Terms of use
+                </Link>
+              </p>
+
+              <p>
+                <Link
+                  href={"/PrivacyPolicy"}
+                  className="link link-hover font-bold"
+                >
+                  Privacy policy
+                </Link>
+              </p>
+            </div>
           </div>
 
           {/* ----------Last Column ------------*/}
@@ -91,14 +109,24 @@ const Footer = () => {
                 target="_blank"
                 className="bg-white rounded-lg"
               >
-                <Image className="p-2 rounded-xl" width={70} src={appLogo} alt="App Logo" />
+                <Image
+                  className="p-2 rounded-xl"
+                  width={70}
+                  src={appLogo}
+                  alt="App Logo"
+                />
               </a>
               <a
                 href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
                 target="_blank"
                 className="bg-white rounded-lg"
               >
-                <Image className="p-2 rounded-xl" width={70} src={appLogo} alt="App Logo2" />
+                <Image
+                  className="p-2 rounded-xl"
+                  width={70}
+                  src={appLogo}
+                  alt="App Logo2"
+                />
               </a>
             </div>
           </div>
