@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import "./style.css";
-import appLogo from "../../../../public/image/appLogo.webp";
+import appLogo from "../../../../public/image/appLogo.jpg";
 import FooterWithModal from "./FooterWithModal";
 
 const Footer = () => {
@@ -113,13 +113,13 @@ const Footer = () => {
                 className="bg-white rounded-lg"
               >
                 <Image
-                  className="p-2 rounded-xl"
+                  className="p-1 rounded-xl"
                   width={70}
                   src={appLogo}
                   alt="App Logo"
                 />
               </a>
-              <a
+             {/*  <a
                 href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
                 target="_blank"
                 className="bg-white rounded-lg"
@@ -130,7 +130,7 @@ const Footer = () => {
                   src={appLogo}
                   alt="App Logo2"
                 />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
