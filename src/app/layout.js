@@ -6,7 +6,7 @@ import Link from "next/link";
 import getBook from "../../lib/getBook";
 import getChapterData from "../../lib/getChapterData";
 import Navbar from "./components/Navbar/Navbar";
-
+import ChapterList from "./components/ChapterList";
 const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
 
 const ubuntu = Ubuntu({
@@ -49,23 +49,11 @@ export default async function RootLayout({ children }) {
                 const chapterContent = chapterData?.success?.data?.items?.data;
 
                 return (
-                  <li key={chapter?.slug}>
-                    <h3 className="text-[15px] lg:text-[16px] font-semibold mb-1 lg:mb-2">
-                      {chapter?.title}
-                    </h3>
-                    {/* Display chapter content */}
-                    {chapterContent?.map((content, index) => (
-                      <Link
-                        key={content?.slug}
-                        className="cursor-pointer block mb-3 xl:mb-4 hover:text-blue-400 text-[16px]"
-                        href={`../book/${content?.slug}`}
-                        title={content?.title}
-                      >
-                        <span className="font-bold">{index + 1}. </span>{" "}
-                        {content?.title}
-                      </Link>
-                    ))}
-                  </li>
+                  <ChapterList
+                    key={chapter.slug}
+                    chapter={chapter}
+                    chapterContent={chapterContent}
+                  />
                 );
               })}
             </ul>
