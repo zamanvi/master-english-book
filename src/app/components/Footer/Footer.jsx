@@ -89,8 +89,9 @@ const Footer = () => {
               <a
                 href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
                 target="_blank"
-                className="bg-white rounded-lg"
+                className="bg-white rounded-lg flex items-center gap-y-5"
               >
+                <Image className="p-2 rounded-xl" width={70} src={appLogo} alt="App Logo" />
                 <Image className="p-2 rounded-xl" width={70} src={appLogo} alt="App Logo" />
               </a>
             </div>

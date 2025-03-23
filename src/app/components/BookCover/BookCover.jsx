@@ -12,16 +12,29 @@ const BookCover = () => {
         alt="English Book Cover"
       />
 
-      <Link
-        href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
-        className="flex flex-col justify-center items-center gap-y-4 my-5"
-      >
-        
-        <Image className="rounded-md" width={55} src={appLogo} alt="App logo" />
+      <div className="flex flex-col justify-center items-center gap-y-4 my-7">
+        <div className="flex gap-x-5">
+          <Link href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share">
+            <Image
+              className="rounded-md"
+              width={55}
+              src={appLogo}
+              alt="App logo"
+            />
+          </Link>
+          <Link href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share">
+            <Image
+              className="rounded-md"
+              width={55}
+              src={appLogo}
+              alt="App logo2"
+            />
+          </Link>
+        </div>
         <span className="font-semibold text-xl md:text-2xl text-blue-500">
-          Download Our App
+          Download Our Apps
         </span>
-      </Link>
+      </div>
     </div>
   );
 };
