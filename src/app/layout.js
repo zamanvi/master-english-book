@@ -7,6 +7,7 @@ import getBook from "../../lib/getBook";
 import getChapterData from "../../lib/getChapterData";
 import Navbar from "./components/Navbar/Navbar";
 import ChapterList from "./components/ChapterList";
+import Script from "next/script";
 const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
 
 const ubuntu = Ubuntu({
@@ -28,10 +29,16 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const bookData = await getBook();
-  const allChapters = bookData?.success?.data?.chapters?.data
+  const allChapters = bookData?.success?.data?.chapters?.data;
   return (
     <html lang="en">
       <body className={`${ubuntu.className} max-w-[1366px] lg:w-11/12 mx-auto`}>
+        {/* ------------Absence Script---------- */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889299981957538"
+          crossOrigin="anonymous"
+        ></Script>
         {/* ----------Navbar For Small and Medium Device ------------- */}
         <Navbar />
         {/* ------------Navbar End---------- */}
