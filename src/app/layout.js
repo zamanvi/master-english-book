@@ -2,12 +2,10 @@ import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import Link from "next/link";
 import getBook from "../../lib/getBook";
 import getChapterData from "../../lib/getChapterData";
 import Navbar from "./components/Navbar/Navbar";
 import ChapterList from "./components/ChapterList";
-import Script from "next/script";
 const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
 
 const ubuntu = Ubuntu({
@@ -32,13 +30,11 @@ export default async function RootLayout({ children }) {
   const allChapters = bookData?.success?.data?.chapters?.data;
   return (
     <html lang="en">
+      <head>
+        {/* Google AdSense Verification Meta */}
+        <meta name="google-adsense-account" content="ca-pub-7889299981957538"/>
+      </head>
       <body className={`${ubuntu.className} max-w-[1366px] lg:w-11/12 mx-auto`}>
-        {/* ------------Absence Script---------- */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889299981957538"
-          crossOrigin="anonymous"
-        ></Script>
         {/* ----------Navbar For Small and Medium Device ------------- */}
         <Navbar />
         {/* ------------Navbar End---------- */}
