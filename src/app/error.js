@@ -1,7 +1,7 @@
 'use client' // Error components must be Client Components
  
 import { useEffect } from 'react'
- // checking the new update 
+ // checking the new update   
 export default function Error({ error, reset }) {
   useEffect(() => {
     // Log the error to an error reporting service
