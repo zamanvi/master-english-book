@@ -137,8 +137,8 @@ export default function Navbar() {
       >
         <ul className="text-white p-4">
           <li
-            className={`font-bold text-lg mb-2 hover:text-blue-400 cursor-pointer ${
-              pathname === "/" ? "text-blue-500 bg-white p-1" : ""
+            className={`font-bold  mb-2 hover:text-blue-400 cursor-pointer ${
+              pathname === "/" ? "text-blue-500 bg-white rounded-md p-1" : ""
             }`}
           >
             <Link href="/">Home</Link>
@@ -156,20 +156,24 @@ export default function Navbar() {
               <li key={slug} className="mb-4">
                 <h3 className="font-semibold text-lg mb-1">{chapter?.title}</h3>
 
-                {displayedContents.map((content, index) => (
-                  <Link
-                    key={content?.slug}
-                    className={`cursor-pointer block mb-2 w-full hover:text-blue-400 ${
-                      isActive ? "text-blue-500 bg-white p-1 font-bold" : ""
-                    }`}
-                    href={`../book/${content?.slug}`}
-                    title={content?.title}
-                    onClick={() => setMenuClicked(false)}
-                  >
-                    <span className="font-bold">{index + 1}.</span>{" "}
-                    {content?.title}
-                  </Link>
-                ))}
+                {displayedContents.map((content, index) => {
+                  const contentPath = `/book/${content?.slug}`;
+                  const isActive = pathname === contentPath;
+                  return (
+                    <Link
+                      key={content?.slug}
+                      className={`cursor-pointer block mb-2 w-full hover:text-blue-400 ${
+                        isActive ? "text-blue-500 bg-white p-1 rounded-md font-bold" : ""
+                      }`}
+                      href={`../book/${content?.slug}`}
+                      title={content?.title}
+                      onClick={() => setMenuClicked(false)}
+                    >
+                      <span className="font-bold">{index + 1}.</span>{" "}
+                      {content?.title}
+                    </Link>
+                  );
+                })}
 
                 {contents.length > 20 && (
                   <button
