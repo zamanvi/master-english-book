@@ -73,6 +73,9 @@ export default function Navbar() {
               <option value="https://audio-vocabulary.vercel.app">
                 Audio vocabulary
               </option>
+              <option value="https://www.englishspeakingcourseinbangladesh.com">
+                Speaking english course in Bangladesh
+              </option>
             </select>
           </div>
         </div>
@@ -116,6 +119,9 @@ export default function Navbar() {
               </option>
               <option value="https://audio-vocabulary.vercel.app">
                 Audio vocabulary
+              </option>
+              <option value="https://www.englishspeakingcourseinbangladesh.com">
+                Speaking english course in Bangladesh
               </option>
             </select>
           </div>
@@ -163,7 +169,9 @@ export default function Navbar() {
                     <Link
                       key={content?.slug}
                       className={`cursor-pointer block mb-2 w-full hover:text-blue-400 ${
-                        isActive ? "text-blue-500 bg-white p-1 rounded-md font-bold" : ""
+                        isActive
+                          ? "text-blue-500 bg-white p-1 rounded-md font-bold"
+                          : ""
                       }`}
                       href={`../book/${content?.slug}`}
                       title={content?.title}
