@@ -32,13 +32,14 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* --------Google AdSense Verification Meta---------- */}
+        {/*   <!-- Google AdSense Auto Ads Code -->      */}
+
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889299981957538"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
+          crossorigin="anonymous"
         ></Script>
+        
       </head>
       <body className={`${ubuntu.className} max-w-[1366px] lg:w-11/12 mx-auto`}>
         {/* ----------Navbar For Small and Medium Device ------------- */}
