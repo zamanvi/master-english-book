@@ -12,11 +12,21 @@ import {
 import Link from "next/link";
 import getBook from "../../../../lib/getBook";
 import getChapterData from "../../../../lib/getChapterData";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [menuClicked, setMenuClicked] = useState(false);
   const [allChapters, setAllChapters] = useState(null);
   const [chapterContents, setChapterContents] = useState({});
+  const [showMoreMap, setShowMoreMap] = useState({});
+  const pathname = usePathname();
+
+  const toggleShowMore = (slug) => {
+    setShowMoreMap((prev) => ({
+      ...prev,
+      [slug]: !prev[slug],
+    }));
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -45,27 +55,28 @@ export default function Navbar() {
     <div className="bg-[#075F8F] p-2  z-10 lg:my-1 lg:rounded">
       {/* ----------------Nav Items For Big Screen ---------- */}
       <div className="hidden md:flex justify-between items-center">
-        <div>
-          <div className="flex items-end gap-2 text-white">
-            <p>Book Name:</p>
-            <div className="">
-              <select
-                className="text-xl font-bold bg-[#075F8F] text-white border-0 focus:outline-none"
-                onChange={(e) => {
-                  const selectedValue = e.target.value;
-                  if (selectedValue) {
-                    window.location.href = selectedValue;
-                  }
-                }}
-              >
-                <option value="#" selected>
-                  দূর্বলদের Master English Book Part - I
-                </option>
-                <option value="https://audio-vocabulary.vercel.app">
-                  Audio vocabulary
-                </option>
-              </select>
-            </div>
+        <div className="flex items-end gap-2 text-white">
+          <p>Book Name:</p>
+          <div>
+            <select
+              className="text-xl font-bold bg-[#075F8F] text-white border-0 focus:outline-none"
+              onChange={(e) => {
+                const selectedValue = e.target.value;
+                if (selectedValue) {
+                  window.location.href = selectedValue;
+                }
+              }}
+            >
+              <option value="#" defaultValue>
+                দূর্বলদের Master English Book Part - I
+              </option>
+              <option value="https://audio-vocabulary.vercel.app">
+                Audio vocabulary
+              </option>
+              <option value="https://www.englishspeakingcourseinbangladesh.com">
+                Speaking english course in Bangladesh
+              </option>
+            </select>
           </div>
         </div>
 
@@ -87,17 +98,13 @@ export default function Navbar() {
               <FaTwitterSquare />
             </a>
           </div>
-
-          <div>
-            <h2 className="font-bold text-white text-xl"></h2>
-          </div>
         </div>
       </div>
 
       {/* -----------------Nav Items for small Screen--------------- */}
       <div className="flex md:hidden justify-between items-center relative">
         <div>
-          <div className="font-bold text-white text-lg ">
+          <div className="font-bold text-white text-lg">
             <select
               className="font-bold bg-[#075F8F] text-white border-0 focus:outline-none"
               onChange={(e) => {
@@ -107,11 +114,14 @@ export default function Navbar() {
                 }
               }}
             >
-              <option value="#" selected>
+              <option value="#" defaultValue>
                 দূর্বলদের Master English Book Part - I
               </option>
               <option value="https://audio-vocabulary.vercel.app">
                 Audio vocabulary
+              </option>
+              <option value="https://www.englishspeakingcourseinbangladesh.com">
+                Speaking english course in Bangladesh
               </option>
             </select>
           </div>
@@ -132,30 +142,58 @@ export default function Navbar() {
         } lg:hidden min-w-32 max-w-[90%] mx-auto min-h-40 max-h-[75vh] overflow-auto bg-[#2a7daa] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
       >
         <ul className="text-white p-4">
-          <li className="font-bold text-lg mb-2 hover:text-blue-400 cursor-pointer">
-            <Link href={"/"}> Home</Link>
+          <li
+            className={`font-bold  mb-2 hover:text-blue-400 cursor-pointer ${
+              pathname === "/" ? "text-blue-500 bg-white rounded-md p-1" : ""
+            }`}
+          >
+            <Link href="/">Home</Link>
           </li>
 
-          {allChapters?.map((chapter) => (
-            <li key={chapter?.slug}>
-              <h3 className="font-semibold text-lg mb-1 ">{chapter?.title}</h3>
+          {allChapters?.map((chapter) => {
+            const slug = chapter?.slug;
+            const contents = chapterContents[slug] || [];
+            const showAll = showMoreMap[slug];
+            const displayedContents = showAll
+              ? contents
+              : contents.slice(0, 20);
 
-              {/*------ Display chapter content ----------- */}
+            return (
+              <li key={slug} className="mb-4">
+                <h3 className="font-semibold text-lg mb-1">{chapter?.title}</h3>
 
-              {chapterContents[chapter.slug]?.map((content, index) => (
-                <Link
-                  key={content?.slug}
-                  className="cursor-pointer block hover:text-blue-400  mb-3 w-full"
-                  href={`../book/${content?.slug}`}
-                  title={content?.title}
-                  onClick={() => setMenuClicked(false)}
-                >
-                  <span className="font-bold"> {index + 1} .</span>{" "}
-                  {content?.title}
-                </Link>
-              ))}
-            </li>
-          ))}
+                {displayedContents.map((content, index) => {
+                  const contentPath = `/book/${content?.slug}`;
+                  const isActive = pathname === contentPath;
+                  return (
+                    <Link
+                      key={content?.slug}
+                      className={`cursor-pointer block mb-2 w-full hover:text-blue-400 ${
+                        isActive
+                          ? "text-blue-500 bg-white p-1 rounded-md font-bold"
+                          : ""
+                      }`}
+                      href={`../book/${content?.slug}`}
+                      title={content?.title}
+                      onClick={() => setMenuClicked(false)}
+                    >
+                      <span className="font-bold">{index + 1}.</span>{" "}
+                      {content?.title}
+                    </Link>
+                  );
+                })}
+
+                {contents.length > 20 && (
+                  <button
+                    className="text-sm text-blue-500 bg-white rounded-md px-3 py-1 underline mt-2"
+                    onClick={() => toggleShowMore(slug)}
+                  >
+                    {showAll ? "See less" : "See more"}
+                  </button>
+                )}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

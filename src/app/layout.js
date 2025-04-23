@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar/Navbar";
 import ChapterList from "./components/ChapterList";
 import Script from "next/script";
 const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
+import CookieConsent from "./components/CookieConsent/CookieConsent";
+
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -32,13 +34,14 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* --------Google AdSense Verification Meta---------- */}
+        {/*   <!-- Google AdSense Auto Ads Code -->      */}
+
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889299981957538"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
+          crossorigin="anonymous"
         ></Script>
+        
       </head>
       <body className={`${ubuntu.className} max-w-[1366px] lg:w-11/12 mx-auto`}>
         {/* ----------Navbar For Small and Medium Device ------------- */}
@@ -74,6 +77,7 @@ export default async function RootLayout({ children }) {
           </div>
         </div>
 
+        <CookieConsent/>
         {/* ------------------Global Footer ------------------- */}
         <Footer />
         <GoogleAnalytics gaId="G-YM9TZWWD6D" />
