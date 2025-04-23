@@ -12,12 +12,14 @@ import {
 import Link from "next/link";
 import getBook from "../../../../lib/getBook";
 import getChapterData from "../../../../lib/getChapterData";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [menuClicked, setMenuClicked] = useState(false);
   const [allChapters, setAllChapters] = useState(null);
   const [chapterContents, setChapterContents] = useState({});
   const [showMoreMap, setShowMoreMap] = useState({});
+  const pathname = usePathname();
 
   const toggleShowMore = (slug) => {
     setShowMoreMap((prev) => ({
@@ -134,7 +136,11 @@ export default function Navbar() {
         } lg:hidden min-w-32 max-w-[90%] mx-auto min-h-40 max-h-[75vh] overflow-auto bg-[#2a7daa] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
       >
         <ul className="text-white p-4">
-          <li className="font-bold text-lg mb-2 hover:text-blue-400 cursor-pointer">
+          <li
+            className={`font-bold text-lg mb-2 hover:text-blue-400 cursor-pointer ${
+              pathname === "/" ? "text-blue-500 bg-white p-1" : ""
+            }`}
+          >
             <Link href="/">Home</Link>
           </li>
 
@@ -153,7 +159,9 @@ export default function Navbar() {
                 {displayedContents.map((content, index) => (
                   <Link
                     key={content?.slug}
-                    className="cursor-pointer block hover:text-blue-400 mb-2 w-full"
+                    className={`cursor-pointer block mb-2 w-full hover:text-blue-400 ${
+                      isActive ? "text-blue-500 bg-white p-1 font-bold" : ""
+                    }`}
                     href={`../book/${content?.slug}`}
                     title={content?.title}
                     onClick={() => setMenuClicked(false)}
