@@ -8,6 +8,8 @@ import Navbar from "./components/Navbar/Navbar";
 import ChapterList from "./components/ChapterList";
 import Script from "next/script";
 const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
+import CookieConsent from "./components/CookieConsent/CookieConsent";
+
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -75,6 +77,7 @@ export default async function RootLayout({ children }) {
           </div>
         </div>
 
+        <CookieConsent/>
         {/* ------------------Global Footer ------------------- */}
         <Footer />
         <GoogleAnalytics gaId="G-YM9TZWWD6D" />
