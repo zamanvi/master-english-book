@@ -1,14 +1,5 @@
 import getPage from "../../../lib/getPage";
 const page = async () => {
-  /* 
-  
-    type=masterenglishbook,slug=updated-privacy-policy	
-    type=masterenglishbook,slug=terms-and-conditions	
-    type=englishspeakingcourseinbangladesh,slug=terms-and-conditions	
-    type=englishspeakingcourseinbangladesh,slug=updated-privacy-policy
-  
-  */
-
   const pageData = await getPage("masterenglishbook", "updated-privacy-policy");
 
   const pageContent = pageData?.success?.data?.page;
