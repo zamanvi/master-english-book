@@ -8,7 +8,6 @@ import Navbar from "./components/Navbar/Navbar";
 import ChapterList from "./components/ChapterList";
 import Script from "next/script";
 const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
-import CookieConsent from "./components/CookieConsent/CookieConsent";
 
 
 const ubuntu = Ubuntu({
@@ -70,7 +69,6 @@ export default async function RootLayout({ children }) {
             {children}
           </div>
         </div>
-        <CookieConsent />
         <Footer />
         <GoogleAnalytics gaId="G-YM9TZWWD6D" />
       </body>
