@@ -10,16 +10,20 @@ import {
   FaTwitterSquare,
 } from "react-icons/fa";
 import Link from "next/link";
-import getBook from "../../../../lib/getBook";
-import getChapterData from "../../../../lib/getChapterData";
 import { usePathname } from "next/navigation";
 
-export default function Navbar() {
+export default function Navbar({ chaptersWithContent }) {
   const [menuClicked, setMenuClicked] = useState(false);
-  const [allChapters, setAllChapters] = useState(null);
-  const [chapterContents, setChapterContents] = useState({});
   const [showMoreMap, setShowMoreMap] = useState({});
   const pathname = usePathname();
+
+  // Process pre-fetched data
+  const allChapters = chaptersWithContent?.map((item) => item.chapter);
+  const chapterContents =
+    chaptersWithContent?.reduce((acc, { chapter, chapterContent }) => {
+      acc[chapter.slug] = chapterContent;
+      return acc;
+    }, {}) || {};
 
   const toggleShowMore = (slug) => {
     setShowMoreMap((prev) => ({
@@ -28,31 +32,34 @@ export default function Navbar() {
     }));
   };
 
+  // Fetch data only if not provided via props
   useEffect(() => {
-    async function fetchData() {
-      const bookData = await getBook();
-      const chapters = bookData?.success?.data?.chapters?.data;
-      setAllChapters(chapters);
+    if (!chaptersWithContent) {
+      async function fetchData() {
+        const bookData = await getBook();
+        const chapters = bookData?.success?.data?.chapters?.data;
+        if (chapters) {
+          const chapterDataPromises = chapters.map((chapter) =>
+            getChapterData(chapter.slug)
+          );
+          const chapterDataArray = await Promise.all(chapterDataPromises);
 
-      if (chapters) {
-        const chapterDataPromises = chapters.map((chapter) =>
-          getChapterData(chapter.slug)
-        );
-        const chapterDataArray = await Promise.all(chapterDataPromises);
+          const contents = chapterDataArray.reduce((acc, data, index) => {
+            acc[chapters[index].slug] = data?.success?.data?.items?.data || [];
+            return acc;
+          }, {});
 
-        const contents = chapterDataArray.reduce((acc, data, index) => {
-          acc[chapters[index].slug] = data?.success?.data?.items?.data || [];
-          return acc;
-        }, {});
-
-        setChapterContents(contents);
+          // Note: State update is commented out as data is now passed via props
+          // setAllChapters(chapters);
+          // setChapterContents(contents);
+        }
       }
+      fetchData();
     }
-    fetchData();
-  }, []);
+  }, [chaptersWithContent]);
 
   return (
-    <div className="bg-[#075F8F] p-2  z-10 lg:my-1 lg:rounded">
+    <div className="bg-[#075F8F] p-2 z-10 lg:my-1 lg:rounded">
       {/* ----------------Nav Items For Big Screen ---------- */}
       <div className="hidden md:flex justify-between items-center">
         <div className="flex items-end gap-2 text-white">
@@ -143,7 +150,7 @@ export default function Navbar() {
       >
         <ul className="text-white p-4">
           <li
-            className={`font-bold  mb-2 hover:text-blue-400 cursor-pointer ${
+            className={`font-bold mb-2 hover:text-blue-400 cursor-pointer ${
               pathname === "/" ? "text-blue-500 bg-white rounded-md p-1" : ""
             }`}
           >
