@@ -7,7 +7,7 @@ import getChapterData from "../../lib/getChapterData";
 import Navbar from "./components/Navbar/Navbar";
 import ChapterList from "./components/ChapterList";
 import Script from "next/script";
-const cardImage = `https://i.ibb.co/MPnmqw3/book-Cover-Fs.webp`;
+import cardImage from "../../public/image/bookCoverFs.jpg";
 
 
 const ubuntu = Ubuntu({
@@ -23,7 +23,7 @@ export const metadata = {
     google: "M0MK3nrHsamo73lbLU8-lwBKzCFfoSBfyLi-kL0z160",
   },
   openGraph: {
-    images: [cardImage],
+    images: [cardImage.src],
   },
 };
 
