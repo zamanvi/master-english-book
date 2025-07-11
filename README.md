@@ -3,6 +3,6 @@
 ### Important Environment Variables
 
 ```js
-NEXT_WEBSITE_URL = "Your Frontend Domain";
-BACKEND_URL = "Your Backend Domain";
+NEXT_PUBLIC_WEBSITE_URL = "Your Frontend Domain";
+NEXT_PUBLIC_BACKEND_URL = "Your Backend Domain";
 ```

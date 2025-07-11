@@ -4,7 +4,7 @@ import getChapterData from "../../lib/getChapterData";
 export const revalidate = 30;
 
 export default async function sitemap() {
-  const siteURL = process.env.NEXT_WEBSITE_URL;
+  const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL;
   const bookData = await getBook();
   const allChapters = bookData?.success?.data?.chapters?.data;
   let dynamicPages = [];
