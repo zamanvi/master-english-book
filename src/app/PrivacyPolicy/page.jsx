@@ -1,4 +1,12 @@
 import getPage from "../../../lib/getPage";
+
+export const metadata = {
+  title: "Privacy Policy — Master English Book",
+  description: "Read the privacy policy for Master English Book by Red Rose Corporation.",
+  alternates: { canonical: "https://www.masterenglishbook.com/PrivacyPolicy" },
+  robots: "index, follow",
+};
+
 const page = async () => {
   const pageData = await getPage("masterenglishbook", "updated-privacy-policy");
 

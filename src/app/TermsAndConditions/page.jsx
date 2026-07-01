@@ -1,4 +1,12 @@
 import getPage from "../../../lib/getPage";
+
+export const metadata = {
+  title: "Terms & Conditions — Master English Book",
+  description: "Read the terms and conditions for using Master English Book by Red Rose Corporation.",
+  alternates: { canonical: "https://www.masterenglishbook.com/TermsAndConditions" },
+  robots: "index, follow",
+};
+
 const page = async () => {
 
   const pageData = await getPage("masterenglishbook", "terms-and-conditions");

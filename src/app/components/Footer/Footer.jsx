@@ -29,7 +29,7 @@ const Footer = () => {
               <div>
                 <Image
                   src={logo}
-                  alt="logo"
+                  alt="Red Rose Corporation logo"
                   width={100}
                   className=" w-12 xl:w-16"
                 />

@@ -1,0 +1,28 @@
+# Master English Book
+> An interactive English learning platform for Bengali speakers by Red Rose Corporation.
+
+## What This Site Is
+Master English Book is a free structured English learning resource. It contains chapters, lessons, vocabulary, grammar, and video explanations aimed at Bengali-speaking learners.
+
+## Key Pages
+- Homepage: https://www.masterenglishbook.com
+- All Books: https://www.masterenglishbook.com/book
+- Chapters & Lessons: https://www.masterenglishbook.com/book/{slug}
+- Privacy Policy: https://www.masterenglishbook.com/PrivacyPolicy
+- Terms & Conditions: https://www.masterenglishbook.com/TermsAndConditions
+- Sitemap: https://www.masterenglishbook.com/sitemap.xml
+
+## Content
+- Structured English lessons with titles, descriptions, and explanations
+- YouTube video lessons embedded per topic
+- Organized by chapters and sub-lessons
+- Keyword-tagged content for searchability
+
+## About
+- Publisher: Red Rose Corporation
+- Website: https://corporation.redrosebd.com
+- Audience: Bengali speakers learning English
+- Language: English content, Bengali instruction context
+
+## Android App
+- Master English Book Android app available on Google Play
