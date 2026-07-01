@@ -17,8 +17,9 @@ export default function Navbar({ chaptersWithContent }) {
   const bookSelector = (
     <select
       className="bg-transparent text-white font-grotesk font-semibold text-sm border-0 focus:outline-none cursor-pointer max-w-[220px] md:max-w-none truncate"
+      defaultValue="#"
       onChange={(e) => {
-        if (e.target.value) window.location.href = e.target.value;
+        if (e.target.value && e.target.value !== "#") window.location.href = e.target.value;
       }}
     >
       <option value="#" className="bg-[#0f172a]">

@@ -22,7 +22,7 @@ export default async function page({ params }) {
   const canonicalUrl = `${siteURL}/book/${postSlug}`;
 
   return (
-    <article className="px-5 md:px-8 py-6 md:py-8 max-w-3xl">
+    <article className="px-5 md:px-8 pt-6 md:pt-8 pb-14 md:pb-16 max-w-3xl">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

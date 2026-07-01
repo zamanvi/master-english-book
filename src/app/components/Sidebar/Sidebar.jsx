@@ -25,7 +25,7 @@ export default function Sidebar({ chaptersWithContent }) {
       .filter(({ items }) => items.length > 0) || [];
 
   return (
-    <aside className="hidden md:flex flex-col w-72 bg-[#0f172a] flex-shrink-0 overflow-hidden">
+    <aside className="hidden md:flex flex-col md:w-60 lg:w-72 bg-[#0f172a] flex-shrink-0 overflow-hidden">
       {/* Search header */}
       <div className="px-4 pt-4 pb-3 border-b border-slate-700/50 flex-shrink-0">
         <p className="text-[10px] font-grotesk font-semibold uppercase tracking-widest text-slate-500 mb-2">

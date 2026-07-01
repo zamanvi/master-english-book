@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import getBook from "../../lib/getBook";
 import getChapterData from "../../lib/getChapterData";
 import appLogo from "../../public/image/appLogo.jpg";
@@ -53,12 +54,12 @@ export default async function Home() {
         </div>
 
         {/* CTA */}
-        <a
+        <Link
           href={ctaHref}
           className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-grotesk font-semibold px-6 py-3 rounded-xl transition-colors text-sm"
         >
           পড়া শুরু করুন →
-        </a>
+        </Link>
 
         {/* Mobile chapter hint */}
         <p className="md:hidden mt-6 text-slate-400 text-xs font-grotesk">

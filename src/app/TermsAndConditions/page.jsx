@@ -18,13 +18,13 @@ const page = async () => {
   return (
     <div className="w-full mx-auto">
       {!pageContent && (
-        <div className="px-3 py-5">
-          <p>Loading...</p>
+        <div className="px-5 md:px-8 py-6">
+          <p className="text-slate-500 font-hind">Loading...</p>
         </div>
       )}
       {pageContent && (
-        <div className="px-3 py-5">
-          <h1 className="text-2xl font-bold mb-4">{pageTitle}</h1>
+        <div className="px-5 md:px-8 py-6 md:py-8 max-w-3xl">
+          <h1 className="font-baloo font-bold text-2xl md:text-3xl text-slate-900 mb-6">{pageTitle}</h1>
           <div className="revert-tailwind">
             <div
               className="revert-tailwind"
