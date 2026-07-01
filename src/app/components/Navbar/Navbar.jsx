@@ -66,6 +66,14 @@ export default function Navbar({ chaptersWithContent }) {
         </button>
       </div>
 
+      {/* Mobile drawer backdrop */}
+      {menuOpen && (
+        <div
+          className="md:hidden fixed inset-0 z-20"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
+
       {/* Mobile drawer */}
       {menuOpen && (
         <div className="md:hidden absolute right-0 top-full w-full max-h-[80vh] overflow-y-auto bg-[#0f172a] border-t border-slate-700/60 shadow-2xl z-30">

@@ -47,12 +47,12 @@ export default async function page({ params }) {
       />
 
       {/* Breadcrumb */}
-      <nav className="text-xs font-grotesk text-slate-400 mb-5 flex items-center gap-1">
-        <Link href="/" className="hover:text-blue-600 transition-colors">
+      <nav className="text-xs font-grotesk text-slate-400 mb-5 flex items-center gap-1 overflow-hidden">
+        <Link href="/" className="hover:text-blue-600 transition-colors shrink-0">
           Home
         </Link>
-        <span>/</span>
-        <span className="text-slate-500 truncate">{postContent?.title}</span>
+        <span className="shrink-0">/</span>
+        <span className="text-slate-500 truncate min-w-0">{postContent?.title}</span>
       </nav>
 
       {/* Title */}
