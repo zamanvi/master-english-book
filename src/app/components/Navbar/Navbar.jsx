@@ -14,39 +14,16 @@ export default function Navbar({ chaptersWithContent }) {
     setShowMoreMap((prev) => ({ ...prev, [slug]: !prev[slug] }));
   };
 
-  const bookSelector = (
-    <select
-      className="bg-transparent text-white font-grotesk font-semibold text-sm border-0 focus:outline-none cursor-pointer max-w-[220px] md:max-w-none truncate"
-      defaultValue="#"
-      onChange={(e) => {
-        if (e.target.value && e.target.value !== "#") window.location.href = e.target.value;
-      }}
-    >
-      <option value="#" className="bg-[#0f172a]">
-        Master English Book Part - I
-      </option>
-      <option value="https://audio-vocabulary.vercel.app" className="bg-[#0f172a]">
-        Audio Vocabulary
-      </option>
-      <option
-        value="https://www.englishspeakingcourseinbangladesh.com"
-        className="bg-[#0f172a]"
-      >
-        Speaking English Course
-      </option>
-    </select>
-  );
-
   return (
     <nav className="bg-[#0f172a] border-b border-slate-700/60 px-4 py-3 relative z-20">
       {/* Desktop */}
       <div className="hidden md:flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-slate-400 text-xs font-grotesk uppercase tracking-wider">
-            Book:
-          </span>
-          {bookSelector}
-        </div>
+        <Link
+          href="/"
+          className="text-white font-grotesk font-semibold text-sm tracking-wide hover:text-blue-400 transition-colors"
+        >
+          Master English Book
+        </Link>
         <Link
           href="/"
           className="text-slate-400 hover:text-white text-sm font-grotesk transition-colors"
@@ -57,7 +34,12 @@ export default function Navbar({ chaptersWithContent }) {
 
       {/* Mobile */}
       <div className="flex md:hidden items-center justify-between">
-        <div className="flex-1 min-w-0 mr-3">{bookSelector}</div>
+        <Link
+          href="/"
+          className="text-white font-grotesk font-semibold text-sm"
+        >
+          Master English Book
+        </Link>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           className="text-white text-2xl flex-shrink-0"
