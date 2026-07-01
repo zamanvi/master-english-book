@@ -1,3 +1,4 @@
+import Link from "next/link";
 import getPostData from "../../../../lib/getPostData";
 
 const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL || "https://www.masterenglishbook.com";
@@ -7,66 +8,80 @@ export default async function page({ params }) {
   const postInfo = await getPostData(postSlug);
   const postContent = postInfo?.success?.data?.item;
 
-  // Function to convert a regular YouTube URL to an embeddable format
   const getEmbedLink = (url) => {
     if (!url) return null;
-
     let videoId;
     if (url.includes("youtube.com")) {
       videoId = url.split("v=")[1]?.split("&")[0];
     } else if (url.includes("youtu.be")) {
       videoId = url.split("youtu.be/")[1]?.split("?")[0];
     }
-
     return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   };
 
   const canonicalUrl = `${siteURL}/book/${postSlug}`;
 
   return (
-    <>
+    <article className="px-5 md:px-8 py-6 md:py-8 max-w-3xl">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
-            "headline": postContent?.title,
-            "description": postContent?.short_details,
-            "url": canonicalUrl,
-            "isPartOf": { "@type": "Book", "name": "দূর্বলদের Master English Book Part - I", "url": siteURL },
-            "publisher": {
+            headline: postContent?.title,
+            description: postContent?.short_details,
+            url: canonicalUrl,
+            isPartOf: {
+              "@type": "Book",
+              name: "দূর্বলদের Master English Book Part - I",
+              url: siteURL,
+            },
+            publisher: {
               "@type": "Organization",
-              "name": "Red Rose Corporation",
-              "url": "https://corporation.redrosebd.com"
-            }
-          })
+              name: "Red Rose Corporation",
+              url: "https://corporation.redrosebd.com",
+            },
+          }),
         }}
       />
-      <h1 className="font-bold  text-lg lg:text-xl xl:text-2xl mb-5 xl:mb-8">
+
+      {/* Breadcrumb */}
+      <nav className="text-xs font-grotesk text-slate-400 mb-5 flex items-center gap-1">
+        <Link href="/" className="hover:text-blue-600 transition-colors">
+          Home
+        </Link>
+        <span>/</span>
+        <span className="text-slate-500 truncate">{postContent?.title}</span>
+      </nav>
+
+      {/* Title */}
+      <h1 className="font-baloo font-bold text-2xl md:text-3xl text-slate-900 leading-tight mb-6">
         {postContent?.title}
       </h1>
 
+      {/* Lesson HTML content */}
       <div className="revert-tailwind">
         <div
           className="revert-tailwind"
           dangerouslySetInnerHTML={{ __html: postContent?.details }}
-        ></div>
+        />
       </div>
 
-      <div className="w-full md:w-10/12 mx-auto my-10 lg:my-16">
-        {postContent?.link && (
+      {/* YouTube embed */}
+      {postContent?.link && (
+        <div className="relative w-full md:w-10/12 mx-auto my-10 aspect-video">
           <iframe
-            className="w-full mx-auto rounded-lg h-[230px] md:h-[240px] lg:h-[300px] xl:h-[440px]"
+            className="absolute inset-0 w-full h-full rounded-xl shadow-lg"
             src={getEmbedLink(postContent?.link)}
-            title={`${postContent?.title}--Video`}
+            title={`${postContent?.title} — Video`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
-          ></iframe>
-        )}
-      </div>
-    </>
+          />
+        </div>
+      )}
+    </article>
   );
 }
 
@@ -74,32 +89,26 @@ export async function generateMetadata({ params }) {
   const postSlug = params?.slug;
   const postInfo = await getPostData(postSlug);
   const postContent = postInfo?.success?.data?.item;
-  const postTitle = postContent?.title;
-  const postDescription = postContent?.short_details;
-  const pageKeyword = postContent?.keyword;
-
   const canonicalUrl = `${siteURL}/book/${postSlug}`;
 
   return {
-    title: postTitle,
-    description: postDescription,
-    keywords: pageKeyword,
+    title: postContent?.title,
+    description: postContent?.short_details,
+    keywords: postContent?.keyword,
     robots: "index, follow",
     googleBot: "index, follow",
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    alternates: { canonical: canonicalUrl },
     openGraph: {
-      title: postTitle,
-      description: postDescription,
+      title: postContent?.title,
+      description: postContent?.short_details,
       url: canonicalUrl,
       siteName: "Master English Book",
       type: "article",
     },
     twitter: {
       card: "summary_large_image",
-      title: postTitle,
-      description: postDescription,
+      title: postContent?.title,
+      description: postContent?.short_details,
     },
   };
 }

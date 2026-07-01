@@ -1,24 +1,26 @@
-'use client' // Error components must be Client Components  
- 
-import { useEffect } from 'react'
- // checking the new update   
+"use client";
+import { useEffect } from "react";
+
 export default function Error({ error, reset }) {
   useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
- 
+    console.error(error);
+  }, [error]);
+
   return (
-    <div>
-      <h2>Something went wrong!</h2>
+    <div className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center">
+      <div className="text-5xl mb-4">😕</div>
+      <h2 className="font-baloo font-bold text-2xl text-slate-800 mb-2">
+        কিছু একটা ভুল হয়েছে
+      </h2>
+      <p className="font-hind text-slate-500 mb-6 max-w-sm">
+        পাঠটি লোড করা সম্ভব হয়নি। ইন্টারনেট কানেকশন চেক করে আবার চেষ্টা করুন।
+      </p>
       <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
+        onClick={reset}
+        className="bg-blue-600 hover:bg-blue-700 text-white font-grotesk font-semibold px-6 py-2.5 rounded-xl transition-colors text-sm"
       >
-        Try again
+        আবার চেষ্টা করুন
       </button>
     </div>
-  )
+  );
 }

@@ -1,19 +1,24 @@
 export default function Loading() {
-  // You can add any UI inside Loading, including a Skeleton.
   return (
-    <div className="max-w-[1366px] lg:w-11/12 mx-auto h-[90vh]">
-    <div className="flex flex-col md:flex-row w-12/12 justify-between gap-4 mt-3">
-      <div className="w-12/12 md:w-3/12  h-[88vh] hidden md:block ">
-        <div className="py-4 skeleton my-2"></div>
-        <div className="py-4 skeleton my-2"></div>
-        <div className="py-4 skeleton my-2"></div>
-        <div className="py-4 skeleton my-2"></div>
-        <div className="py-4 skeleton my-2"></div>
-        
-      </div>
-      <div className="w-11/12 mx-auto md:w-9/12 h-[88vh] skeleton"></div>
+    <div className="px-5 md:px-8 py-6 md:py-8 max-w-3xl animate-pulse">
+      {/* Breadcrumb */}
+      <div className="h-3 w-28 bg-slate-200 rounded mb-6"></div>
 
+      {/* Title */}
+      <div className="h-8 w-3/4 bg-slate-200 rounded-lg mb-2"></div>
+      <div className="h-8 w-1/2 bg-slate-200 rounded-lg mb-8"></div>
+
+      {/* Body lines */}
+      {[100, 100, 90, 100, 85, 100, 95, 80, 100, 70].map((w, i) => (
+        <div
+          key={i}
+          className="h-4 bg-slate-100 rounded mb-3"
+          style={{ width: `${w}%` }}
+        ></div>
+      ))}
+
+      {/* Video placeholder */}
+      <div className="h-52 md:h-72 w-full md:w-10/12 mx-auto bg-slate-100 rounded-xl mt-10"></div>
     </div>
-  </div>
   );
 }

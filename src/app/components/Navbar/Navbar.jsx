@@ -1,208 +1,136 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
-import {
-  FaShare,
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaLinkedin,
-  FaTwitterSquare,
-} from "react-icons/fa";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function Navbar({ chaptersWithContent }) {
-  const [menuClicked, setMenuClicked] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [showMoreMap, setShowMoreMap] = useState({});
   const pathname = usePathname();
 
-  // Process pre-fetched data
-  const allChapters = chaptersWithContent?.map((item) => item.chapter);
-  const chapterContents =
-    chaptersWithContent?.reduce((acc, { chapter, chapterContent }) => {
-      acc[chapter.slug] = chapterContent;
-      return acc;
-    }, {}) || {};
-
   const toggleShowMore = (slug) => {
-    setShowMoreMap((prev) => ({
-      ...prev,
-      [slug]: !prev[slug],
-    }));
+    setShowMoreMap((prev) => ({ ...prev, [slug]: !prev[slug] }));
   };
 
-  // Fetch data only if not provided via props
-  useEffect(() => {
-    if (!chaptersWithContent) {
-      async function fetchData() {
-        const bookData = await getBook();
-        const chapters = bookData?.success?.data?.chapters?.data;
-        if (chapters) {
-          const chapterDataPromises = chapters.map((chapter) =>
-            getChapterData(chapter.slug)
-          );
-          const chapterDataArray = await Promise.all(chapterDataPromises);
-
-          const contents = chapterDataArray.reduce((acc, data, index) => {
-            acc[chapters[index].slug] = data?.success?.data?.items?.data || [];
-            return acc;
-          }, {});
-
-          // Note: State update is commented out as data is now passed via props
-          // setAllChapters(chapters);
-          // setChapterContents(contents);
-        }
-      }
-      fetchData();
-    }
-  }, [chaptersWithContent]);
+  const bookSelector = (
+    <select
+      className="bg-transparent text-white font-grotesk font-semibold text-sm border-0 focus:outline-none cursor-pointer max-w-[220px] md:max-w-none truncate"
+      onChange={(e) => {
+        if (e.target.value) window.location.href = e.target.value;
+      }}
+    >
+      <option value="#" className="bg-[#0f172a]">
+        Master English Book Part - I
+      </option>
+      <option value="https://audio-vocabulary.vercel.app" className="bg-[#0f172a]">
+        Audio Vocabulary
+      </option>
+      <option
+        value="https://www.englishspeakingcourseinbangladesh.com"
+        className="bg-[#0f172a]"
+      >
+        Speaking English Course
+      </option>
+    </select>
+  );
 
   return (
-    <div className="bg-[#075F8F] p-2 z-10 lg:my-1 lg:rounded">
-      {/* ----------------Nav Items For Big Screen ---------- */}
-      <div className="hidden md:flex justify-between items-center">
-        <div className="flex items-end gap-2 text-white">
-          <p>Book Name:</p>
-          <div>
-            <select
-              className="text-xl font-bold bg-[#075F8F] text-white border-0 focus:outline-none"
-              onChange={(e) => {
-                const selectedValue = e.target.value;
-                if (selectedValue) {
-                  window.location.href = selectedValue;
-                }
-              }}
-            >
-              <option value="#" defaultValue>
-                দূর্বলদের Master English Book Part - I
-              </option>
-              <option value="https://audio-vocabulary.vercel.app">
-                Audio vocabulary
-              </option>
-              <option value="https://www.englishspeakingcourseinbangladesh.com">
-                Speaking english course in Bangladesh
-              </option>
-            </select>
-          </div>
+    <nav className="bg-[#0f172a] border-b border-slate-700/60 px-4 py-3 relative z-20">
+      {/* Desktop */}
+      <div className="hidden md:flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="text-slate-400 text-xs font-grotesk uppercase tracking-wider">
+            Book:
+          </span>
+          {bookSelector}
         </div>
-
-        <div className="flex items-center gap-10">
-          <div className="text-white text-xl flex gap-3">
-            <span title="Share with">
-              <FaShare />
-            </span>
-            <a href="#">
-              <FaFacebookSquare />
-            </a>
-            <a href="#">
-              <FaInstagramSquare />
-            </a>
-            <a href="#">
-              <FaLinkedin />
-            </a>
-            <a href="#">
-              <FaTwitterSquare />
-            </a>
-          </div>
-        </div>
+        <Link
+          href="/"
+          className="text-slate-400 hover:text-white text-sm font-grotesk transition-colors"
+        >
+          Home
+        </Link>
       </div>
 
-      {/* -----------------Nav Items for small Screen--------------- */}
-      <div className="flex md:hidden justify-between items-center relative">
-        <div>
-          <div className="font-bold text-white text-lg">
-            <select
-              className="font-bold bg-[#075F8F] text-white border-0 focus:outline-none"
-              onChange={(e) => {
-                const selectedValue = e.target.value;
-                if (selectedValue) {
-                  window.location.href = selectedValue;
-                }
-              }}
-            >
-              <option value="#" defaultValue>
-                দূর্বলদের Master English Book Part - I
-              </option>
-              <option value="https://audio-vocabulary.vercel.app">
-                Audio vocabulary
-              </option>
-              <option value="https://www.englishspeakingcourseinbangladesh.com">
-                Speaking english course in Bangladesh
-              </option>
-            </select>
-          </div>
-        </div>
-
-        <div onClick={() => setMenuClicked(!menuClicked)}>
-          {menuClicked ? (
-            <RxCross2 className="font-bold text-3xl text-white" />
-          ) : (
-            <IoMenu className="font-bold text-3xl text-white" />
-          )}
-        </div>
+      {/* Mobile */}
+      <div className="flex md:hidden items-center justify-between">
+        <div className="flex-1 min-w-0 mr-3">{bookSelector}</div>
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="text-white text-2xl flex-shrink-0"
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? <RxCross2 /> : <IoMenu />}
+        </button>
       </div>
 
-      <div
-        className={`${
-          menuClicked ? "block" : "hidden"
-        } lg:hidden min-w-32 max-w-[90%] mx-auto min-h-40 max-h-[75vh] overflow-auto bg-[#2a7daa] absolute right-[10px] top-12 rounded-lg shadow-2xl z-20`}
-      >
-        <ul className="text-white p-4">
-          <li
-            className={`font-bold mb-2 hover:text-blue-400 cursor-pointer ${
-              pathname === "/" ? "text-blue-500 bg-white rounded-md p-1" : ""
-            }`}
-          >
-            <Link href="/">Home</Link>
-          </li>
+      {/* Mobile drawer */}
+      {menuOpen && (
+        <div className="md:hidden absolute right-0 top-full w-full max-h-[80vh] overflow-y-auto bg-[#0f172a] border-t border-slate-700/60 shadow-2xl z-30">
+          <ul className="py-2">
+            <li>
+              <Link
+                href="/"
+                onClick={() => setMenuOpen(false)}
+                className={`block px-4 py-3 text-sm font-grotesk font-semibold transition-colors ${
+                  pathname === "/"
+                    ? "text-blue-400 bg-slate-800"
+                    : "text-slate-300 hover:text-white hover:bg-slate-800"
+                }`}
+              >
+                Home
+              </Link>
+            </li>
 
-          {allChapters?.map((chapter) => {
-            const slug = chapter?.slug;
-            const contents = chapterContents[slug] || [];
-            const showAll = showMoreMap[slug];
-            const displayedContents = showAll
-              ? contents
-              : contents.slice(0, 20);
+            {chaptersWithContent?.map(({ chapter, chapterContent }) => {
+              const showAll = showMoreMap[chapter.slug];
+              const contents = chapterContent || [];
+              const visible = showAll ? contents : contents.slice(0, 20);
 
-            return (
-              <li key={slug} className="mb-4">
-                <h3 className="font-semibold text-lg mb-1">{chapter?.title}</h3>
-
-                {displayedContents.map((content, index) => {
-                  const contentPath = `/book/${content?.slug}`;
-                  const isActive = pathname === contentPath;
-                  return (
-                    <Link
-                      key={content?.slug}
-                      className={`cursor-pointer block mb-2 w-full hover:text-blue-400 ${
-                        isActive
-                          ? "text-blue-500 bg-white p-1 rounded-md font-bold"
-                          : ""
-                      }`}
-                      href={`../book/${content?.slug}`}
-                      title={content?.title}
-                      onClick={() => setMenuClicked(false)}
+              return (
+                <li key={chapter.slug} className="mb-2">
+                  <p className="px-4 py-2 text-[10px] font-grotesk font-bold uppercase tracking-widest text-slate-500">
+                    {chapter.title}
+                  </p>
+                  {visible.map((content, i) => {
+                    const isActive = pathname === `/book/${content.slug}`;
+                    return (
+                      <Link
+                        key={content.slug}
+                        href={`/book/${content.slug}`}
+                        onClick={() => setMenuOpen(false)}
+                        title={content.title}
+                        className={`flex items-start gap-2 px-4 py-2 text-sm font-hind leading-snug transition-colors ${
+                          isActive
+                            ? "bg-blue-600 text-white font-semibold"
+                            : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                        }`}
+                      >
+                        <span className="text-slate-500 text-xs mt-0.5 font-grotesk w-5 text-right shrink-0">
+                          {i + 1}.
+                        </span>
+                        <span>{content.title}</span>
+                      </Link>
+                    );
+                  })}
+                  {contents.length > 20 && (
+                    <button
+                      onClick={() => toggleShowMore(chapter.slug)}
+                      className="w-full text-left px-4 py-2 text-xs text-blue-400 hover:text-blue-300 font-grotesk"
                     >
-                      <span className="font-bold">{index + 1}.</span>{" "}
-                      {content?.title}
-                    </Link>
-                  );
-                })}
-
-                {contents.length > 20 && (
-                  <button
-                    className="text-sm text-blue-500 bg-white rounded-md px-3 py-1 underline mt-2"
-                    onClick={() => toggleShowMore(slug)}
-                  >
-                    {showAll ? "See less" : "See more"}
-                  </button>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    </div>
+                      {showAll
+                        ? "↑ See less"
+                        : `↓ ${contents.length - 20} more`}
+                    </button>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </nav>
   );
 }

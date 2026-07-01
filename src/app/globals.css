@@ -2,18 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
+/* ── CRITICAL: DO NOT REMOVE — lesson and CMS HTML depends on this ── */
 .revert-tailwind {
   all: initial;
 }
 
 .revert-tailwind > * {
   all: revert;
+}
+/* ─────────────────────────────────────────────────────────────────── */
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+/* Default body font — Google Font loaded via next/font CSS variables */
+body {
+  font-family: var(--font-hind-siliguri), "Balooda2", sans-serif;
 }
 
 

@@ -1,19 +1,35 @@
-import { Inter, Ubuntu } from "next/font/google";
+import { Space_Grotesk, Hind_Siliguri, Baloo_Da_2 } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import getBook from "../../lib/getBook";
 import getChapterData from "../../lib/getChapterData";
 import Navbar from "./components/Navbar/Navbar";
-import ChapterList from "./components/ChapterList";
+import Sidebar from "./components/Sidebar/Sidebar";
 import Script from "next/script";
 import cardImage from "../../public/image/bookCoverFs.jpg";
 
-
-const ubuntu = Ubuntu({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
 });
+
+const hindSiliguri = Hind_Siliguri({
+  subsets: ["latin", "bengali"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-hind-siliguri",
+  display: "swap",
+});
+
+const balooDa2 = Baloo_Da_2({
+  subsets: ["latin", "bengali"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-baloo-da-2",
+  display: "swap",
+});
+
 const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL || "https://www.masterenglishbook.com";
 
 export const metadata = {
@@ -48,7 +64,6 @@ export default async function RootLayout({ children }) {
   const bookData = await getBook();
   const allChapters = bookData?.success?.data?.chapters?.data;
 
-  // Fetch all chapter data concurrently
   const chapterDataPromises = allChapters?.map(async (chapter) => {
     const chapterData = await getChapterData(chapter.slug);
     return { chapter, chapterContent: chapterData?.success?.data?.items?.data };
@@ -62,10 +77,12 @@ export default async function RootLayout({ children }) {
         <Script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889299981957538"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></Script>
       </head>
-      <body className={`${ubuntu.className} max-w-[1366px] lg:w-11/12 mx-auto`}>
+      <body
+        className={`${hindSiliguri.variable} ${balooDa2.variable} ${spaceGrotesk.variable} font-hind bg-slate-50`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -78,8 +95,8 @@ export default async function RootLayout({ children }) {
                 "potentialAction": {
                   "@type": "SearchAction",
                   "target": { "@type": "EntryPoint", "urlTemplate": `${siteURL}/book/{search_term_string}` },
-                  "query-input": "required name=search_term_string"
-                }
+                  "query-input": "required name=search_term_string",
+                },
               },
               {
                 "@context": "https://schema.org",
@@ -87,31 +104,18 @@ export default async function RootLayout({ children }) {
                 "name": "Red Rose Corporation",
                 "url": "https://corporation.redrosebd.com",
                 "logo": `${siteURL}/image/logoDark.png`,
-                "sameAs": [
-                  "https://www.masterenglishbook.com"
-                ]
-              }
-            ])
+                "sameAs": ["https://www.masterenglishbook.com"],
+              },
+            ]),
           }}
         />
-        <Navbar chaptersWithContent={chaptersWithContent} />
-        <div className="flex flex-col md:flex-row w-12/12 justify-between gap-3 md:mt-3">
-          <div className="w-12/12 md:w-3/12 hidden md:block md:max-h-[95vh] overflow-y-auto">
-            <h2 className="bg-[#075F8F] font-bold md:text-lg lg:text-xl xl:text-[22px] text-white px-2 py-1">
-              Chapters
-            </h2>
-            <ul className="bg-[#dbeafeb0] pb-10 chapters">
-              {chaptersWithContent.map(({ chapter, chapterContent }) => (
-                <ChapterList
-                  key={chapter.slug}
-                  chapter={chapter}
-                  chapterContent={chapterContent}
-                />
-              ))}
-            </ul>
-          </div>
-          <div className="w-12/12 md:w-9/12 md:max-h-[95vh] bg-[#dbeafe7e] overflow-y-auto p-3 md:p-4">
-            {children}
+        <div className="max-w-[1366px] lg:w-11/12 mx-auto">
+          <Navbar chaptersWithContent={chaptersWithContent} />
+          <div className="flex md:max-h-[95vh]">
+            <Sidebar chaptersWithContent={chaptersWithContent} />
+            <main className="flex-1 overflow-y-auto bg-white min-h-[80vh]">
+              {children}
+            </main>
           </div>
         </div>
         <Footer />
