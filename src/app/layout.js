@@ -75,7 +75,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <head>
         <Script
-          async
+          strategy="lazyOnload"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7889299981957538"
           crossOrigin="anonymous"
         ></Script>
