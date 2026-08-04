@@ -63,6 +63,15 @@ const Footer = () => {
                   Privacy policy
                 </Link>
               </p>
+
+              <p>
+                <Link
+                  href={"/DeleteAccount"}
+                  className="link link-hover font-bold"
+                >
+                  Delete account
+                </Link>
+              </p>
             </div>
           </div>
 
