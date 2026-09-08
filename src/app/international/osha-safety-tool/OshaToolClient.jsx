@@ -59,6 +59,22 @@ export default function OshaToolClient({ htmlContent }) {
       const successMsg = $('successMsg');
       const preview = $('preview');
 
+      // Activate the two manual AdSense ad units in this markup. Loading
+      // adsbygoogle.js (done site-wide in the root layout) is not enough
+      // by itself for manually-placed <ins class="adsbygoogle"> slots -
+      // each one needs its own push({}) call to actually request an ad,
+      // same reasoning as everything else in this file: a <script> doing
+      // this inline inside the injected HTML would never run on a
+      // client-side navigation, so it happens here instead.
+      root.querySelectorAll('ins.adsbygoogle').forEach((ins) => {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {
+          // Ad blocker or adsbygoogle.js failed to load - fail silently,
+          // the rest of the tool doesn't depend on ads working.
+        }
+      });
+
       if (!dateInput) return; // markup not present (shouldn't happen)
 
       // Default date
