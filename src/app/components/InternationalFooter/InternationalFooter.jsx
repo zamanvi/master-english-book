@@ -5,11 +5,10 @@ import logo from "../../../../public/image/logoDark.png";
 import "../Footer/style.css";
 import {
   FaFacebookF,
-  FaTwitter,
   FaYoutube,
   FaLinkedinIn,
 } from "react-icons/fa6";
-import FooterWithModal from "../Footer/FooterWithModal";
+import InternationalContactModal from "./InternationalContactModal";
 
 // International's own footer - separate component from Footer.jsx
 // (Bangladesh's). Same brand/company info (shared across both), but its
@@ -59,15 +58,6 @@ const InternationalFooter = () => {
                   Privacy policy
                 </Link>
               </p>
-
-              <p>
-                <Link
-                  href={"/DeleteAccount"}
-                  className="link link-hover font-bold"
-                >
-                  Delete account
-                </Link>
-              </p>
             </div>
           </div>
 
@@ -92,9 +82,6 @@ const InternationalFooter = () => {
               >
                 <FaLinkedinIn />
               </a>
-              <a href="#" className="icon-style">
-                <FaTwitter />
-              </a>
               <a
                 href="https://www.youtube.com/@redroseacademy5364"
                 className="icon-style"
@@ -103,8 +90,8 @@ const InternationalFooter = () => {
                 <FaYoutube />
               </a>
             </div>
-            {/* -------------Footer Contact Modal ----------------- */}
-            <FooterWithModal />
+            {/* -------------Footer Contact Modal (international - email only, no BD address/phone) ----------------- */}
+            <InternationalContactModal />
           </div>
         </div>
 
