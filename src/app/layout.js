@@ -32,6 +32,12 @@ const balooDa2 = Baloo_Da_2({
 
 const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL || "https://www.masterenglishbook.com";
 
+// Ensures Next.js resolves relative metadata (og:image, etc.) against the
+// production domain instead of the Vercel deployment URL.
+export const metadata = {
+  metadataBase: new URL("https://masterenglishbook.com"),
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
