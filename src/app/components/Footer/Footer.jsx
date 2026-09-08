@@ -129,7 +129,7 @@ const Footer = () => {
                 />
               </a>
             </div>
-            {{-- Learnify and Red Rose Chatting apps removed 2026-09-08 - focus on English Grammar Book app only --}}
+            {/* Learnify and Red Rose Chatting apps removed 2026-09-08 - focus on English Grammar Book app only */}
           </div>
         </div>
 
