@@ -101,6 +101,27 @@ export default function InternationalSidebar({ chaptersWithContent }) {
             Content coming soon.
           </p>
         )}
+
+        {/* Free Tools - static, always visible regardless of lesson content */}
+        {!search && (
+          <div className="mt-2">
+            <p className="px-4 py-2 text-[10px] font-grotesk font-bold uppercase tracking-widest text-slate-400">
+              Free Tools
+            </p>
+            <Link
+              href="/international/osha-safety-tool"
+              title="OSHA Safety Briefing & Sign-In Sheet Generator"
+              className={`flex items-start gap-2 px-4 py-2 text-sm font-hind leading-snug transition-colors ${
+                pathname === "/international/osha-safety-tool"
+                  ? "bg-blue-600 text-white font-semibold"
+                  : "text-slate-300 hover:bg-slate-800 hover:text-white"
+              }`}
+            >
+              <span className="text-xs mt-0.5 shrink-0" aria-hidden="true">⚠️</span>
+              <span className="flex-1 min-w-0">OSHA Safety Briefing Generator</span>
+            </Link>
+          </div>
+        )}
       </nav>
     </aside>
   );

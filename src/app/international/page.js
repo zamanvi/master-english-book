@@ -56,6 +56,30 @@ export default async function InternationalHome() {
           </p>
         )}
       </section>
+
+      {/* Free Tools */}
+      <section className="px-6 md:px-10 pb-12 md:pb-16">
+        <p className="text-blue-600 font-grotesk font-semibold text-xs uppercase tracking-widest mb-4">
+          Free Tools
+        </p>
+        <Link
+          href="/international/osha-safety-tool"
+          className="group flex flex-col md:flex-row md:items-center gap-4 bg-white border border-slate-200 hover:border-blue-400 rounded-2xl p-6 max-w-2xl transition-colors shadow-sm hover:shadow-md"
+        >
+          <span className="text-3xl" aria-hidden="true">⚠️</span>
+          <div className="flex-1">
+            <h2 className="font-grotesk font-bold text-lg text-slate-900 group-hover:text-blue-600 transition-colors">
+              OSHA Safety Briefing &amp; Sign-In Sheet Generator
+            </h2>
+            <p className="font-hind text-slate-600 text-sm mt-1">
+              Generate a compliant safety briefing &amp; crew sign-in sheet as a printable PDF — free, in 30 seconds.
+            </p>
+          </div>
+          <span className="font-grotesk font-semibold text-blue-600 text-sm whitespace-nowrap">
+            Open Tool →
+          </span>
+        </Link>
+      </section>
     </div>
   );
 }

@@ -95,6 +95,24 @@ export default function InternationalNavbar({ chaptersWithContent }) {
               </Link>
             </li>
 
+            <li className="mb-2">
+              <p className="px-4 py-2 text-[10px] font-grotesk font-bold uppercase tracking-widest text-slate-500">
+                Free Tools
+              </p>
+              <Link
+                href="/international/osha-safety-tool"
+                onClick={() => setMenuOpen(false)}
+                className={`flex items-start gap-2 px-4 py-2 text-sm font-hind leading-snug transition-colors ${
+                  pathname === "/international/osha-safety-tool"
+                    ? "bg-blue-600 text-white font-semibold"
+                    : "text-slate-300 hover:bg-slate-800 hover:text-white"
+                }`}
+              >
+                <span className="text-xs mt-0.5 shrink-0" aria-hidden="true">⚠️</span>
+                <span>OSHA Safety Briefing Generator</span>
+              </Link>
+            </li>
+
             {chaptersWithContent?.map(({ chapter, chapterContent }) => {
               const showAll = showMoreMap[chapter.slug];
               const contents = chapterContent || [];
