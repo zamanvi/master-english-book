@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate OSHA Safety Briefing & Sign-in Sheets in 30 Seconds (100% Free PDF)</title>
+    <meta name="description" content="Instantly create compliant OSHA safety briefing notes & crew sign-in sheets. Select hazard topics, customize, and download a printable 1-page PDF. Built for US/UK site managers.">
+    <meta name="keywords" content="OSHA safety briefing, sign-in sheet, daily toolbox talk, construction safety, safety forms, OSHA compliance">
+    <meta name="author" content="MasterEnglishBook">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Free OSHA Safety Briefing & Sign-In Sheet Generator">
+    <meta property="og:description" content="Instant OSHA-compliant safety briefing forms. Download as PDF, print, and share with your crew.">
+    <meta property="og:type" content="website">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://masterenglishbook.com/international/osha-safety-tool">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header-banner h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .header-banner p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .site-branding {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .site-branding a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 2px;
+        }
+
+        .main-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+        }
+
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 6px 12px;
+            border-radius: 20px;
+            border: 1px solid #667eea;
+        }
+
+        .form-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 13px;
+            color: #2d3748;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .checkbox-item label {
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #2d3748;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: #f7fafc;
+            color: #2d3748;
+            border: 2px solid #cbd5e0;
+        }
+
+        .btn-secondary:hover {
+            background: #edf2f7;
+        }
+
+        .preview-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .preview-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #2d3748;
+            text-transform: uppercase;
+        }
+
+        .preview-box {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 18px;
+            font-size: 10px;
+            line-height: 1.5;
+            max-height: 600px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .preview-header {
+            border: 2px solid #1a202c;
+            padding: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+            background: #f7fafc;
+        }
+
+        .preview-header h3 {
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 3px;
+            color: #f56565;
+        }
+
+        .preview-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 9px;
+        }
+
+        .preview-field {
+            border-bottom: 1px solid #cbd5e0;
+            padding-bottom: 3px;
+        }
+
+        .preview-field strong {
+            display: block;
+            font-size: 8px;
+            text-transform: uppercase;
+            margin-bottom: 1px;
+        }
+
+        .preview-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8px;
+            margin-top: 6px;
+        }
+
+        .preview-table th,
+        .preview-table td {
+            border: 1px solid #cbd5e0;
+            padding: 3px;
+        }
+
+        .preview-table th {
+            background: #edf2f7;
+            font-weight: 700;
+        }
+
+        /* SEO Content Section */
+        .content-section {
+            padding: 40px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .content-section h2 {
+            font-size: 22px;
+            margin: 30px 0 15px 0;
+            color: #1a202c;
+            font-weight: 700;
+        }
+
+        .content-section h2:first-child {
+            margin-top: 0;
+        }
+
+        .content-section p {
+            margin-bottom: 15px;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .content-section ul {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        /* AdSense Section */
+        .ad-slot {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 25px 0;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #718096;
+        }
+
+        /* Premium CTA */
+        .premium-cta {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .premium-cta h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .premium-cta p {
+            color: #4a5568;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+
+        .btn-premium:hover {
+            transform: scale(1.05);
+        }
+
+        /* FAQ Section */
+        .faq-item {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .faq-item strong {
+            display: block;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .faq-item p {
+            color: #4a5568;
+            font-size: 13px;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer-info {
+            background: #1a202c;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .footer-info a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tool-container {
+                padding: 20px;
+            }
+
+            .content-section {
+                padding: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .header-banner h1 {
+                font-size: 20px;
+            }
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #38a169;
+            margin-bottom: 15px;
+            display: none;
+            font-size: 13px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Banner -->
+    <div class="header-banner">
+        <div class="site-branding">
+            <span>🌍 INTERNATIONAL SECTION</span>
+            <span>|</span>
+            <a href="https://masterenglishbook.com">MasterEnglishBook.com</a>
+        </div>
+        <h1>⚠️ Free OSHA Safety Briefing & Sign-In Sheet Generator (Printable PDF)</h1>
+        <p>Instantly create compliant OSHA safety briefing notes & crew sign-in sheets. Select hazard topics, customize, and download a printable 1-page PDF in 30 seconds.</p>
+    </div>
+
+    <!-- Main Tool Section -->
+    <div class="main-wrapper">
+        <div class="tool-container">
+            <!-- Form Panel -->
+            <div class="form-panel">
+                <div class="badges">
+                    <span class="badge">✓ OSHA Compliant</span>
+                    <span class="badge">✓ Instant PDF</span>
+                    <span class="badge">✓ 100% Free</span>
+                </div>
+
+                <div class="success-message" id="successMsg">✓ Document downloaded successfully!</div>
+
+                <div class="form-group">
+                    <label for="company">Company Name</label>
+                    <input type="text" id="company" placeholder="e.g., ABC Construction Inc." value="ABC Construction Inc.">
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Project Location / Site Address</label>
+                    <input type="text" id="location" placeholder="e.g., 123 Main St, City, State" value="123 Main Street, New York, NY">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
+                </div>
+
+                <div class="form-group">
+                    <label for="supervisor">Supervisor Name & Title</label>
+                    <input type="text" id="supervisor" placeholder="e.g., John Smith, Site Manager" value="John Smith - Site Supervisor">
+                </div>
+
+                <div class="section-title">Safety Topics to Cover</div>
+                <div class="checkbox-group">
+                    <div class="checkbox-item"><input type="checkbox" id="fall" checked><label for="fall">Fall Protection & Ladder Safety</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="ppe" checked><label for="ppe">Personal Protective Equipment (PPE)</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="heat"><label for="heat">Heat Illness Prevention</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="electrical"><label for="electrical">Electrical Hazard Awareness</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="scaffolding"><label for="scaffolding">Scaffolding Safety</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="excavation"><label for="excavation">Excavation & Trenching Safety</label></div>
+                    <div class="checkbox-item"><input type="checkbox" id="confined"><label for="confined">Confined Space Entry</label></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="customNotes">Additional Site-Specific Hazards</label>
+                    <textarea id="customNotes" placeholder="Enter any custom safety concerns...">Check all equipment before use. Report any damages immediately.</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="crewCount">Number of Workers (Sign-in Rows)</label>
+                    <input type="number" id="crewCount" min="5" max="30" value="10">
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="downloadPDF()">📥 Download PDF</button>
+                    <button class="btn btn-secondary" onclick="printDocument()">🖨️ Print</button>
+                </div>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="preview-panel">
+                <div class="preview-title">📋 Live Preview (A4 / US Letter)</div>
+                <div class="preview-box" id="preview">
+                    <div class="preview-header">
+                        <h3>⚠️ DAILY SAFETY BRIEFING & SIGN-IN SHEET</h3>
+                        <p style="font-size: 9px; margin-top: 2px;">OSHA Compliant Document • 29 CFR 1904</p>
+                    </div>
+
+                    <div class="preview-info">
+                        <div class="preview-field"><strong>Company:</strong><span id="previewCompany">ABC Construction Inc.</span></div>
+                        <div class="preview-field"><strong>Date:</strong><span id="previewDate">--/--/----</span></div>
+                        <div class="preview-field"><strong>Location:</strong><span id="previewLocation">123 Main Street, New York, NY</span></div>
+                        <div class="preview-field"><strong>Supervisor:</strong><span id="previewSupervisor">John Smith</span></div>
+                    </div>
+
+                    <div style="margin-bottom: 8px;">
+                        <div style="font-weight: 700; font-size: 9px; text-transform: uppercase; margin-bottom: 3px;">Safety Topics Discussed:</div>
+                        <ul style="margin-left: 10px; font-size: 9px;" id="previewTopics">
+                            <li>• Fall Protection & Ladder Safety</li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 8px;">
+                        <div style="font-weight: 700; font-size: 9px; text-transform: uppercase; margin-bottom: 3px;">Site-Specific Hazards:</div>
+                        <p style="font-size: 9px;" id="previewNotes">Check all equipment before use.</p>
+                    </div>
+
+                    <table class="preview-table">
+                        <thead><tr><th>#</th><th>Name</th><th>Sig</th><th>Role</th></tr></thead>
+                        <tbody id="previewTable"><tr><td>1</td><td></td><td></td><td></td></tr></tbody>
+                    </table>
+
+                    <div style="margin-top: 8px; border-top: 1px solid #cbd5e0; padding-top: 6px; font-size: 8px;">
+                        <p><strong>Supervisor Sig: ___________  Date: _______</strong></p>
+                        <p style="margin-top: 2px; color: #718096;">Generated via MasterEnglishBook.com • OSHA Compliant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ad Slot 1 -->
+        <div class="ad-slot">
+            <!-- Google AdSense Placeholder -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"></ins>
+            <p style="color: #a0aec0; font-size: 11px;">[Advertisement - AdSense Slot 1]</p>
+        </div>
+
+        <!-- SEO Content Section -->
+        <div class="content-section">
+            <h2>How to Conduct an OSHA Compliant Daily Toolbox Talk</h2>
+            <p>A daily toolbox talk (also called a safety briefing or pre-shift meeting) is a short, focused safety discussion that takes 5–15 minutes at the start of each work shift. OSHA recommends these briefings as a best practice to prevent workplace injuries and fatalities on construction sites. Here's how to conduct one effectively:</p>
+
+            <ul>
+                <li><strong>Schedule it consistently:</strong> Hold briefings at the same time each day, ideally before work begins, so workers expect and attend.</li>
+                <li><strong>Pick one relevant topic:</strong> Focus on a single safety hazard or procedure relevant to that day's work (e.g., fall protection if working at heights).</li>
+                <li><strong>Keep it brief:</strong> Aim for 5–10 minutes. Long meetings lose worker attention and engagement.</li>
+                <li><strong>Involve your crew:</strong> Ask open-ended questions and encourage workers to share near-misses or concerns—this builds a strong safety culture.</li>
+                <li><strong>Document attendance:</strong> Use a sign-in sheet (like this one) to track who attended and prove compliance in OSHA audits.</li>
+                <li><strong>Address site-specific hazards:</strong> Mention unique risks on your specific jobsite—weather conditions, equipment in use, new workers, etc.</li>
+            </ul>
+
+            <h2>Why Daily Safety Sign-In Sheets are Mandatory for Site Compliance</h2>
+            <p>OSHA does not explicitly require written sign-in sheets for daily toolbox talks, but they serve a critical legal and practical purpose:</p>
+
+            <ul>
+                <li><strong>Proof of compliance:</strong> When OSHA inspects your site, documented safety briefings show you're serious about worker protection and hazard awareness.</li>
+                <li><strong>Legal liability protection:</strong> If a worker is injured, your company can prove you conducted safety training that day. This protects you in lawsuits and workers' compensation disputes.</li>
+                <li><strong>OSHA citation defense:</strong> Records demonstrate you're following OSHA regulations (29 CFR 1926) and industry best practices, reducing fines if violations occur.</li>
+                <li><strong>Insurance requirements:</strong> Many construction insurance policies require documented safety meetings to maintain coverage and lower premiums.</li>
+                <li><strong>Worker accountability:</strong> Signatures acknowledge workers understood the hazards and agreed to follow safety procedures.</li>
+            </ul>
+
+            <h2>Frequently Asked Questions (FAQ)</h2>
+
+            <div class="faq-item">
+                <strong>Q: How long should you keep OSHA sign-in sheets?</strong>
+                <p>A: OSHA recommends keeping safety records for at least 5 years. Best practice is to keep them for 7–10 years to defend against delayed injury claims and lawsuits. Store them digitally (PDF scans) and in paper format at your office.</p>
+            </div>
+
+            <div class="faq-item">
+                <strong>Q: Are digital/printed safety briefing forms legally valid?</strong>
+                <p>A: Yes. OSHA accepts both printed and digital safety documentation. Use this tool to print forms on-site, or save PDFs to your jobsite folder. Digital signatures are valid in most U.S. jurisdictions; check your state's e-signature laws.</p>
+            </div>
+
+            <div class="faq-item">
+                <strong>Q: What topics should we cover in daily safety briefings?</strong>
+                <p>A: Rotate through your jobsite's top hazards: fall protection, scaffolding, electrical safety, excavation, heat illness, PPE, confined spaces, and equipment operation. This tool includes templates for all major construction hazards.</p>
+            </div>
+
+            <div class="faq-item">
+                <strong>Q: Can we use this tool offline?</strong>
+                <p>A: Yes! This generator runs entirely in your browser. Save the page or download the PDF for offline use. No internet connection required once the page is loaded.</p>
+            </div>
+        </div>
+
+        <!-- Ad Slot 2 -->
+        <div class="ad-slot">
+            <!-- Google AdSense Placeholder -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+                 data-ad-slot="9876543210"
+                 data-ad-format="auto"></ins>
+            <p style="color: #a0aec0; font-size: 11px;">[Advertisement - AdSense Slot 2]</p>
+        </div>
+
+        <!-- Premium CTA -->
+        <div class="premium-cta">
+            <h3>🎁 Unlock 50+ Pre-Written OSHA Safety Scripts</h3>
+            <p>Ready-to-use safety briefing topics for every construction hazard. Print, customize, and deliver professional toolbox talks in minutes—no writing needed.</p>
+            <a href="https://gumroad.com/masterenglishbook" class="btn-premium" target="_blank">Get Premium Safety Pack ($15)</a>
+        </div>
+
+        <!-- JSON-LD FAQ Schema -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "How long should you keep OSHA sign-in sheets?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "OSHA recommends keeping safety records for at least 5 years. Best practice is to keep them for 7–10 years to defend against delayed injury claims and lawsuits."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Are digital/printed safety briefing forms legally valid?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. OSHA accepts both printed and digital safety documentation. Digital signatures are valid in most U.S. jurisdictions."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What topics should we cover in daily safety briefings?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Rotate through your jobsite's top hazards: fall protection, scaffolding, electrical safety, excavation, heat illness, PPE, confined spaces, and equipment operation."
+                    }
+                }
+            ]
+        }
+        </script>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-info">
+        <p><strong>Free OSHA Safety Briefing & Sign-In Sheet Generator</strong></p>
+        <p>A free tool by <a href="https://masterenglishbook.com">MasterEnglishBook.com</a> | OSHA Compliant | 29 CFR 1904</p>
+        <p style="margin-top: 10px; opacity: 0.7;">For construction sites in USA, UK, Canada & Tier-1 countries</p>
+    </div>
+
+    <script>
+        document.getElementById('date').valueAsDate = new Date();
+
+        function updatePreview() {
+            document.getElementById('previewCompany').textContent = document.getElementById('company').value || 'Company';
+            document.getElementById('previewLocation').textContent = document.getElementById('location').value || 'Location';
+            document.getElementById('previewSupervisor').textContent = document.getElementById('supervisor').value || 'Supervisor';
+
+            const dateInput = document.getElementById('date').value;
+            if (dateInput) {
+                const date = new Date(dateInput);
+                document.getElementById('previewDate').textContent = date.toLocaleDateString('en-US');
+            }
+
+            const topics = [];
+            const topicsMap = {
+                fall: 'Fall Protection & Ladder Safety',
+                ppe: 'Personal Protective Equipment (PPE)',
+                heat: 'Heat Illness Prevention',
+                electrical: 'Electrical Hazard Awareness',
+                scaffolding: 'Scaffolding Safety',
+                excavation: 'Excavation & Trenching Safety',
+                confined: 'Confined Space Entry'
+            };
+
+            Object.keys(topicsMap).forEach(key => {
+                if (document.getElementById(key).checked) {
+                    topics.push(`• ${topicsMap[key]}`);
+                }
+            });
+
+            document.getElementById('previewTopics').innerHTML = topics.length > 0
+                ? topics.map(t => `<li>${t}</li>`).join('')
+                : '<li>• No topics selected</li>';
+
+            document.getElementById('previewNotes').textContent = document.getElementById('customNotes').value || 'Site hazards here...';
+
+            const crewCount = parseInt(document.getElementById('crewCount').value) || 10;
+            let tableHTML = '';
+            for (let i = 1; i <= crewCount; i++) {
+                tableHTML += `<tr><td>${i}</td><td></td><td></td><td></td></tr>`;
+            }
+            document.getElementById('previewTable').innerHTML = tableHTML;
+        }
+
+        document.getElementById('company').addEventListener('input', updatePreview);
+        document.getElementById('location').addEventListener('input', updatePreview);
+        document.getElementById('date').addEventListener('change', updatePreview);
+        document.getElementById('supervisor').addEventListener('input', updatePreview);
+        document.getElementById('customNotes').addEventListener('input', updatePreview);
+        document.getElementById('crewCount').addEventListener('change', updatePreview);
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', updatePreview);
+        });
+
+        updatePreview();
+
+        function downloadPDF() {
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳ Generating...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                const element = document.getElementById('preview');
+                const opt = {
+                    margin: 5,
+                    filename: `Safety-Briefing-${document.getElementById('date').value || 'Document'}.pdf`,
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+
+                html2pdf().set(opt).from(element).save();
+
+                const successMsg = document.getElementById('successMsg');
+                successMsg.classList.add('show');
+                setTimeout(() => successMsg.classList.remove('show'), 3000);
+
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 300);
+        }
+
+        function printDocument() {
+            const printWindow = window.open('', '', 'height=800,width=800');
+            const previewHTML = document.getElementById('preview').innerHTML;
+            const fullHTML = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Safety Briefing Sheet</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; font-size: 11px; margin: 10px; }
+                        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+                        th, td { border: 1px solid #000; padding: 4px; text-align: left; }
+                        th { background: #f0f0f0; font-weight: bold; }
+                        @media print { body { margin: 0; } }
+                    </style>
+                </head>
+                <body>${previewHTML}</body>
+                </html>
+            `;
+            printWindow.document.write(fullHTML);
+            printWindow.document.close();
+            setTimeout(() => { printWindow.print(); printWindow.close(); }, 250);
+        }
+    </script>
+</body>
+</html>
