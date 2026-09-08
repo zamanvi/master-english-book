@@ -149,31 +149,16 @@ export default function OshaToolClient({ htmlContent }) {
         }, 300);
       };
 
+      // Prints the current page directly - a print-only stylesheet
+      // (public/osha-safety-tool.html, @media print) hides everything
+      // except #preview so only the document itself comes out. No popup
+      // window involved, so there's nothing for a popup blocker to kill.
+      // (The previous window.open()-based approach crashed with
+      // "Cannot read properties of null" whenever the popup was blocked -
+      // confirmed reproducible - because it never checked whether
+      // window.open() actually returned a window.)
       window.printDocument = function printDocument() {
-        const printWindow = window.open('', '', 'height=800,width=800');
-        const previewHTML = preview.innerHTML;
-        const fullHTML = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Safety Briefing Sheet</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; font-size: 11px; margin: 10px; }
-                        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-                        th, td { border: 1px solid #000; padding: 4px; text-align: left; }
-                        th { background: #f0f0f0; font-weight: bold; }
-                        @media print { body { margin: 0; } }
-                    </style>
-                </head>
-                <body>${previewHTML}</body>
-                </html>
-            `;
-        printWindow.document.write(fullHTML);
-        printWindow.document.close();
-        setTimeout(() => {
-          printWindow.print();
-          printWindow.close();
-        }, 250);
+        window.print();
       };
     }
 

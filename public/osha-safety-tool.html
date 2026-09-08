@@ -642,6 +642,30 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* Print - only the document preview comes out, not the whole
+           page (form, nav, ads, SEO copy, footer, etc). Triggered by the
+           Print button (window.print()) and also works for a manual
+           Ctrl+P / browser print. */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #preview,
+            #preview * {
+                visibility: visible;
+            }
+            #preview {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                max-height: none;
+                overflow: visible;
+                border: none;
+                box-shadow: none;
+            }
+        }
     </style>
 </head>
 <body>
