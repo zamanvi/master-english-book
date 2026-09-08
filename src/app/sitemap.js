@@ -1,18 +1,18 @@
-import getBook from "../../lib/getBook";
-import getChapterData from "../../lib/getChapterData";
+import getWebSection from "../../lib/getWebSection";
+import getWebChapterData from "../../lib/getWebChapterData";
 
 export const revalidate = 30;
 
 export default async function sitemap() {
   const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL;
-  const bookData = await getBook();
+  const bookData = await getWebSection("bangladesh");
   const allChapters = bookData?.success?.data?.chapters?.data;
   let dynamicPages = [];
 
   await Promise.all(
     allChapters?.map(async (chapter) => {
-      const chapterData = await getChapterData(chapter.slug);
-      const chapterContent = chapterData?.success?.data?.items?.data;
+      const chapterData = await getWebChapterData(chapter.slug);
+      const chapterContent = chapterData?.success?.data?.lessons?.data;
 
       chapterContent?.map((content) => {
         const postPage = {

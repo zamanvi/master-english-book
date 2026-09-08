@@ -1,12 +1,12 @@
 import Link from "next/link";
-import getPostData from "../../../../lib/getPostData";
+import getWebPostData from "../../../../lib/getWebPostData";
 
 const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL || "https://www.masterenglishbook.com";
 
 export default async function page({ params }) {
   const postSlug = params?.slug;
-  const postInfo = await getPostData(postSlug);
-  const postContent = postInfo?.success?.data?.item;
+  const postInfo = await getWebPostData(postSlug);
+  const postContent = postInfo?.success?.data?.lesson;
 
   const getEmbedLink = (url) => {
     if (!url) return null;
@@ -64,7 +64,7 @@ export default async function page({ params }) {
       <div className="revert-tailwind">
         <div
           className="revert-tailwind"
-          dangerouslySetInnerHTML={{ __html: postContent?.details }}
+          dangerouslySetInnerHTML={{ __html: postContent?.content }}
         />
       </div>
 
@@ -87,8 +87,8 @@ export default async function page({ params }) {
 
 export async function generateMetadata({ params }) {
   const postSlug = params?.slug;
-  const postInfo = await getPostData(postSlug);
-  const postContent = postInfo?.success?.data?.item;
+  const postInfo = await getWebPostData(postSlug);
+  const postContent = postInfo?.success?.data?.lesson;
   const canonicalUrl = `${siteURL}/book/${postSlug}`;
 
   return {

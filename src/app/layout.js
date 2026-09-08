@@ -2,8 +2,8 @@ import { Space_Grotesk, Hind_Siliguri, Baloo_Da_2 } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import getBook from "../../lib/getBook";
-import getChapterData from "../../lib/getChapterData";
+import getWebSection from "../../lib/getWebSection";
+import getWebChapterData from "../../lib/getWebChapterData";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Script from "next/script";
@@ -61,12 +61,15 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  const bookData = await getBook();
+  // Bangladesh is the site's default section for now - see the Learnify
+  // backend's WebSectionController for the Section (Bangladesh/
+  // International) -> WebChapter -> WebLesson structure this reads from.
+  const bookData = await getWebSection("bangladesh");
   const allChapters = bookData?.success?.data?.chapters?.data;
 
   const chapterDataPromises = allChapters?.map(async (chapter) => {
-    const chapterData = await getChapterData(chapter.slug);
-    return { chapter, chapterContent: chapterData?.success?.data?.items?.data };
+    const chapterData = await getWebChapterData(chapter.slug);
+    return { chapter, chapterContent: chapterData?.success?.data?.lessons?.data };
   }) || [];
 
   const chaptersWithContent = await Promise.all(chapterDataPromises);

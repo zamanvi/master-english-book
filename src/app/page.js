@@ -1,18 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
-import getBook from "../../lib/getBook";
-import getChapterData from "../../lib/getChapterData";
+import getWebSection from "../../lib/getWebSection";
+import getWebChapterData from "../../lib/getWebChapterData";
 import appLogo from "../../public/image/appLogo.jpg";
 import newApp1 from "../../public/image/NewApp1.jpg";
 import newApp2 from "../../public/image/NewApp2.jpg";
 
 export default async function Home() {
-  const bookData = await getBook();
+  const bookData = await getWebSection("bangladesh");
   const firstChapter = bookData?.success?.data?.chapters?.data?.[0];
   let firstLessonSlug = null;
   if (firstChapter) {
-    const chapterData = await getChapterData(firstChapter.slug);
-    firstLessonSlug = chapterData?.success?.data?.items?.data?.[0]?.slug;
+    const chapterData = await getWebChapterData(firstChapter.slug);
+    firstLessonSlug = chapterData?.success?.data?.lessons?.data?.[0]?.slug;
   }
 
   const ctaHref = firstLessonSlug ? `/book/${firstLessonSlug}` : "/";
