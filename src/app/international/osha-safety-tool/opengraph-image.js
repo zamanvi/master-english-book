@@ -71,7 +71,18 @@ export default async function Image() {
                 marginBottom: i === 3 ? 0 : 18,
               }}
             >
-              <span style={{ marginRight: 14 }}>✅</span>
+              <span
+                style={{
+                  display: 'flex',
+                  width: 12,
+                  height: 22,
+                  borderBottom: '5px solid #4ade80',
+                  borderRight: '5px solid #4ade80',
+                  transform: 'rotate(40deg)',
+                  marginRight: 22,
+                  marginLeft: 6,
+                }}
+              />
               <span>{item}</span>
             </div>
           ))}
