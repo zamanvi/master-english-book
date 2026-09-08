@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import OshaToolClient from './OshaToolClient';
 
 export const metadata = {
   title: 'OSHA Safety Briefing & Sign-In Sheet Generator - Free PDF',
@@ -35,7 +36,5 @@ export default function OSHAToolPage() {
     return <div>Error loading OSHA tool. Please refresh the page.</div>;
   }
 
-  return (
-    <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-  );
+  return <OshaToolClient htmlContent={htmlContent} />;
 }

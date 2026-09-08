@@ -94,8 +94,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-xxxxxxxxxxxxxxxx"></script>
+    <!--
+        html2pdf.js is loaded by OshaToolClient.jsx (dynamically, in a
+        useEffect), not here - a <script src> in this file would hit the
+        same dangerouslySetInnerHTML/innerHTML issue described below and
+        never actually load on a client-side navigation.
+
+        AdSense's adsbygoogle.js is already loaded site-wide from the root
+        layout (src/app/layout.js) with the real client ID - no separate
+        load needed here. The two <ins class="adsbygoogle"> slots below
+        use that same real client ID to match.
+    -->
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -700,7 +709,7 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn btn-primary" onclick="downloadPDF()">Download PDF</button>
+                    <button class="btn btn-primary" onclick="downloadPDF(event)">Download PDF</button>
                     <button class="btn btn-secondary" onclick="printDocument()">Print</button>
                 </div>
             </div>
@@ -750,7 +759,7 @@
         <div class="ad-slot">
             <ins class="adsbygoogle"
                  style="display:block"
-                 data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+                 data-ad-client="ca-pub-7889299981957538"
                  data-ad-slot="1234567890"
                  data-ad-format="auto"></ins>
         </div>
@@ -807,7 +816,7 @@
         <div class="ad-slot">
             <ins class="adsbygoogle"
                  style="display:block"
-                 data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+                 data-ad-client="ca-pub-7889299981957538"
                  data-ad-slot="9876543210"
                  data-ad-format="auto"></ins>
         </div>
@@ -828,114 +837,21 @@
         <p style="margin-top: 10px; opacity: 0.7;">For construction sites in the USA, UK, Canada &amp; Tier-1 countries</p>
     </div>
 
-    <script>
-        document.getElementById('date').valueAsDate = new Date();
+    <!--
+        NOTE: All interactivity for this tool (date default, live preview,
+        Download PDF, Print) is implemented in
+        src/app/international/osha-safety-tool/OshaToolClient.jsx as a
+        React client component, NOT as an inline <script> here.
 
-        function updatePreview() {
-            document.getElementById('previewCompany').textContent = document.getElementById('company').value || 'Company';
-            document.getElementById('previewLocation').textContent = document.getElementById('location').value || 'Location';
-            document.getElementById('previewSupervisor').textContent = document.getElementById('supervisor').value || 'Supervisor';
-
-            const dateInput = document.getElementById('date').value;
-            if (dateInput) {
-                const date = new Date(dateInput);
-                document.getElementById('previewDate').textContent = date.toLocaleDateString('en-US');
-            }
-
-            const topics = [];
-            const topicsMap = {
-                fall: 'Fall Protection & Ladder Safety',
-                ppe: 'Personal Protective Equipment (PPE)',
-                heat: 'Heat Illness Prevention',
-                electrical: 'Electrical Hazard Awareness',
-                scaffolding: 'Scaffolding Safety',
-                excavation: 'Excavation & Trenching Safety',
-                confined: 'Confined Space Entry'
-            };
-
-            Object.keys(topicsMap).forEach(key => {
-                if (document.getElementById(key).checked) {
-                    topics.push(topicsMap[key]);
-                }
-            });
-
-            document.getElementById('previewTopics').innerHTML = topics.length > 0
-                ? topics.map(t => `<li>${t}</li>`).join('')
-                : '<li>No topics selected</li>';
-
-            document.getElementById('previewNotes').textContent = document.getElementById('customNotes').value || 'Site hazards here...';
-
-            const crewCount = parseInt(document.getElementById('crewCount').value) || 10;
-            let tableHTML = '';
-            for (let i = 1; i <= crewCount; i++) {
-                tableHTML += `<tr><td>${i}</td><td></td><td></td><td></td></tr>`;
-            }
-            document.getElementById('previewTable').innerHTML = tableHTML;
-        }
-
-        document.getElementById('company').addEventListener('input', updatePreview);
-        document.getElementById('location').addEventListener('input', updatePreview);
-        document.getElementById('date').addEventListener('change', updatePreview);
-        document.getElementById('supervisor').addEventListener('input', updatePreview);
-        document.getElementById('customNotes').addEventListener('input', updatePreview);
-        document.getElementById('crewCount').addEventListener('change', updatePreview);
-
-        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-            checkbox.addEventListener('change', updatePreview);
-        });
-
-        updatePreview();
-
-        function downloadPDF() {
-            const btn = event.target;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'Generating...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                const element = document.getElementById('preview');
-                const opt = {
-                    margin: 5,
-                    filename: `Safety-Briefing-${document.getElementById('date').value || 'Document'}.pdf`,
-                    image: { type: 'jpeg', quality: 0.98 },
-                    html2canvas: { scale: 2 },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-
-                html2pdf().set(opt).from(element).save();
-
-                const successMsg = document.getElementById('successMsg');
-                successMsg.classList.add('show');
-                setTimeout(() => successMsg.classList.remove('show'), 3000);
-
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            }, 300);
-        }
-
-        function printDocument() {
-            const printWindow = window.open('', '', 'height=800,width=800');
-            const previewHTML = document.getElementById('preview').innerHTML;
-            const fullHTML = `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Safety Briefing Sheet</title>
-                    <style>
-                        body { font-family: Arial, sans-serif; font-size: 11px; margin: 10px; }
-                        table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-                        th, td { border: 1px solid #000; padding: 4px; text-align: left; }
-                        th { background: #f0f0f0; font-weight: bold; }
-                        @media print { body { margin: 0; } }
-                    </style>
-                </head>
-                <body>${previewHTML}</body>
-                </html>
-            `;
-            printWindow.document.write(fullHTML);
-            printWindow.document.close();
-            setTimeout(() => { printWindow.print(); printWindow.close(); }, 250);
-        }
-    </script>
+        Reason: this file's markup is injected via dangerouslySetInnerHTML.
+        On a full page load that works fine, but on a client-side Next.js
+        navigation (any in-site link click), React sets this content via
+        the DOM innerHTML API - and the HTML spec guarantees <script> tags
+        inserted that way never execute. Keeping the logic here would mean
+        the entire tool silently breaks (blank date, frozen preview, dead
+        buttons) for every visitor who reaches this page by clicking a
+        link instead of a hard refresh. Do not re-add a <script> block
+        with this logic - fix/extend OshaToolClient.jsx instead.
+    -->
 </body>
 </html>
