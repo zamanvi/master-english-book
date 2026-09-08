@@ -15,6 +15,13 @@ export default function InternationalSidebar({ chaptersWithContent }) {
     setShowMoreMap((prev) => ({ ...prev, [slug]: !prev[slug] }));
   };
 
+  // Standalone tools (OSHA generator, and any future ones) aren't lessons -
+  // "Chapters & Lessons" navigation is irrelevant there and just wastes
+  // width. Hide it and let <main> (flex-1) take the full page instead.
+  if (pathname.startsWith("/international/osha-safety-tool")) {
+    return null;
+  }
+
   const filtered =
     chaptersWithContent
       ?.map(({ chapter, chapterContent }) => {

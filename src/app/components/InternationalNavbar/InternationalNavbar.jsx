@@ -36,7 +36,7 @@ export default function InternationalNavbar({ chaptersWithContent }) {
           </Link>
           <Link
             href="/"
-            className="text-slate-500 hover:text-white text-xs font-grotesk transition-colors border border-slate-700 rounded-full px-3 py-1"
+            className="text-slate-600 hover:text-slate-300 text-xs font-grotesk transition-colors"
           >
             বাংলাদেশ সংস্করণ
           </Link>
