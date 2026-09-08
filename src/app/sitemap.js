@@ -48,6 +48,12 @@ export default async function sitemap() {
       changeFrequency: "weekly",
       priority: 1,
     },
+    {
+      url: `${siteURL}/international/osha-safety-tool`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
     ...bangladeshPages,
     ...internationalPages,
     {
