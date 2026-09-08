@@ -10,6 +10,15 @@ export const metadata = {
     description: 'Instant OSHA-compliant safety briefing forms. Download as PDF, print, and share with your crew.',
     type: 'website',
     url: 'https://masterenglishbook.com/international/osha-safety-tool',
+    image: 'https://masterenglishbook.com/osha-tool-og-image.png',
+    width: 1200,
+    height: 630,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free OSHA Safety Briefing & Sign-In Sheet Generator',
+    description: 'Create compliant OSHA safety briefing forms in 30 seconds. Free PDF download.',
+    image: 'https://masterenglishbook.com/osha-tool-og-image.png',
   },
   canonical: 'https://masterenglishbook.com/international/osha-safety-tool',
 };

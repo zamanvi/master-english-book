@@ -1,0 +1,49 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Warning Icon -->
+  <text x="60" y="120" font-size="80" font-weight="bold">⚠️</text>
+  
+  <!-- Main Title -->
+  <text x="150" y="120" font-size="54" font-weight="bold" fill="white" font-family="Arial, sans-serif">
+    Free OSHA Safety Briefing
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="150" y="180" font-size="48" font-weight="bold" fill="white" font-family="Arial, sans-serif">
+    &amp; Sign-In Sheet Generator
+  </text>
+  
+  <!-- Tagline -->
+  <text x="150" y="240" font-size="36" fill="#e0e7ff" font-family="Arial, sans-serif">
+    Generate in 30 Seconds • 100% Free PDF
+  </text>
+  
+  <!-- Features -->
+  <rect x="150" y="290" width="1000" height="280" fill="rgba(255,255,255,0.1)" rx="15"/>
+  
+  <!-- Feature 1 -->
+  <text x="180" y="350" font-size="28" font-weight="bold" fill="white" font-family="Arial, sans-serif">✓ OSHA Compliant (29 CFR 1904)</text>
+  
+  <!-- Feature 2 -->
+  <text x="180" y="410" font-size="28" font-weight="bold" fill="white" font-family="Arial, sans-serif">✓ Instantly Generate & Download PDF</text>
+  
+  <!-- Feature 3 -->
+  <text x="180" y="470" font-size="28" font-weight="bold" fill="white" font-family="Arial, sans-serif">✓ 7 Pre-Built Safety Topics</text>
+  
+  <!-- Feature 4 -->
+  <text x="180" y="530" font-size="28" font-weight="bold" fill="white" font-family="Arial, sans-serif">✓ Print or Email Ready</text>
+  
+  <!-- CTA -->
+  <text x="600" y="600" font-size="24" fill="white" font-family="Arial, sans-serif" text-anchor="middle">
+    masterenglishbook.com/international/osha-safety-tool
+  </text>
+</svg>
