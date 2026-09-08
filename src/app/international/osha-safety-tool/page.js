@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const metadata = {
-  title: 'Generate OSHA Safety Briefing & Sign-in Sheets in 30 Seconds (100% Free PDF)',
+  title: 'OSHA Safety Briefing & Sign-In Sheet Generator - Free PDF',
   description: 'Instantly create compliant OSHA safety briefing notes & crew sign-in sheets. Select hazard topics, customize, and download a printable 1-page PDF. Built for US/UK site managers.',
   keywords: 'OSHA safety briefing, sign-in sheet, daily toolbox talk, construction safety, safety forms, OSHA compliance',
   alternates: {
