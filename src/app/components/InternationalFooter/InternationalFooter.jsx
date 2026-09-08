@@ -9,9 +9,6 @@ import {
   FaYoutube,
   FaLinkedinIn,
 } from "react-icons/fa6";
-import appLogo from "../../../../public/image/appLogo.jpg";
-import newApp1 from "../../../../public/image/NewApp1.jpg";
-import newApp2 from "../../../../public/image/NewApp2.jpg";
 import FooterWithModal from "../Footer/FooterWithModal";
 
 // International's own footer - separate component from Footer.jsx
@@ -21,7 +18,7 @@ const InternationalFooter = () => {
   return (
     <div className="bg-[#16103F] w-full mx-auto py-5">
       <div className="max-w-[1366px] mx-auto">
-        <div className="w-full px-5 mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6 lg:gap-8 ">
+        <div className="w-full px-5 mx-auto grid md:grid-cols-2 gap-10 md:gap-6 lg:gap-8 ">
           {/* ----------First Column ------------*/}
           <div>
             <div>
@@ -108,52 +105,6 @@ const InternationalFooter = () => {
             </div>
             {/* -------------Footer Contact Modal ----------------- */}
             <FooterWithModal />
-          </div>
-
-          {/* ----------Last Column ------------*/}
-          <div>
-            <h2 className="font-bold text-white text-lg lg:text-xl  mb-4">
-              Download Our Apps
-            </h2>
-
-            <div className="text-3xl font-bold text-white flex items-center gap-4 ">
-              <a
-                href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
-                target="_blank"
-                className="bg-white rounded-lg"
-              >
-                <Image
-                  className="p-1 rounded-xl"
-                  width={70}
-                  src={appLogo}
-                  alt="App Logo"
-                />
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.abmn.learnify&pcampaignid=web_share"
-                target="_blank"
-                className="bg-white rounded-lg"
-              >
-                <Image
-                  className="p-1 rounded-xl"
-                  width={70}
-                  src={newApp1}
-                  alt="Learnify App Logo"
-                />
-              </a>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.abmn.redrosechating&pcampaignid=web_share"
-                target="_blank"
-                className="bg-white rounded-lg"
-              >
-                <Image
-                  className="p-1 rounded-xl"
-                  width={70}
-                  src={newApp2}
-                  alt="Red Rose Chatting App Logo"
-                />
-              </a>
-            </div>
           </div>
         </div>
 

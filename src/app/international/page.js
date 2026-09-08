@@ -1,10 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import getWebSection from "../../../lib/getWebSection";
 import getWebChapterData from "../../../lib/getWebChapterData";
-import appLogo from "../../../public/image/appLogo.jpg";
-import newApp1 from "../../../public/image/NewApp1.jpg";
-import newApp2 from "../../../public/image/NewApp2.jpg";
 
 export default async function InternationalHome() {
   const bookData = await getWebSection("international");
@@ -59,54 +55,6 @@ export default async function InternationalHome() {
             Use the menu above to see all lessons ↑
           </p>
         )}
-      </section>
-
-      {/* App Downloads */}
-      <section className="border-t border-slate-100 px-6 md:px-10 py-8 bg-slate-50">
-        <p className="font-hind text-slate-500 text-sm mb-5 text-center">
-          Download our apps from the Play Store
-        </p>
-        <div className="flex justify-center gap-5">
-          <a
-            href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
-            target="_blank"
-            rel="noreferrer"
-            title="Master English Book App"
-          >
-            <Image
-              src={appLogo}
-              width={64}
-              alt="Master English Book App"
-              className="rounded-2xl shadow-md hover:shadow-lg transition-shadow"
-            />
-          </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.abmn.learnify&pcampaignid=web_share"
-            target="_blank"
-            rel="noreferrer"
-            title="Learnify App"
-          >
-            <Image
-              src={newApp1}
-              width={64}
-              alt="Learnify App"
-              className="rounded-2xl shadow-md hover:shadow-lg transition-shadow"
-            />
-          </a>
-          <a
-            href="https://play.google.com/store/apps/details?id=com.abmn.redrosechating&pcampaignid=web_share"
-            target="_blank"
-            rel="noreferrer"
-            title="Red Rose Chatting App"
-          >
-            <Image
-              src={newApp2}
-              width={64}
-              alt="Red Rose Chatting App"
-              className="rounded-2xl shadow-md hover:shadow-lg transition-shadow"
-            />
-          </a>
-        </div>
       </section>
     </div>
   );
