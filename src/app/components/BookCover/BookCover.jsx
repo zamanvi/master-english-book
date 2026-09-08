@@ -1,8 +1,6 @@
 import React from "react";
 import coverPhoto from "../../../../public/image/bookCoverFs.jpg";
 import appLogo from "../../../../public/image/appLogo.jpg"
-import newApp1 from "../../../../public/image/NewApp1.jpg";
-import newApp2 from "../../../../public/image/NewApp2.jpg";
 import Image from "next/image";
 import Link from "next/link";
 const BookCover = () => {
@@ -16,36 +14,34 @@ const BookCover = () => {
         alt="English Book Cover"
       />
 
-      <div className="flex flex-col justify-center items-center gap-y-4 my-7">
-        <span className="font-semibold text-lg text-blue-500">
-          আমাদের App সমূহ play store থেকে ডাউনলোড করতে লিংকে ক্লিক করুন
-        </span>
-        <div className="flex gap-x-5">
-          <Link href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share">
-            <Image
-              className="rounded-md shadow-lg"
-              width={55}
-              src={appLogo}
-              alt="Master English Book"
-            />
-          </Link>
-          <Link href="https://play.google.com/store/apps/details?id=com.abmn.learnify&pcampaignid=web_share">
-            <Image
-              className="rounded-md shadow-lg"
-              width={55}
-              src={newApp1}
-              alt="Learnify"
-            />
-          </Link>
-          <Link href="https://play.google.com/store/apps/details?id=com.abmn.redrosechating&pcampaignid=web_share">
-            <Image
-              className="rounded-md shadow-lg"
-              width={55}
-              src={newApp2}
-              alt="App logo2"
-            />
-          </Link>
+      <div className="flex flex-col justify-center items-center gap-y-5 my-8 bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 md:p-8">
+        <div>
+          <p className="font-semibold text-lg md:text-xl text-slate-900 text-center mb-2">
+            📱 অফলাইনে শেখার জন্য আমাদের অ্যাপ ডাউনলোড করুন
+          </p>
+          <p className="text-sm text-slate-600 text-center">
+            বিনামূল্যে • ২০০+ পাঠ • সম্পূর্ণ অফলাইন অ্যাক্সেস
+          </p>
         </div>
+        <Link
+          href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
+          target="_blank"
+          className="group hover:scale-110 transition-transform duration-300"
+        >
+          <Image
+            className="rounded-2xl shadow-lg group-hover:shadow-2xl"
+            width={70}
+            src={appLogo}
+            alt="English Grammar Book App"
+          />
+        </Link>
+        <Link
+          href="https://play.google.com/store/apps/details?id=com.abmn.englishhub&pcampaignid=web_share"
+          target="_blank"
+          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold px-6 py-2 rounded-xl transition-all duration-300 text-sm"
+        >
+          Play Store এ যান →
+        </Link>
       </div>
     </div>
   );
