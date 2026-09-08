@@ -5,7 +5,10 @@ import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Navbar({ chaptersWithContent }) {
+// International's own navbar - separate component from Navbar.jsx
+// (Bangladesh's), same structure but every link is under /international
+// and copy is English-only (no Bengali), matching this audience.
+export default function InternationalNavbar({ chaptersWithContent }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showMoreMap, setShowMoreMap] = useState({});
   const pathname = usePathname();
@@ -19,23 +22,23 @@ export default function Navbar({ chaptersWithContent }) {
       {/* Desktop */}
       <div className="hidden md:flex items-center justify-between">
         <Link
-          href="/"
+          href="/international"
           className="text-white font-grotesk font-semibold text-sm tracking-wide hover:text-blue-400 transition-colors"
         >
-          Master English Book
+          Master English Book — International
         </Link>
         <div className="flex items-center gap-4">
           <Link
-            href="/"
+            href="/international"
             className="text-slate-400 hover:text-white text-sm font-grotesk transition-colors"
           >
             Home
           </Link>
           <Link
-            href="/international"
+            href="/"
             className="text-slate-500 hover:text-white text-xs font-grotesk transition-colors border border-slate-700 rounded-full px-3 py-1"
           >
-            International
+            বাংলাদেশ সংস্করণ
           </Link>
         </div>
       </div>
@@ -43,7 +46,7 @@ export default function Navbar({ chaptersWithContent }) {
       {/* Mobile */}
       <div className="flex md:hidden items-center justify-between">
         <Link
-          href="/"
+          href="/international"
           className="text-white font-grotesk font-semibold text-sm"
         >
           Master English Book
@@ -71,10 +74,10 @@ export default function Navbar({ chaptersWithContent }) {
           <ul className="py-2">
             <li>
               <Link
-                href="/"
+                href="/international"
                 onClick={() => setMenuOpen(false)}
                 className={`block px-4 py-3 text-sm font-grotesk font-semibold transition-colors ${
-                  pathname === "/"
+                  pathname === "/international"
                     ? "text-blue-400 bg-slate-800"
                     : "text-slate-300 hover:text-white hover:bg-slate-800"
                 }`}
@@ -84,11 +87,11 @@ export default function Navbar({ chaptersWithContent }) {
             </li>
             <li>
               <Link
-                href="/international"
+                href="/"
                 onClick={() => setMenuOpen(false)}
                 className="block px-4 py-3 text-xs font-grotesk text-slate-500 hover:text-white hover:bg-slate-800"
               >
-                International edition
+                বাংলাদেশ সংস্করণ দেখুন
               </Link>
             </li>
 
@@ -103,11 +106,11 @@ export default function Navbar({ chaptersWithContent }) {
                     {chapter.title}
                   </p>
                   {visible.map((content, i) => {
-                    const isActive = pathname === `/book/${content.slug}`;
+                    const isActive = pathname === `/international/book/${content.slug}`;
                     return (
                       <Link
                         key={content.slug}
-                        href={`/book/${content.slug}`}
+                        href={`/international/book/${content.slug}`}
                         onClick={() => setMenuOpen(false)}
                         title={content.title}
                         className={`flex items-start gap-2 px-4 py-2 text-sm font-hind leading-snug transition-colors ${

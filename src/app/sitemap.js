@@ -3,11 +3,10 @@ import getWebChapterData from "../../lib/getWebChapterData";
 
 export const revalidate = 30;
 
-export default async function sitemap() {
-  const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL;
-  const bookData = await getWebSection("bangladesh");
+async function sectionPages(siteURL, sectionSlug, basePath) {
+  const bookData = await getWebSection(sectionSlug);
   const allChapters = bookData?.success?.data?.chapters?.data;
-  let dynamicPages = [];
+  const pages = [];
 
   await Promise.all(
     allChapters?.map(async (chapter) => {
@@ -15,17 +14,26 @@ export default async function sitemap() {
       const chapterContent = chapterData?.success?.data?.lessons?.data;
 
       chapterContent?.map((content) => {
-        const postPage = {
-          url: `${siteURL}/book/${content?.slug}`,
+        pages.push({
+          url: `${siteURL}${basePath}/${content?.slug}`,
           lastModified: new Date(),
           changeFrequency: "weekly",
           priority: 0.8,
-        };
-
-        dynamicPages.push(postPage);
+        });
       });
-    })
+    }) || []
   );
+
+  return pages;
+}
+
+export default async function sitemap() {
+  const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL;
+
+  const [bangladeshPages, internationalPages] = await Promise.all([
+    sectionPages(siteURL, "bangladesh", "/book"),
+    sectionPages(siteURL, "international", "/international/book"),
+  ]);
 
   return [
     {
@@ -34,7 +42,14 @@ export default async function sitemap() {
       changeFrequency: "weekly",
       priority: 1,
     },
-    ...dynamicPages,
+    {
+      url: `${siteURL}/international`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    ...bangladeshPages,
+    ...internationalPages,
     {
       url: `${siteURL}/TermsAndConditions`,
       lastModified: new Date(),

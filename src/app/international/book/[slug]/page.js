@@ -1,5 +1,5 @@
 import Link from "next/link";
-import getWebPostData from "../../../../lib/getWebPostData";
+import getWebPostData from "../../../../../lib/getWebPostData";
 
 const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL || "https://www.masterenglishbook.com";
 
@@ -19,7 +19,7 @@ export default async function page({ params }) {
     return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
   };
 
-  const canonicalUrl = `${siteURL}/book/${postSlug}`;
+  const canonicalUrl = `${siteURL}/international/book/${postSlug}`;
 
   return (
     <article className="px-5 md:px-8 pt-6 md:pt-8 pb-14 md:pb-16 max-w-3xl">
@@ -34,8 +34,8 @@ export default async function page({ params }) {
             url: canonicalUrl,
             isPartOf: {
               "@type": "Book",
-              name: "দূর্বলদের Master English Book Part - I",
-              url: siteURL,
+              name: "Master English Book — International",
+              url: `${siteURL}/international`,
             },
             publisher: {
               "@type": "Organization",
@@ -48,7 +48,7 @@ export default async function page({ params }) {
 
       {/* Breadcrumb */}
       <nav className="text-xs font-grotesk text-slate-400 mb-5 flex items-center gap-1 overflow-hidden">
-        <Link href="/" className="hover:text-blue-600 transition-colors shrink-0">
+        <Link href="/international" className="hover:text-blue-600 transition-colors shrink-0">
           Home
         </Link>
         <span className="shrink-0">/</span>
@@ -89,7 +89,7 @@ export async function generateMetadata({ params }) {
   const postSlug = params?.slug;
   const postInfo = await getWebPostData(postSlug);
   const postContent = postInfo?.success?.data?.lesson;
-  const canonicalUrl = `${siteURL}/book/${postSlug}`;
+  const canonicalUrl = `${siteURL}/international/book/${postSlug}`;
 
   return {
     title: postContent?.title,
