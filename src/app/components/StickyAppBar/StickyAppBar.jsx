@@ -53,8 +53,10 @@ export default function StickyAppBar() {
           <FaXmark className="text-base" />
         </button>
 
+        {/* All-Bengali copy on purpose: AdSense auto-ads "auto-link"
+            annotations were wrapping the English word "Book" in this bar. */}
         <p className="flex-1 font-hind text-xs text-slate-700 leading-snug">
-          পুরো Master English Book — ফ্রি অ্যাপে, অফলাইনে
+          পুরো বইটি ফ্রি অ্যাপে — অফলাইনে পড়ুন, কুইজ খেলুন
         </p>
 
         <a

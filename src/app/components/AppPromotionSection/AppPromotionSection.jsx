@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import appLogo from "../../../../public/image/appLogo.jpg";
+import appLogo from "../../../../public/image/appLogo.png";
 import { FaAndroid, FaGraduationCap, FaVideo, FaHeadphones } from "react-icons/fa6";
 
 const AppPromotionSection = () => {

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import appLogo from "../../../../public/image/appLogo.jpg";
+import appLogo from "../../../../public/image/appLogo.png";
 import { FaAndroid } from "react-icons/fa6";
 
 // In-content app-install call-to-action, dropped at the end of a lesson

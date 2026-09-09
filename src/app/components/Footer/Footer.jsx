@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa6";
 import { IoIosMail } from "react-icons/io";
 import "./style.css";
-import appLogo from "../../../../public/image/appLogo.jpg";
+import appLogo from "../../../../public/image/appLogo.png";
 import FooterWithModal from "./FooterWithModal";
 
 const Footer = () => {

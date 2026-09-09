@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import getWebSection from "../../../lib/getWebSection";
 import getWebChapterData from "../../../lib/getWebChapterData";
-import appLogo from "../../../public/image/appLogo.jpg";
+import appLogo from "../../../public/image/appLogo.png";
 import AppPromotionSection from "../components/AppPromotionSection/AppPromotionSection";
 
 export default async function Home() {

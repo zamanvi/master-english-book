@@ -1,6 +1,6 @@
 import React from "react";
 import coverPhoto from "../../../../public/image/bookCoverFs.jpg";
-import appLogo from "../../../../public/image/appLogo.jpg"
+import appLogo from "../../../../public/image/appLogo.png"
 import Image from "next/image";
 import Link from "next/link";
 const BookCover = () => {
