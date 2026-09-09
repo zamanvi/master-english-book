@@ -139,6 +139,64 @@ export default function OshaToolClient({ htmlContent }) {
 
       updatePreview();
 
+      // html2canvas (bundled in html2pdf.js 0.10.1) cannot parse the CSS
+      // oklch() color function and throws
+      // "Attempting to parse an unsupported color function oklch",
+      // which made "Download PDF" silently do nothing. This page renders
+      // inside the main site, whose CSS (DaisyUI 4 theme tokens) sets
+      // oklch() colors on :root / html / body; `color` then inherits into
+      // every node, and html2canvas also chokes while cloning decorative
+      // ::before/::after pseudo-elements that inherited it - a stage that
+      // runs *before* its onclone hook, so onclone alone can't fix it.
+      //
+      // Fix: for the duration of the capture only, flip a data attribute
+      // on <html> that activates an override stylesheet forcing every
+      // colour-valued property (incl. -webkit-text-fill-color, which is
+      // what html2canvas actually reads for text) to a plain rgb value.
+      // The rgb is the browser's own conversion of the real inherited
+      // colour, so on-screen nothing visibly changes; the attribute and
+      // <style> are removed as soon as the PDF worker settles.
+      function oklchToRgb(value, fallback) {
+        try {
+          const cx = document.createElement('canvas').getContext('2d');
+          cx.fillStyle = fallback;
+          cx.fillStyle = value; // invalid values leave fallback in place
+          return cx.fillStyle;
+        } catch (e) {
+          return fallback;
+        }
+      }
+
+      const PDF_FIX_ATTR = 'data-osha-pdf-capture';
+      let pdfFixStyle = null;
+
+      function enablePdfColorFix() {
+        const text = oklchToRgb(getComputedStyle(document.body).color, '#334155');
+        if (!pdfFixStyle) {
+          pdfFixStyle = document.createElement('style');
+          pdfFixStyle.dataset.oshaPdfFix = 'true';
+        }
+        // NB: the selector must include `html[attr]` itself, not just
+        // `html[attr] *` - html2canvas reads the root element's own colour
+        // and would still hit the un-overridden oklch there otherwise.
+        pdfFixStyle.textContent =
+          `html[${PDF_FIX_ATTR}], html[${PDF_FIX_ATTR}] *, ` +
+          `html[${PDF_FIX_ATTR}] *::before, html[${PDF_FIX_ATTR}] *::after {` +
+          `color:${text} !important;-webkit-text-fill-color:${text} !important;` +
+          `-webkit-text-stroke-color:${text} !important;caret-color:${text} !important;` +
+          `outline-color:${text} !important;text-decoration-color:${text} !important;` +
+          `text-emphasis-color:${text} !important;column-rule-color:${text} !important;}` +
+          `html[${PDF_FIX_ATTR}], html[${PDF_FIX_ATTR}] body { background-color:#ffffff !important; }`;
+        if (!pdfFixStyle.isConnected) document.head.appendChild(pdfFixStyle);
+        document.documentElement.setAttribute(PDF_FIX_ATTR, '');
+      }
+
+      function disablePdfColorFix() {
+        document.documentElement.removeAttribute(PDF_FIX_ATTR);
+        if (pdfFixStyle && pdfFixStyle.isConnected) pdfFixStyle.remove();
+      }
+      cleanupFns.push(disablePdfColorFix);
+
       // Exposed for the markup's onclick="downloadPDF()" / onclick="printDocument()"
       window.downloadPDF = function downloadPDF(event) {
         const btn = event.target;
@@ -146,22 +204,47 @@ export default function OshaToolClient({ htmlContent }) {
         btn.innerHTML = 'Generating...';
         btn.disabled = true;
 
+        const restoreBtn = () => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        };
+        const flash = (msg, isError) => {
+          successMsg.textContent = msg;
+          successMsg.style.background = isError ? '#fef2f2' : '';
+          successMsg.style.color = isError ? '#991b1b' : '';
+          successMsg.style.borderLeftColor = isError ? '#ef4444' : '';
+          successMsg.classList.add('show');
+          setTimeout(() => successMsg.classList.remove('show'), isError ? 6000 : 3000);
+        };
+
         setTimeout(() => {
+          if (typeof window.html2pdf !== 'function') {
+            flash('PDF tool did not load — use the Print button and choose "Save as PDF".', true);
+            restoreBtn();
+            return;
+          }
+
           const opt = {
             margin: 5,
             filename: `Safety-Briefing-${dateInput.value || 'Document'}.pdf`,
             image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
+            html2canvas: { scale: 2, backgroundColor: '#ffffff' },
             jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
           };
 
-          window.html2pdf().set(opt).from(preview).save();
-
-          successMsg.classList.add('show');
-          setTimeout(() => successMsg.classList.remove('show'), 3000);
-
-          btn.innerHTML = originalText;
-          btn.disabled = false;
+          enablePdfColorFix();
+          Promise.resolve(window.html2pdf().set(opt).from(preview).save())
+            .then(() => {
+              flash('Document downloaded successfully.', false);
+            })
+            .catch((err) => {
+              console.error('OSHA tool: PDF generation failed', err);
+              flash('Could not generate the PDF in this browser — use the Print button and choose "Save as PDF".', true);
+            })
+            .then(
+              () => { disablePdfColorFix(); restoreBtn(); },
+              () => { disablePdfColorFix(); restoreBtn(); }
+            );
         }, 300);
       };
 
