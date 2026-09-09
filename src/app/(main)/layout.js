@@ -3,6 +3,7 @@ import getWebSection from "../../../lib/getWebSection";
 import getWebChapterData from "../../../lib/getWebChapterData";
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
+import StickyAppBar from "../components/StickyAppBar/StickyAppBar";
 import cardImage from "../../../public/image/bookCoverFs.jpg";
 
 // Bangladesh - the site's default audience/section. Fully separate
@@ -63,6 +64,7 @@ export default async function MainLayout({ children }) {
         </div>
       </div>
       <Footer />
+      <StickyAppBar />
     </>
   );
 }

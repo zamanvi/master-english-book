@@ -1,5 +1,6 @@
 import Link from "next/link";
 import getWebPostData from "../../../../../lib/getWebPostData";
+import AppInstallCard from "../../../components/AppInstallCard/AppInstallCard";
 
 const siteURL = process.env.NEXT_PUBLIC_WEBSITE_URL || "https://www.masterenglishbook.com";
 
@@ -81,6 +82,8 @@ export default async function page({ params }) {
           />
         </div>
       )}
+
+      <AppInstallCard medium="book_card" />
     </article>
   );
 }
